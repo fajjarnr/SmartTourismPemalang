@@ -1,25 +1,35 @@
-import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+// import {getData} from '../../../utils';
 
 const Header = ({title, subTitle, back, onPress, profile}) => {
+  // const [photo, setPhoto] = useState(FoodDummy1);
+
+  // useEffect(() => {
+  //   getData('userProfile').then(res => {
+  //     console.log('userProfile: ', res);
+  //     setPhoto({uri: res.profile_photo_url});
+  //   });
+  // }, []);
+
   return (
-    <View>
-      <View style={styles.wrapper}>
-        {back && (
-          <TouchableOpacity activeOpacity={0.5} onPress={onPress}>
-            <View style={styles.icon}>{/* <IconBack /> */}</View>
-          </TouchableOpacity>
-        )}
-        <View style={styles.wrappertext}>
-          <View>
-            <Text style={styles.title}>{title}</Text>
-            <Text style={styles.subTitle}>{subTitle} </Text>
+    <View style={styles.wrapper}>
+      {back && (
+        <TouchableOpacity activeOpacity={0.5} onPress={onPress}>
+          <View style={styles.icon}>
+            <IconBack />
           </View>
-          <View>
-            {profile && (
-              <View>{/* <Image source={photo} style={styles.image} /> */}</View>
-            )}
-          </View>
+        </TouchableOpacity>
+      )}
+      <View style={styles.wrappertext}>
+        <View>
+          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.subTitle}>{subTitle}</Text>
+        </View>
+        <View>
+          {profile && (
+            <View>{/* <Image source={photo} style={styles.image} /> */}</View>
+          )}
         </View>
       </View>
     </View>
@@ -32,7 +42,7 @@ const styles = StyleSheet.create({
   wrapper: {
     padding: 24,
     paddingTop: 30,
-    backgroundColor: '#0157E4',
+    backgroundColor: 'white',
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -41,13 +51,13 @@ const styles = StyleSheet.create({
   },
   wrappertext: {
     flex: 1,
+    marginLeft: -1,
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'space-between',
   },
   title: {
-    fontFamily: 'Inter-SemiBold',
-    fontSize: 28,
+    fontFamily: 'Inter-Medium',
+    fontSize: 22,
     color: '#020202',
   },
   subTitle: {
