@@ -1,11 +1,11 @@
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
-import {SplashScreen} from './screens';
+import {SignIn, Splash, Welcome} from './screens';
 
 export default function App() {
   return (
     <NavigationContainer>
-      <SplashScreen />
+      <Welcome />
     </NavigationContainer>
   );
 }

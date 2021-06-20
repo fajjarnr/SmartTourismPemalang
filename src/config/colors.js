@@ -1,0 +1,18 @@
+export default {
+  black: '#000000',
+  danger: '#DF5060',
+  dark: '#3D4C63',
+  medium: '#B5BBC9',
+  midnightBlue: '#0D1F3C',
+  light: '#CFD2D8',
+  primary: '#0157E4',
+  success: '#75BF72',
+  warning: '#FDB32A',
+  white: '#ffffff',
+  grey: '#EDF1F9',
+  background: '#F7FBFF',
+  secondary: '#9093AC',
+  blackGray: '#848484',
+  blue: '#2675EC',
+  whiteGray: '#F6F6F6',
+};
