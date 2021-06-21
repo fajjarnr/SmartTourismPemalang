@@ -16,9 +16,7 @@ const SuccessSignUp = ({navigation}) => {
       <View style={styles.button}>
         <Button
           label="Find Destinations"
-          onPress={() =>
-            navigation.reset({index: 0, routes: [{name: 'MainApp'}]})
-          }
+          onPress={() => navigation.replace('MainApp')}
           colorButton="#FFC700"
           textColorButton="#020202"
         />

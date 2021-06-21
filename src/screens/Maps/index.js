@@ -1,14 +1,14 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
-const Home = () => {
+const Maps = () => {
   return (
     <View>
-      <Text>Home</Text>
+      <Text>Maps Page</Text>
     </View>
   );
 };
 
-export default Home;
+export default Maps;
 
 const styles = StyleSheet.create({});

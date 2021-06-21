@@ -1,4 +1,7 @@
 import Home from './Home';
+import Maps from './Maps';
+import News from './News';
+import Order from './Order';
 import Profile from './Profile';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
@@ -16,4 +19,7 @@ export {
   SuccessSignUp,
   Profile,
   SignUpAddress,
+  Order,
+  Maps,
+  News,
 };

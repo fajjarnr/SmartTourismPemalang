@@ -1,14 +1,14 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
-const Home = () => {
+const Order = () => {
   return (
     <View>
-      <Text>Home</Text>
+      <Text>Order Page</Text>
     </View>
   );
 };
 
-export default Home;
+export default Order;
 
 const styles = StyleSheet.create({});
