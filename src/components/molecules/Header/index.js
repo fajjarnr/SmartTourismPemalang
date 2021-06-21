@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 // import {getData} from '../../../utils';
+import Icon from 'react-native-vector-icons/Feather';
 
 const Header = ({title, subTitle, back, onPress, profile}) => {
   // const [photo, setPhoto] = useState(FoodDummy1);
@@ -17,7 +18,7 @@ const Header = ({title, subTitle, back, onPress, profile}) => {
       {back && (
         <TouchableOpacity activeOpacity={0.5} onPress={onPress}>
           <View style={styles.icon}>
-            <IconBack />
+            <Icon name="chevron-left" size={34} />
           </View>
         </TouchableOpacity>
       )}

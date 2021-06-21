@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {StyleSheet, View, StatusBar} from 'react-native';
 import {Logo} from '../../assets';
 
-const Splash = () => {
+const Splash = ({navigation}) => {
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.replace('SignIn');
+    }, 2000);
+  }, [navigation]);
+
   return (
     <>
       <StatusBar hidden={true} />

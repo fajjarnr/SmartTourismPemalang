@@ -1,4 +1,5 @@
 import Logo from './Logo.svg';
+import Success from './Success.svg';
 import WelcomeIcon from './WelcomeIcon.svg';
 
-export {Logo, WelcomeIcon};
+export {Logo, WelcomeIcon, Success};
