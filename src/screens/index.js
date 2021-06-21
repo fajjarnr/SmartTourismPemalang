@@ -9,6 +9,7 @@ import SignUpAddress from './SignUpAddress';
 import Splash from './Splash';
 import SuccessSignUp from './SuccessSignUp';
 import Welcome from './Welcome';
+import NewsDetail from './NewsDetail';
 
 export {
   Splash,
@@ -22,4 +23,5 @@ export {
   Order,
   Maps,
   News,
+  NewsDetail,
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Number} from '..';
-import {IconStarOff, IconStarOn} from '../../../assets';
+import {StarOff, StarOn} from '../../../assets';
 import {Gap} from '../../atoms';
 
 const Rating = ({number}) => {
@@ -9,9 +9,9 @@ const Rating = ({number}) => {
     let star = [];
     for (let i = 1; i <= 5; i++) {
       if (i <= number) {
-        star.push(<IconStarOn key={i} />);
+        star.push(<StarOn key={i} />);
       } else {
-        star.push(<IconStarOff key={i} />);
+        star.push(<StarOff key={i} />);
       }
     }
     return star;
