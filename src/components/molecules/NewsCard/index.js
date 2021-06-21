@@ -1,32 +1,20 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {Banner1} from '../../../assets';
 import {Gap} from '../../atoms';
 
 const NewsCard = ({image, name, author, description, onPress}) => {
   return (
     <TouchableOpacity style={styles.page} activeOpacity={0.8} onPress={onPress}>
-      <Image source={Banner1} style={styles.image} />
+      <Image source={image} style={styles.image} />
       <View style={styles.container}>
         <Text style={styles.title} numberOfLines={2} lineBreakMode="tail">
-          {name}Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          {name}
         </Text>
         <Gap height={5} />
-        <Text style={styles.author}>{author}Nasi Grombyang</Text>
+        <Text style={styles.author}>{author}</Text>
         <Gap height={7} />
         <Text style={styles.description} numberOfLines={3} lineBreakMode="tail">
-          {description}Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Aut excepturi voluptas dolore in odit aliquam repellendus,
-          reprehenderit labore animi! Odio, deserunt totam molestias obcaecati
-          laboriosam quae alias consectetur nobis accusantium, necessitatibus
-          sequi velit. Corrupti sunt ullam doloremque nemo, vitae incidunt,
-          impedit iste saepe veritatis, atque rerum dignissimos? Architecto, nam
-          ipsam natus vero sit assumenda deleniti deserunt consectetur quidem,
-          nulla voluptatibus! Nihil minus incidunt magnam cupiditate repudiandae
-          deserunt amet velit similique odit in atque aut ducimus quas minima
-          dicta nesciunt ipsum possimus animi, dignissimos nemo temporibus harum
-          reprehenderit autem tempore. Voluptatem cum unde quibusdam amet.
-          Dignissimos pariatur quisquam reprehenderit impedit provident.
+          {description}
         </Text>
       </View>
     </TouchableOpacity>

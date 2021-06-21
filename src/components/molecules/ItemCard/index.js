@@ -1,26 +1,25 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {Banner1} from '../../../assets';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-// import {Rating} from '..';
+import {Rating} from '..';
 import {StarOff, StarOn} from '../../../assets';
 import {Gap} from '../../atoms';
 
-const ItemCard = ({image, name, rating, onPress}) => {
+const ItemCard = ({image, name, rating, hours, onPress}) => {
   return (
     <TouchableOpacity style={styles.page} activeOpacity={0.8} onPress={onPress}>
-      <Image source={Banner1} style={styles.image} />
+      <Image source={image} style={styles.image} />
       <View style={styles.container}>
-        <Text style={styles.title}>{name}Nasi Grombyang</Text>
+        <Text style={styles.title}>{name}</Text>
         <Gap height={12} />
-        {/* <Rating number={rating} /> */}
-        <View style={styles.star}>
+        <Rating number={rating} />
+        {/* <View style={styles.star}>
           <StarOn />
           <StarOn />
           <StarOn />
           <StarOn />
           <StarOff />
-        </View>
+        </View> */}
         <Gap height={12} />
         <View style={styles.time}>
           <MaterialCommunityIcons
@@ -28,7 +27,7 @@ const ItemCard = ({image, name, rating, onPress}) => {
             size={22}
             color="#0157E4"
           />
-          <Text style={styles.text}>24 jam</Text>
+          <Text style={styles.hours}>{hours}</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -72,7 +71,7 @@ const styles = StyleSheet.create({
   time: {
     flexDirection: 'row',
   },
-  text: {
+  hours: {
     marginLeft: 5,
   },
   star: {

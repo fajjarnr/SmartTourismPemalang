@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {IconAdd, IconMin} from '../../../assets';
+import {ButtonAdd, ButtonMin} from '../../../assets';
 
 const Counter = ({onValueChange}) => {
   const [value, setValue] = useState(1);
@@ -9,7 +9,7 @@ const Counter = ({onValueChange}) => {
     onValueChange(value);
   }, []);
 
-  const onCount = (type) => {
+  const onCount = type => {
     let result = value;
     if (type === 'plus') {
       result = value + 1;
@@ -25,11 +25,11 @@ const Counter = ({onValueChange}) => {
   return (
     <View style={styles.content}>
       <TouchableOpacity style={styles.gap} onPress={() => onCount('minus')}>
-        <IconMin />
+        <ButtonMin />
       </TouchableOpacity>
       <Text style={styles.value}>{value}</Text>
       <TouchableOpacity style={styles.gap} onPress={() => onCount('plus')}>
-        <IconAdd />
+        <ButtonAdd />
       </TouchableOpacity>
     </View>
   );
@@ -38,10 +38,15 @@ const Counter = ({onValueChange}) => {
 export default Counter;
 
 const styles = StyleSheet.create({
-  content: {flexDirection: 'row', alignItems: 'center'},
-  gap: {marginHorizontal: 10},
+  content: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  gap: {
+    marginHorizontal: 10,
+  },
   value: {
-    fontFamily: 'Poppins-Regular',
+    fontFamily: 'Inter-Regular',
     fontSize: 16,
   },
 });
