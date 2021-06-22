@@ -13,6 +13,7 @@ import Splash from './Splash';
 import SuccessOrder from './SuccessOrder';
 import SuccessSignUp from './SuccessSignUp';
 import Welcome from './Welcome';
+import OrderDetail from './OrderDetail';
 
 export {
   Splash,
@@ -30,4 +31,5 @@ export {
   DestinationDetail,
   OrderSummary,
   SuccessOrder,
+  OrderDetail,
 };

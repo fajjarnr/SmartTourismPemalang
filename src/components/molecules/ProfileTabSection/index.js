@@ -1,9 +1,10 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Dimensions, StyleSheet, Text, View} from 'react-native';
 import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
-import {ItemList} from '..';
-import {Banner1, Banner2} from '../../../assets';
+import {HomeFoodList, ProfileListMenu} from '..';
+import {FoodDummy1, FoodDummy2, FoodDummy3, FoodDummy4} from '../../../assets';
 
 const renderTabBar = props => (
   <TabBar
@@ -17,56 +18,48 @@ const renderTabBar = props => (
   />
 );
 
-const InProgress = () => {
+const Account = () => {
   const navigation = useNavigation();
+  const signOut = () => {
+    AsyncStorage.multiRemove(['userProfile', 'token']).then(() => {
+      navigation.reset({index: 0, routes: [{name: 'SignIn'}]});
+    });
+  };
 
   return (
     <View style={styles.wrapperContent}>
-      <ItemList
-        key={1}
-        image={Banner1}
-        name="Pantai Widuri"
-        price="20.000"
-        orderItems={1}
-        activeOpacity={0.8}
-        type="in-progress"
-        onPress={() => navigation.navigate('OrderDetail')}
-      />
+      <ProfileListMenu label="Edit Profile" />
+      <ProfileListMenu label="Security" />
+      <ProfileListMenu label="Payments" />
+      <ProfileListMenu label="SignOut" onPress={signOut} />
     </View>
   );
 };
 
-const PastOrders = () => {
+const SmartTourismPemalang = () => {
   const navigation = useNavigation();
-
   return (
     <View style={styles.wrapperContent}>
-      <ItemList
-        type="past-order"
-        key={1}
-        image={Banner2}
-        name="Alun Alun Pemalang"
-        price={20000}
-        orderItems={1}
-        activeOpacity={1}
-        onPress={() => navigation.navigate('OrderDetail')}
-      />
+      <ProfileListMenu label="Rate App" />
+      <ProfileListMenu label="Help Center" />
+      <ProfileListMenu label="Privacy & Policy" />
+      <ProfileListMenu label="Terms & Conditions" />
     </View>
   );
 };
 
 const initialLayout = {width: Dimensions.get('window').width};
 
-const OrderTabSection = () => {
+const ProfileTabSection = () => {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
-    {key: '1', title: 'In Progress'},
-    {key: '2', title: 'Past Orders'},
+    {key: '1', title: 'Account'},
+    {key: '2', title: 'Smart Tourism Pemalang'},
   ]);
 
   const renderScene = SceneMap({
-    1: InProgress,
-    2: PastOrders,
+    1: Account,
+    2: SmartTourismPemalang,
   });
   return (
     <TabView
@@ -79,7 +72,7 @@ const OrderTabSection = () => {
   );
 };
 
-export default OrderTabSection;
+export default ProfileTabSection;
 
 const styles = StyleSheet.create({
   indicator: {
@@ -99,8 +92,8 @@ const styles = StyleSheet.create({
     color: focused ? '#020202' : '#8D92A3',
   }),
   wrapperContent: {
-    flex: 1,
     paddingHorizontal: 24,
     backgroundColor: 'white',
+    paddingBottom: 18,
   },
 });
