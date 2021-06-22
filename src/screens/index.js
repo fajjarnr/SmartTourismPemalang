@@ -10,6 +10,7 @@ import SignIn from './SignIn';
 import SignUp from './SignUp';
 import SignUpAddress from './SignUpAddress';
 import Splash from './Splash';
+import SuccessOrder from './SuccessOrder';
 import SuccessSignUp from './SuccessSignUp';
 import Welcome from './Welcome';
 
@@ -28,4 +29,5 @@ export {
   NewsDetail,
   DestinationDetail,
   OrderSummary,
+  SuccessOrder,
 };

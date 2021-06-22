@@ -7,13 +7,14 @@ import {
   NewsDetail,
   DestinationDetail,
   OrderSummary,
+  SuccessOrder,
 } from './screens';
 import {ItemCard, NewsCard} from './components';
 
 export default function App() {
   return (
     <NavigationContainer>
-      <OrderSummary />
+      <SuccessOrder />
     </NavigationContainer>
   );
 }
