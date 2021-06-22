@@ -20,7 +20,7 @@ import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 const MIN_HEIGHT = Platform.OS === 'ios' ? 90 : 55;
 const MAX_HEIGHT = 220;
 
-const DestinationDetail = () => {
+const DestinationDetail = ({navigation}) => {
   const navTitleView = useRef(null);
 
   return (
@@ -128,6 +128,7 @@ const DestinationDetail = () => {
               //   onPress={onOrder}
               colorButton="#FFC700"
               textColorButton="#020202"
+              onPress={() => navigation.navigate('OrderSummary')}
             />
           </View>
         </View>

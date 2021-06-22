@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, StatusBar} from 'react-native';
 import {Button, Gap, Header, TextInput} from '../../components';
 
 const SignIn = ({navigation}) => {
@@ -17,6 +17,11 @@ const SignIn = ({navigation}) => {
 
   return (
     <View style={styles.page}>
+      <StatusBar
+        backgroundColor="transparent"
+        translucent
+        barStyle="dark-content"
+      />
       <Header title="Sign In" subTitle="Welcome Back" />
       <View style={styles.wrapper}>
         <TextInput

@@ -9,15 +9,12 @@ import {
 } from 'react-native';
 import {Header, Gap, Banner, ItemCard} from '../../components';
 import Swiper from 'react-native-swiper';
+import {Banner1, Banner2, Banner3, Banner4} from '../../assets';
 
-const Home = () => {
+const Home = ({navigation}) => {
   return (
     <View style={styles.page}>
-      <StatusBar
-        backgroundColor="transparent"
-        translucent
-        barStyle="dark-content"
-      />
+      <StatusBar backgroundColor="white" barStyle="dark-content" />
       <ScrollView showsVerticalScrollIndicator={false}>
         <Header profile title="Fajar Nur Rohman" subTitle="Selamat Datang" />
         <Banner />
@@ -29,10 +26,25 @@ const Home = () => {
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <View style={styles.wrapper}>
               <Gap width={24} />
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
-              <ItemCard />
+              <ItemCard
+                image={Banner1}
+                name="Nasi Grombyang"
+                rating={4.5}
+                hours="08:00 - 17:00"
+                onPress={() => navigation.navigate('DestinationDetail')}
+              />
+              <ItemCard
+                image={Banner2}
+                onPress={() => navigation.navigate('DestinationDetail')}
+              />
+              <ItemCard
+                image={Banner3}
+                onPress={() => navigation.navigate('DestinationDetail')}
+              />
+              <ItemCard
+                image={Banner4}
+                onPress={() => navigation.navigate('DestinationDetail')}
+              />
             </View>
           </ScrollView>
         </View>

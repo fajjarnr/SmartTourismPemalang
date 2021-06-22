@@ -139,6 +139,9 @@ const styles = StyleSheet.create({
     color: 'white',
     backgroundColor: 'transparent',
     fontSize: 24,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: '20%',
   },
   navTitleView: {
     height: MIN_HEIGHT,

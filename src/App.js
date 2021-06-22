@@ -9,12 +9,12 @@ import {
   OrderSummary,
   SuccessOrder,
 } from './screens';
-import {ItemCard, NewsCard} from './components';
+import {EmptyOrder, ItemCard, NewsCard} from './components';
 
 export default function App() {
   return (
     <NavigationContainer>
-      <SuccessOrder />
+      <Router />
     </NavigationContainer>
   );
 }

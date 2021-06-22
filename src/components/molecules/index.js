@@ -10,6 +10,7 @@ import Number from './Number';
 import Rating from './Rating';
 import TabBar from './TabBar';
 import ItemValue from './ItemValue';
+import OrderTabSection from './OrderTabSection';
 
 export {
   Header,
@@ -24,4 +25,5 @@ export {
   EmptyOrder,
   ItemList,
   ItemValue,
+  OrderTabSection,
 };

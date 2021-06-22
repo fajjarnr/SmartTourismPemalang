@@ -25,7 +25,13 @@ const OrderSummary = ({navigation}) => {
 
         <View style={styles.content}>
           <Text style={styles.textTitle}>Item Order</Text>
-          <ItemList image={Banner1} items={14} />
+          <ItemList
+            name="Pantai Widuri"
+            price={20000}
+            image={Banner1}
+            items={14}
+            type="product"
+          />
           <Text style={styles.textTitle}>Detail Transaksi</Text>
           <ItemValue label="Pantai Widuri" value="IDR 200.000" />
         </View>
@@ -40,6 +46,7 @@ const OrderSummary = ({navigation}) => {
             label="Checkout Now"
             colorButton="#FFC700"
             textColorButton="#020202"
+            onPress={() => navigation.replace('SuccessOrder')}
           />
         </View>
       </ScrollView>

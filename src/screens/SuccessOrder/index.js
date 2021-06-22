@@ -1,20 +1,26 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, StatusBar} from 'react-native';
 import {ILOrderSuccess} from '../../assets';
 import {Button, Gap} from '../../components';
 
 const SuccessOrder = ({navigation}) => {
   return (
     <View style={styles.page}>
+      <StatusBar
+        backgroundColor="transparent"
+        translucent
+        barStyle="dark-content"
+      />
       <ILOrderSuccess />
       <Gap height={30} />
-      <Text style={styles.title}>Pemesanan Tiket Berhasil</Text>
+      <Text style={styles.title}>Pembelian Tiket Berhasil</Text>
       <Gap height={6} />
+      <Text style={styles.subTitle}>Tiket obyek wisata berhasil dibeli</Text>
       <Text style={styles.subTitle}>Selamat Berwisata di Pemalang</Text>
       <Gap height={30} />
       <View style={styles.button}>
         <Button
-          label="Back Home"
+          label="Kembali ke Beranda"
           onPress={() => navigation.replace('MainApp')}
           colorButton="#FFC700"
           textColorButton="#020202"
@@ -25,7 +31,7 @@ const SuccessOrder = ({navigation}) => {
         <Button
           colorButton="#8D92A3"
           textColorButton="white"
-          label="View My Order"
+          label="Lihat Tiket Saya"
           onPress={() => navigation.replace('MainApp', {screen: 'Order'})}
         />
       </View>

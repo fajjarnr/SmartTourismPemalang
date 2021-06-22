@@ -2,15 +2,19 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {
+  DestinationDetail,
   Home,
   Maps,
   News,
+  NewsDetail,
   Order,
+  OrderSummary,
   Profile,
   SignIn,
   SignUp,
   SignUpAddress,
   Splash,
+  SuccessOrder,
   SuccessSignUp,
 } from '../screens';
 import {TabBar} from '../components';
@@ -61,6 +65,26 @@ const Router = () => {
       <Stack.Screen
         name="MainApp"
         component={MainApp}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="DestinationDetail"
+        component={DestinationDetail}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="NewsDetail"
+        component={NewsDetail}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="OrderSummary"
+        component={OrderSummary}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="SuccessOrder"
+        component={SuccessOrder}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

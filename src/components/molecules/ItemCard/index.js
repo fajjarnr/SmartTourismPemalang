@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
   },
   time: {
     flexDirection: 'row',
+    alignItems: 'center',
   },
   hours: {
     marginLeft: 5,
