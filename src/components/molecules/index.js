@@ -3,11 +3,13 @@ import Counter from './Counter';
 import EmptyOrder from './EmptyOrder';
 import Header from './Header';
 import ItemCard from './ItemCard';
+import ItemList from './ItemList';
 import Loading from './Loading';
 import NewsCard from './NewsCard';
 import Number from './Number';
 import Rating from './Rating';
 import TabBar from './TabBar';
+import ItemValue from './ItemValue';
 
 export {
   Header,
@@ -20,4 +22,6 @@ export {
   ItemCard,
   NewsCard,
   EmptyOrder,
+  ItemList,
+  ItemValue,
 };

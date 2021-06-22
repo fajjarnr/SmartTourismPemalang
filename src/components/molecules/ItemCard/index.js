@@ -2,7 +2,6 @@ import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Rating} from '..';
-import {StarOff, StarOn} from '../../../assets';
 import {Gap} from '../../atoms';
 
 const ItemCard = ({image, name, rating, hours, onPress}) => {
@@ -13,13 +12,6 @@ const ItemCard = ({image, name, rating, hours, onPress}) => {
         <Text style={styles.title}>{name}</Text>
         <Gap height={12} />
         <Rating number={rating} />
-        {/* <View style={styles.star}>
-          <StarOn />
-          <StarOn />
-          <StarOn />
-          <StarOn />
-          <StarOff />
-        </View> */}
         <Gap height={12} />
         <View style={styles.time}>
           <MaterialCommunityIcons
@@ -51,7 +43,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.5,
     shadowRadius: 10,
-    elevation: 14,
+    elevation: 4,
     marginBottom: 24,
     resizeMode: 'cover',
   },
@@ -73,8 +65,5 @@ const styles = StyleSheet.create({
   },
   hours: {
     marginLeft: 5,
-  },
-  star: {
-    flexDirection: 'row',
   },
 });
