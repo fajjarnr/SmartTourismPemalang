@@ -1,15 +1,16 @@
 import React, {useState} from 'react';
 import {
+  Image,
+  ScrollView,
   StyleSheet,
   Text,
-  View,
-  ScrollView,
   TouchableOpacity,
-  Image,
+  View,
 } from 'react-native';
+import {launchImageLibrary} from 'react-native-image-picker';
+import {useDispatch} from 'react-redux';
 import {Button, Gap, Header, TextInput} from '../../components';
-import {useSelector, useDispatch} from 'react-redux';
-import {useForm} from '../../utils';
+import {showMessage, useForm} from '../../utils';
 
 const SignUp = ({navigation}) => {
   const [form, setForm] = useForm({
@@ -28,32 +29,31 @@ const SignUp = ({navigation}) => {
     navigation.navigate('SignUpAddress');
   };
 
-  // const addPhoto = () => {
-  //   ImagePicker.launchImageLibrary(
-  //     {quality: 0.5, maxWidth: 200, maxHeight: 200},
-  //     (response) => {
-  //       // Same code as in above section!
-  //       console.log('Response = ', response);
+  const addPhoto = () => {
+    launchImageLibrary(
+      {
+        quality: 0.5,
+        maxWidth: 200,
+        maxHeight: 200,
+      },
+      response => {
+        if (response.didCancel || response.error) {
+          showMessage('Anda tidak memilih foto');
+        } else {
+          const source = {uri: response.uri};
+          const dataImage = {
+            uri: response.uri,
+            type: response.type,
+            name: response.fileName,
+          };
+          setPhoto(source);
 
-  //       if (response.didCancel || response.error) {
-  //         console.log('User cancelled image picker');
-  //         showMessage('Anda tidak memilih foto');
-  //       } else {
-  //         const source = {uri: response.uri};
-  //         const dataImage = {
-  //           uri: response.uri,
-  //           type: response.type,
-  //           name: response.fileName,
-  //         };
-  //         setPhoto(source);
-  //         // You can also display the image using data:
-  //         // const source = { uri: 'data:image/jpeg;base64,' + response.data };
-  //         dispatch({type: 'SET_PHOTO', value: dataImage});
-  //         dispatch({type: 'SET_UPLOAD_STATUS', value: true});
-  //       }
-  //     },
-  //   );
-  // };
+          dispatch({type: 'SET_PHOTO', value: dataImage});
+          dispatch({type: 'SET_UPLOAD_STATUS', value: true});
+        }
+      },
+    );
+  };
 
   return (
     <ScrollView
@@ -68,7 +68,7 @@ const SignUp = ({navigation}) => {
         />
         <View style={styles.wrapper}>
           <View style={styles.wrapperborder}>
-            <TouchableOpacity activeOpacity={0.7}>
+            <TouchableOpacity activeOpacity={0.7} onPress={addPhoto}>
               <View style={styles.border}>
                 {photo ? (
                   <Image source={photo} style={styles.borderPhoto} />
