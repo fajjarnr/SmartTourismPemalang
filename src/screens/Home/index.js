@@ -1,22 +1,15 @@
 import React from 'react';
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-  StatusBar,
-  Image,
-} from 'react-native';
-import {Header, Gap, Banner, ItemCard} from '../../components';
+import {ScrollView, StatusBar, StyleSheet, Text, View} from 'react-native';
 import Swiper from 'react-native-swiper';
 import {Banner1, Banner2, Banner3, Banner4} from '../../assets';
+import {Banner, Gap, HomeHeader, ItemCard} from '../../components';
 
 const Home = ({navigation}) => {
   return (
     <View style={styles.page}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Header profile title="Fajar Nur Rohman" subTitle="Selamat Datang" />
+        <HomeHeader />
         <View style={styles.sliderContainer}>
           <Swiper autoplay height={200} activeDotColor="#FF6347">
             <Banner image={Banner1} />

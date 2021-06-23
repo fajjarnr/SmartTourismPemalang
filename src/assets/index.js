@@ -1,3 +1,3 @@
-export * from './Ilustration';
-export * from './Banners';
+export * from './Images';
 export * from './Icon';
+export * from './Ilustration';

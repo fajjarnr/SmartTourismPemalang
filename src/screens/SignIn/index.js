@@ -1,6 +1,8 @@
 import React from 'react';
-import {StyleSheet, View, StatusBar} from 'react-native';
+import {StatusBar, StyleSheet, View} from 'react-native';
+import {useDispatch} from 'react-redux';
 import {Button, Gap, Header, TextInput} from '../../components';
+import {signInAction} from '../../redux/actions';
 import {useForm} from '../../utils';
 
 const SignIn = ({navigation}) => {
@@ -9,11 +11,10 @@ const SignIn = ({navigation}) => {
     password: '',
   });
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const onSubmit = () => {
-    console.log('form: ', form);
-    // dispatch(signInAction(form, navigation));
+    dispatch(signInAction(form, navigation));
   };
 
   return (

@@ -2,6 +2,7 @@ import Banner from './Banner';
 import Counter from './Counter';
 import EmptyOrder from './EmptyOrder';
 import Header from './Header';
+import HomeHeader from './HomeHeader';
 import ItemCard from './ItemCard';
 import ItemList from './ItemList';
 import ItemValue from './ItemValue';
@@ -30,4 +31,5 @@ export {
   OrderTabSection,
   ProfileTabSection,
   ProfileListMenu,
+  HomeHeader,
 };

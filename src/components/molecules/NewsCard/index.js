@@ -5,7 +5,7 @@ import {Gap} from '../../atoms';
 const NewsCard = ({image, name, author, description, onPress}) => {
   return (
     <TouchableOpacity style={styles.page} activeOpacity={0.8} onPress={onPress}>
-      <Image source={image} style={styles.image} />
+      <Image source={image} resizeMode="cover" style={styles.image} />
       <View style={styles.container}>
         <Text style={styles.title} numberOfLines={2} lineBreakMode="tail">
           {name}
@@ -13,7 +13,7 @@ const NewsCard = ({image, name, author, description, onPress}) => {
         <Gap height={5} />
         <Text style={styles.author}>{author}</Text>
         <Gap height={7} />
-        <Text style={styles.description} numberOfLines={3} lineBreakMode="tail">
+        <Text style={styles.description} numberOfLines={2} lineBreakMode="tail">
           {description}
         </Text>
       </View>
@@ -27,21 +27,15 @@ const styles = StyleSheet.create({
   page: {
     backgroundColor: 'white',
     width: 336,
-    height: 324,
+    height: 300,
     overflow: 'hidden',
     borderRadius: 16,
     shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
     shadowOpacity: 0.5,
     shadowRadius: 20,
     elevation: 2,
-    marginBottom: 24,
+    marginBottom: 15,
     resizeMode: 'cover',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   container: {
     padding: 12,
@@ -52,7 +46,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'Inter-SemiBold',
-    fontSize: 26,
+    fontSize: 24,
     color: '#020202',
     textAlign: 'auto',
   },

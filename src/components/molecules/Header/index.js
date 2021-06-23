@@ -1,18 +1,8 @@
-import React, {useEffect, useState} from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-// import {getData} from '../../../utils';
+import React from 'react';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
-const Header = ({title, subTitle, back, onPress, profile}) => {
-  // const [photo, setPhoto] = useState(FoodDummy1);
-
-  // useEffect(() => {
-  //   getData('userProfile').then(res => {
-  //     console.log('userProfile: ', res);
-  //     setPhoto({uri: res.profile_photo_url});
-  //   });
-  // }, []);
-
+const Header = ({title, subTitle, back, onPress}) => {
   return (
     <View style={styles.wrapper}>
       {back && (
@@ -26,11 +16,6 @@ const Header = ({title, subTitle, back, onPress, profile}) => {
         <View>
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.subTitle}>{subTitle}</Text>
-        </View>
-        <View>
-          {profile && (
-            <View>{/* <Image source={photo} style={styles.image} /> */}</View>
-          )}
         </View>
       </View>
     </View>
