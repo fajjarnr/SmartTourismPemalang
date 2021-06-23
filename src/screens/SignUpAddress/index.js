@@ -1,25 +1,28 @@
 import React from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {Button, Gap, Header, TextInput} from '../../components';
+import {useSelector, useDispatch} from 'react-redux';
+import {useForm} from '../../utils';
 
 const SignUpAddress = ({navigation}) => {
-  //   const [form, setForm] = useForm({
-  //     phoneNumber: '',
-  //     address: '',
-  //     houseNumber: '',
-  //     city: 'Bandung',
-  //   });
+  const [form, setForm] = useForm({
+    phone: '',
+    address: '',
+    city: '',
+  });
 
-  //   const {registerReducer, photoReducer} = useSelector((state) => state);
-  //   const dispatch = useDispatch();
-  //   const onSubmit = () => {
-  //     const data = {
-  //       ...form,
-  //       ...registerReducer,
-  //     };
-  //     dispatch(setLoading(true));
-  //     dispatch(signUpAction(data, photoReducer, navigation));
-  //   };
+  const {registerReducer, photoReducer} = useSelector(state => state);
+
+  const dispatch = useDispatch();
+
+  const onSubmit = () => {
+    const data = {
+      ...form,
+      ...registerReducer,
+    };
+    // dispatch(setLoading(true));
+    // dispatch(signUpAction(data, photoReducer, navigation));
+  };
 
   return (
     <ScrollView
@@ -36,22 +39,22 @@ const SignUpAddress = ({navigation}) => {
           <TextInput
             label="No Telpon"
             inputLabel="Ketikan No Telpon"
-            // value={form.phone}
-            // onChangeText={value => setForm('phone', value)}
+            value={form.phone}
+            onChangeText={value => setForm('phone', value)}
           />
           <Gap height={24} />
           <TextInput
             label="Alamat"
             inputLabel="Ketikan Alamat"
-            // value={form.address}
-            // onChangeText={value => setForm('address', value)}
+            value={form.address}
+            onChangeText={value => setForm('address', value)}
           />
           <Gap height={24} />
           <TextInput
             label="Kota"
             inputLabel="Ketikan Kota"
-            // value={form.address}
-            // onChangeText={value => setForm('address', value)}
+            value={form.city}
+            onChangeText={value => setForm('city', value)}
           />
           <Gap height={24} />
           <View style={styles.button}>

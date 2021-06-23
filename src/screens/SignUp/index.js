@@ -1,14 +1,60 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   Text,
   View,
   ScrollView,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 import {Button, Gap, Header, TextInput} from '../../components';
+import {useSelector, useDispatch} from 'react-redux';
+import {useForm} from '../../utils';
 
 const SignUp = ({navigation}) => {
+  const [form, setForm] = useForm({
+    name: '',
+    email: '',
+    password: '',
+  });
+
+  const [photo, setPhoto] = useState('');
+
+  const dispatch = useDispatch();
+
+  const onSubmit = () => {
+    console.log('form: ', form);
+    dispatch({type: 'SET_REGISTER', value: form});
+    navigation.navigate('SignUpAddress');
+  };
+
+  // const addPhoto = () => {
+  //   ImagePicker.launchImageLibrary(
+  //     {quality: 0.5, maxWidth: 200, maxHeight: 200},
+  //     (response) => {
+  //       // Same code as in above section!
+  //       console.log('Response = ', response);
+
+  //       if (response.didCancel || response.error) {
+  //         console.log('User cancelled image picker');
+  //         showMessage('Anda tidak memilih foto');
+  //       } else {
+  //         const source = {uri: response.uri};
+  //         const dataImage = {
+  //           uri: response.uri,
+  //           type: response.type,
+  //           name: response.fileName,
+  //         };
+  //         setPhoto(source);
+  //         // You can also display the image using data:
+  //         // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+  //         dispatch({type: 'SET_PHOTO', value: dataImage});
+  //         dispatch({type: 'SET_UPLOAD_STATUS', value: true});
+  //       }
+  //     },
+  //   );
+  // };
+
   return (
     <ScrollView
       contentContainerStyle={{flexGrow: 1}}
@@ -21,8 +67,8 @@ const SignUp = ({navigation}) => {
           onPress={() => navigation.goBack()}
         />
         <View style={styles.wrapper}>
-          {/* <View style={styles.wrapperborder}>
-            <TouchableOpacity activeOpacity={0.7} onPress={addPhoto}>
+          <View style={styles.wrapperborder}>
+            <TouchableOpacity activeOpacity={0.7}>
               <View style={styles.border}>
                 {photo ? (
                   <Image source={photo} style={styles.borderPhoto} />
@@ -33,33 +79,33 @@ const SignUp = ({navigation}) => {
                 )}
               </View>
             </TouchableOpacity>
-          </View> */}
+          </View>
           <TextInput
-            label="Full Name"
-            inputLabel="Type your full name"
-            // value={form.name}
-            // onChangeText={(value) => setForm('name', value)}
+            label="Nama"
+            inputLabel="Ketikan Nama"
+            value={form.name}
+            onChangeText={value => setForm('name', value)}
           />
           <Gap height={16} />
           <TextInput
-            label="Email Address"
-            inputLabel="Type your email address"
-            // value={form.email}
-            // onChangeText={(value) => setForm('email', value)}
+            label="Email"
+            inputLabel="Ketikan alamat email"
+            value={form.email}
+            onChangeText={value => setForm('email', value)}
           />
           <Gap height={16} />
           <TextInput
             label="Password"
-            inputLabel="Type your password"
-            // value={form.password}
-            // onChangeText={(value) => setForm('password', value)}
+            inputLabel="Ketikan password"
             secureTextEntry
+            value={form.password}
+            onChangeText={value => setForm('password', value)}
           />
           <Gap height={24} />
           <View style={styles.button}>
             <Button
               label="Continue"
-              onPress={() => navigation.navigate('SignUpAddress')}
+              onPress={onSubmit}
               colorButton="#FFC700"
               textColorButton="#020202"
             />

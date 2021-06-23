@@ -1,19 +1,20 @@
 import React from 'react';
 import {StyleSheet, View, StatusBar} from 'react-native';
 import {Button, Gap, Header, TextInput} from '../../components';
+import {useForm} from '../../utils';
 
 const SignIn = ({navigation}) => {
-  // const [form, setForm] = useForm({
-  //   email: '',
-  //   password: '',
-  // });
+  const [form, setForm] = useForm({
+    email: '',
+    password: '',
+  });
 
   // const dispatch = useDispatch();
 
-  // const onSubmit = () => {
-  //   console.log('form: ', form);
-  //   dispatch(signInAction(form, navigation));
-  // };
+  const onSubmit = () => {
+    console.log('form: ', form);
+    // dispatch(signInAction(form, navigation));
+  };
 
   return (
     <View style={styles.page}>
@@ -27,15 +28,16 @@ const SignIn = ({navigation}) => {
         <TextInput
           label="Email Address"
           inputLabel="Masukkan alamat email"
-          // value={form.email}
-          // onChangeText={value => setForm('email', value)}
+          keyboardType="email-address"
+          value={form.email}
+          onChangeText={value => setForm('email', value)}
         />
         <Gap height={16} />
         <TextInput
           label="Password"
           inputLabel="Masukkan password"
-          // value={form.password}
-          // onChangeText={value => setForm('password', value)}
+          value={form.password}
+          onChangeText={value => setForm('password', value)}
           secureTextEntry
         />
         <Gap height={24} />
@@ -43,7 +45,7 @@ const SignIn = ({navigation}) => {
           label="Sign In"
           colorButton="#FFC700"
           textColorButton="#020202"
-          // onPress={onSubmit}
+          onPress={onSubmit}
         />
         <Gap height={12} />
         <Button
