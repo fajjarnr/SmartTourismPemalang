@@ -30,29 +30,35 @@ const SignUp = ({navigation}) => {
   };
 
   const addPhoto = () => {
-    launchImageLibrary(
-      {
-        quality: 0.5,
-        maxWidth: 200,
-        maxHeight: 200,
-      },
-      response => {
-        if (response.didCancel || response.error) {
-          showMessage('Anda tidak memilih foto');
-        } else {
-          const source = {uri: response.uri};
-          const dataImage = {
-            uri: response.uri,
-            type: response.type,
-            name: response.fileName,
-          };
-          setPhoto(source);
+    let options = {
+      quality: 0.5,
+      maxWidth: 200,
+      maxHeight: 200,
+      mediaType: 'photo',
+    };
 
-          dispatch({type: 'SET_PHOTO', value: dataImage});
-          dispatch({type: 'SET_UPLOAD_STATUS', value: true});
-        }
-      },
-    );
+    launchImageLibrary(options, response => {
+      if (response.didCancel || response.errorMessage) {
+        showMessage('Anda tidak memilih foto');
+      } else {
+        const source = {
+          uri: response.uri,
+        };
+
+        const dataImage = {
+          uri: response.uri,
+          type: response.type,
+          name: response.fileName,
+        };
+
+        console.log('response :>> ', response);
+
+        setPhoto(source);
+
+        dispatch({type: 'SET_PHOTO', value: dataImage});
+        dispatch({type: 'SET_UPLOAD_STATUS', value: true});
+      }
+    });
   };
 
   return (
@@ -67,7 +73,7 @@ const SignUp = ({navigation}) => {
           onPress={() => navigation.goBack()}
         />
         <View style={styles.wrapper}>
-          <View style={styles.wrapperborder}>
+          <View style={styles.wrapperBorder}>
             <TouchableOpacity activeOpacity={0.7} onPress={addPhoto}>
               <View style={styles.border}>
                 {photo ? (
@@ -150,8 +156,10 @@ const styles = StyleSheet.create({
     height: 90,
     borderRadius: 90,
     padding: 24,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  wrapperborder: {
+  wrapperBorder: {
     alignItems: 'center',
     marginBottom: 16,
   },

@@ -3,6 +3,7 @@ import {ScrollView, StyleSheet, View} from 'react-native';
 import {Button, Gap, Header, TextInput} from '../../components';
 import {useSelector, useDispatch} from 'react-redux';
 import {useForm} from '../../utils';
+import {setLoading, signUpAction} from '../../redux/actions';
 
 const SignUpAddress = ({navigation}) => {
   const [form, setForm] = useForm({
@@ -20,8 +21,8 @@ const SignUpAddress = ({navigation}) => {
       ...form,
       ...registerReducer,
     };
-    // dispatch(setLoading(true));
-    // dispatch(signUpAction(data, photoReducer, navigation));
+    dispatch(setLoading(true));
+    dispatch(signUpAction(data, photoReducer, navigation));
   };
 
   return (
@@ -60,7 +61,7 @@ const SignUpAddress = ({navigation}) => {
           <View style={styles.button}>
             <Button
               label="Sign Up Now"
-              onPress={() => navigation.navigate('SuccessSignUp')}
+              onPress={onSubmit}
               colorButton="#FFC700"
               textColorButton="#020202"
             />
