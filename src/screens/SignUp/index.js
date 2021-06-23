@@ -51,8 +51,6 @@ const SignUp = ({navigation}) => {
           name: response.fileName,
         };
 
-        console.log('response :>> ', response);
-
         setPhoto(source);
 
         dispatch({type: 'SET_PHOTO', value: dataImage});

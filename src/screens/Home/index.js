@@ -17,7 +17,14 @@ const Home = ({navigation}) => {
       <StatusBar backgroundColor="white" barStyle="dark-content" />
       <ScrollView showsVerticalScrollIndicator={false}>
         <Header profile title="Fajar Nur Rohman" subTitle="Selamat Datang" />
-        <Banner />
+        <View style={styles.sliderContainer}>
+          <Swiper autoplay height={200} activeDotColor="#FF6347">
+            <Banner image={Banner1} />
+            <Banner image={Banner2} />
+            <Banner image={Banner3} />
+            <Banner image={Banner4} />
+          </Swiper>
+        </View>
         <View>
           <View style={styles.titleContainer}>
             <Text style={styles.title}>Makanan Khas</Text>
@@ -79,5 +86,13 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter-medium',
     fontSize: 16,
     color: '#FFB100',
+  },
+  sliderContainer: {
+    height: 200,
+    width: '90%',
+    marginTop: 10,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    borderRadius: 8,
   },
 });

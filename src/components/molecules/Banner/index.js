@@ -1,33 +1,10 @@
 import React from 'react';
 import {Image, StyleSheet, View} from 'react-native';
-import Swiper from 'react-native-swiper';
 
-const Banner = () => {
+const Banner = ({image}) => {
   return (
-    <View style={styles.sliderContainer}>
-      <Swiper autoplay height={200} activeDotColor="#FF6347">
-        <View style={styles.slide}>
-          <Image
-            source={require('../../../assets/Banners/food-banner1.jpg')}
-            resizeMode="cover"
-            style={styles.sliderImage}
-          />
-        </View>
-        <View style={styles.slide}>
-          <Image
-            source={require('../../../assets/Banners/food-banner2.jpg')}
-            resizeMode="cover"
-            style={styles.sliderImage}
-          />
-        </View>
-        <View style={styles.slide}>
-          <Image
-            source={require('../../../assets/Banners/food-banner3.jpg')}
-            resizeMode="cover"
-            style={styles.sliderImage}
-          />
-        </View>
-      </Swiper>
+    <View style={styles.slide}>
+      <Image source={image} resizeMode="cover" style={styles.sliderImage} />
     </View>
   );
 };
@@ -35,14 +12,6 @@ const Banner = () => {
 export default Banner;
 
 const styles = StyleSheet.create({
-  sliderContainer: {
-    height: 200,
-    width: '90%',
-    marginTop: 10,
-    justifyContent: 'center',
-    alignSelf: 'center',
-    borderRadius: 8,
-  },
   slide: {
     flex: 1,
     justifyContent: 'center',

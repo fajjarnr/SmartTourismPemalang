@@ -21,6 +21,7 @@ const SignUpAddress = ({navigation}) => {
       ...form,
       ...registerReducer,
     };
+
     dispatch(setLoading(true));
     dispatch(signUpAction(data, photoReducer, navigation));
   };

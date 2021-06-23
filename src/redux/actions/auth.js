@@ -6,8 +6,8 @@ import {setLoading} from './global';
 export const signUpAction =
   (dataRegister, photoReducer, navigation) => dispatch => {
     Axios.post(`${API_HOST.url}/register`, dataRegister)
-      .then(res => {
-        const token = `${res.data.data.token_type} ${res.data.data.access_token}`;
+      .then(response => {
+        const token = `${response.data.data.token_type} ${response.data.data.access_token}`;
 
         if (photoReducer.isUploadPhoto) {
           const photoForUpload = new FormData();
@@ -20,8 +20,6 @@ export const signUpAction =
             },
           })
             .then(resUpload => {
-              //   profile.profile_photo_url = `https://smarttourismpemalang.codes/storage/${resUpload.data.data[0]}`;
-              //   storeData('userProfile', profile);
               console.log('success upload: ', resUpload);
             })
             .catch(error => {
@@ -29,9 +27,11 @@ export const signUpAction =
             });
         }
 
+        console.log('response :>> ', response.data);
+
         dispatch(setLoading(false));
         showMessage('Registrasi pengguna berhasil', 'success');
-        navigation.reset('SignUpSuccess');
+        navigation.replace('SuccessSignUp');
       })
       .catch(err => {
         dispatch(setLoading(false));
