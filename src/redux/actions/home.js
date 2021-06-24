@@ -23,19 +23,22 @@ export const getBannerData = () => dispatch => {
     });
 };
 
-export const getDestinationByTypes = types => dispatch => {
-  Axios.get(`${API_HOST.url}/destination?types=${types}`)
+export const getDestinationByCategory = id => dispatch => {
+  Axios.get(`${API_HOST.url}/destination/${id}`)
     .then(response => {
-      console.log('response TYPES:>> ', response);
+      console.log('response CATEGORY:>> ', response.data.data);
 
-      if (types === 'new_food') {
-        dispatch({type: 'SET_NEW', value: response.data.data});
+      if (id === '1') {
+        dispatch({type: 'SET_WISATA_ALAM', value: response.data.data.data});
       }
-      if (types === 'popular') {
-        dispatch({type: 'SET_POPULAR', value: response.data.data});
+      if (id === '2') {
+        dispatch({type: 'SET_WISATA_BUATAN', value: response.data.data.data});
       }
-      if (types === 'recommended') {
-        dispatch({type: 'SET_RECOMMENDED', value: response.data.data});
+      if (id === '3') {
+        dispatch({type: 'SET_WISATA_BUDAYA', value: response.data.data.data});
+      }
+      if (id === '4') {
+        dispatch({type: 'SET_KULINER_KHAS', value: response.data.data.data});
       }
     })
     .catch(err => {

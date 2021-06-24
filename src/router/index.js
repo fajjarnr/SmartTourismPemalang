@@ -71,12 +71,22 @@ const Router = () => {
       <Stack.Screen
         name="DestinationDetail"
         component={DestinationDetail}
-        options={{headerShown: false}}
+        options={({route}) => ({
+          headerBackTitleVisible: false,
+          headerTitle: false,
+          headerTransparent: true,
+          headerTintColor: '#fff',
+        })}
       />
       <Stack.Screen
         name="NewsDetail"
         component={NewsDetail}
-        options={{headerShown: false}}
+        options={({route}) => ({
+          headerBackTitleVisible: false,
+          headerTitle: false,
+          headerTransparent: true,
+          headerTintColor: '#fff',
+        })}
       />
       <Stack.Screen
         name="OrderSummary"

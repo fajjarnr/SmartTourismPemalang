@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   Dimensions,
   Image,
@@ -16,12 +16,69 @@ import {
 import {Banner1, Banner2} from '../../assets';
 import {Rating, Counter, Gap, Number, Button} from '../../components';
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
+import {getData} from '../../utils';
 
 const MIN_HEIGHT = Platform.OS === 'ios' ? 90 : 55;
-const MAX_HEIGHT = 220;
+const MAX_HEIGHT = 330;
 
-const DestinationDetail = ({navigation}) => {
+const DestinationDetail = ({navigation, route}) => {
+  const {
+    id,
+    name,
+    description,
+    image,
+    rate,
+    price,
+    facilities,
+    hours,
+    address,
+    phone,
+    latitude,
+    longitude,
+  } = route.params;
+
   const navTitleView = useRef(null);
+
+  const [totalItem, setTotalItem] = useState(1);
+  const [userProfile, setUserProfile] = useState({});
+
+  useEffect(() => {
+    getData('userProfile').then(res => {
+      setUserProfile(res);
+    });
+  }, []);
+
+  const onCounterChange = value => {
+    console.log('value counter: ', value);
+    setTotalItem(value);
+  };
+
+  const onOrder = () => {
+    const totalPrice = totalItem * price;
+    const driver = 50000;
+    const tax = (10 / 100) * (totalItem * price);
+    const total = totalPrice + driver + tax;
+
+    const data = {
+      item: {
+        id,
+        name,
+        price,
+        image,
+      },
+      transaction: {
+        totalItem,
+        totalPrice,
+        driver,
+        tax,
+        total,
+      },
+      userProfile,
+    };
+
+    console.log('data CO:', data);
+    navigation.navigate('PaymentSummary', data);
+  };
 
   return (
     <>
@@ -33,6 +90,8 @@ const DestinationDetail = ({navigation}) => {
       <ImageHeaderScrollView
         maxHeight={MAX_HEIGHT}
         minHeight={MIN_HEIGHT}
+        maxOverlayOpacity={0.6}
+        minOverlayOpacity={0.2}
         renderHeader={() => <Image source={Banner2} style={styles.image} />}
         renderForeground={() => (
           <View
@@ -42,9 +101,7 @@ const DestinationDetail = ({navigation}) => {
               alignItems: 'center',
             }}>
             <View style={styles.titleContainer}>
-              <Text style={styles.imageTitle}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </Text>
+              <Text style={styles.imageTitle}>{name}</Text>
             </View>
           </View>
         )}
@@ -54,7 +111,7 @@ const DestinationDetail = ({navigation}) => {
               style={styles.navTitle}
               numberOfLines={1}
               lineBreakMode="tail">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit
+              {name}
             </Text>
           </Animatable.View>
         )}>
@@ -64,42 +121,35 @@ const DestinationDetail = ({navigation}) => {
           onDisplay={() => navTitleView.current.fadeOut(100)}>
           <View style={styles.counterContainer}>
             <View>
-              <Rating />
+              <Rating number={rate} />
             </View>
-            <View>{/* <Counter /> */}</View>
+            <View>
+              <Counter onValueChange={onCounterChange} />
+            </View>
           </View>
         </TriggeringView>
 
         <View style={styles.sectionLarge}>
-          <Text style={styles.desc}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut
-            excepturi voluptas dolore in odit aliquam repellendus, reprehenderit
-            labore animi! Odio, deserunt totam molestias obcaecati laboriosam
-            quae alias consectetur nobis accusantium, necessitatibus sequi
-            velit. Corrupti sunt ullam doloremque nemo, vitae incidunt, impedit
-            iste saepe veritatis, atque rerum dignissimos? Architecto, nam ipsam
-            natus vero sit assumenda deleniti deserunt consectetur quidem, nulla
-            voluptatibus!
-          </Text>
+          <Text style={styles.desc}>{description}</Text>
           <Gap height={16} />
           <View style={styles.rowContainer}>
             <Text style={styles.subTitle}>Alamat:</Text>
-            <Text style={styles.desc}>Pemalang</Text>
+            <Text style={styles.desc}>{address}</Text>
           </View>
           <Gap height={6} />
           <View style={styles.rowContainer}>
             <Text style={styles.subTitle}>No Telepon:</Text>
-            <Text style={styles.desc}>09877878</Text>
+            <Text style={styles.desc}>{phone}</Text>
           </View>
           <Gap height={6} />
           <View style={styles.rowContainer}>
             <Text style={styles.subTitle}>Jam Operasional:</Text>
-            <Text style={styles.desc}>08:00 - 17:00</Text>
+            <Text style={styles.desc}>{hours}</Text>
           </View>
           <Gap height={6} />
           <View style={styles.rowContainer}>
             <Text style={styles.subTitle}>Fasilitas:</Text>
-            <Text style={styles.desc}>parkir</Text>
+            <Text style={styles.desc}>{facilities}</Text>
           </View>
         </View>
 
@@ -107,20 +157,27 @@ const DestinationDetail = ({navigation}) => {
           <MapView
             provider={PROVIDER_GOOGLE}
             style={{flex: 1}}
-            region={{
-              latitude: -6.89032304565653,
-              longitude: 109.38062960466476,
-              latitudeDelta: 0.0922,
-              longitudeDelta: 0.0421,
-            }}></MapView>
+            initialRegion={{
+              latitude: latitude,
+              longitude: longitude,
+              latitudeDelta: 0.01,
+              longitudeDelta: 0.01,
+            }}>
+            <MapView.Marker
+              coordinate={{
+                latitude: latitude,
+                longitude: longitude,
+              }}
+              title={'Lokasi'}
+              description={name}
+            />
+          </MapView>
         </View>
 
         <View style={styles.footer}>
           <View style={styles.footerContainer}>
             <Text style={styles.totalPrice}>Harga Total:</Text>
-            {/* <Number style={styles.priceTotal} /> */}
-            <Text>20.000</Text>
-            {/* <Text>IDR {totalItem * price}</Text> */}
+            <Number number={totalItem * price} style={styles.priceTotal} />
           </View>
           <View style={styles.button}>
             <Button
@@ -159,6 +216,8 @@ const styles = StyleSheet.create({
     padding: 20,
     borderBottomWidth: 1,
     backgroundColor: 'white',
+    borderTopRightRadius: 40,
+    borderTopLeftRadius: 40,
   },
   sectionTitle: {
     fontSize: 18,
@@ -180,7 +239,8 @@ const styles = StyleSheet.create({
     fontSize: 24,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: '20%',
+    marginTop: 115,
+    fontFamily: 'Inter-Bold',
   },
   navTitleView: {
     height: MIN_HEIGHT,
@@ -195,7 +255,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   sectionLarge: {
-    minHeight: 300,
+    // minHeight: 200,
     padding: 20,
   },
   counterContainer: {

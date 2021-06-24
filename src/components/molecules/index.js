@@ -1,4 +1,5 @@
 import Banner from './Banner';
+import Container from './Container';
 import Counter from './Counter';
 import EmptyOrder from './EmptyOrder';
 import Header from './Header';
@@ -32,4 +33,5 @@ export {
   ProfileTabSection,
   ProfileListMenu,
   HomeHeader,
+  Container,
 };

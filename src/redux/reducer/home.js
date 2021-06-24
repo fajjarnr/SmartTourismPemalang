@@ -1,9 +1,12 @@
 const initHome = {
+  banner: [],
   destination: [],
   new: [],
   popular: [],
-  recommended: [],
-  banner: [],
+  wisataAlam: [],
+  wisataBuatan: [],
+  wisataBudaya: [],
+  kulinerKhas: [],
 };
 
 export const homeReducer = (state = initHome, action) => {
@@ -13,28 +16,34 @@ export const homeReducer = (state = initHome, action) => {
       destination: action.value,
     };
   }
-  if (action.type === 'SET_RECOMMENDED') {
-    return {
-      ...state,
-      recommended: action.value,
-    };
-  }
-  if (action.type === 'SET_NEW') {
-    return {
-      ...state,
-      new: action.value,
-    };
-  }
-  if (action.type === 'SET_POPULAR') {
-    return {
-      ...state,
-      popular: action.value,
-    };
-  }
   if (action.type === 'SET_BANNER') {
     return {
       ...state,
       banner: action.value,
+    };
+  }
+  if (action.type === 'SET_WISATA_ALAM') {
+    return {
+      ...state,
+      wisataAlam: action.value,
+    };
+  }
+  if (action.type === 'SET_WISATA_BUATAN') {
+    return {
+      ...state,
+      wisataBuatan: action.value,
+    };
+  }
+  if (action.type === 'SET_WISATA_BUDAYA') {
+    return {
+      ...state,
+      wisataBudaya: action.value,
+    };
+  }
+  if (action.type === 'SET_KULINER_KHAS') {
+    return {
+      ...state,
+      kulinerKhas: action.value,
     };
   }
   return state;

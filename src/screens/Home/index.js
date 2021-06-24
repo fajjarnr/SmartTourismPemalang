@@ -1,17 +1,27 @@
 import React, {useEffect} from 'react';
-import {ScrollView, StatusBar, StyleSheet, Text, View} from 'react-native';
+import {
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import Swiper from 'react-native-swiper';
 import {useDispatch, useSelector} from 'react-redux';
 import {Banner, Gap, HomeHeader, ItemCard} from '../../components';
-import {getBannerData, getDestinationByTypes} from '../../redux/actions';
+import {getBannerData, getDestinationByCategory} from '../../redux/actions';
 
 const Home = ({navigation}) => {
   const dispatch = useDispatch();
-  const {banner, recommended} = useSelector(state => state.homeReducer);
+  const {banner, wisataAlam, wisataBuatan} = useSelector(
+    state => state.homeReducer,
+  );
 
   useEffect(() => {
     dispatch(getBannerData());
-    dispatch(getDestinationByTypes('recommended'));
+    dispatch(getDestinationByCategory('1'));
+    dispatch(getDestinationByCategory('2'));
   }, []);
 
   return (
@@ -21,27 +31,52 @@ const Home = ({navigation}) => {
         <HomeHeader />
         <View style={styles.sliderContainer}>
           <Swiper autoplay height={200} activeDotColor="#FF6347">
-            {banner.map((item, index) => {
-              return <Banner key={index} image={{uri: item.picturePath}} />;
-            })}
+            {banner?.map(item => (
+              <Banner key={item.id} image={{uri: item.picturePath}} />
+            ))}
           </Swiper>
         </View>
         <View>
           <View style={styles.titleContainer}>
-            <Text style={styles.title}>Makanan Khas</Text>
-            <Text style={styles.seeAll}>SEE ALL</Text>
+            <Text style={styles.title}>Wisata Alam</Text>
+            <TouchableOpacity onPress={() => {}}>
+              <Text style={styles.seeAll}>SEE ALL</Text>
+            </TouchableOpacity>
           </View>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <View style={styles.wrapper}>
               <Gap width={24} />
-              {recommended?.map((item, index) => (
+              {wisataAlam?.map(item => (
                 <ItemCard
-                  key={index}
+                  key={item.id}
                   image={{uri: item.image}}
                   name={item.name}
                   rating={item.rate}
                   hours={item.hours}
-                  onPress={() => navigation.navigate('DestinationDetail')}
+                  onPress={() => navigation.navigate('DestinationDetail', item)}
+                />
+              ))}
+            </View>
+          </ScrollView>
+        </View>
+        <View>
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>Wisata Buatan</Text>
+            <TouchableOpacity onPress={() => {}}>
+              <Text style={styles.seeAll}>SEE ALL</Text>
+            </TouchableOpacity>
+          </View>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <View style={styles.wrapper}>
+              <Gap width={24} />
+              {wisataBuatan?.map(item => (
+                <ItemCard
+                  key={item.id}
+                  image={{uri: item.image}}
+                  name={item.name}
+                  rating={item.rate}
+                  hours={item.hours}
+                  onPress={() => navigation.navigate('DestinationDetail', item)}
                 />
               ))}
             </View>
@@ -58,6 +93,14 @@ const styles = StyleSheet.create({
   page: {
     flex: 1,
     backgroundColor: 'white',
+  },
+  sliderContainer: {
+    height: 200,
+    width: '90%',
+    marginTop: 10,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    borderRadius: 8,
   },
   wrapper: {
     flexDirection: 'row',
@@ -78,13 +121,5 @@ const styles = StyleSheet.create({
     fontFamily: 'Inter-medium',
     fontSize: 16,
     color: '#FFB100',
-  },
-  sliderContainer: {
-    height: 200,
-    width: '90%',
-    marginTop: 10,
-    justifyContent: 'center',
-    alignSelf: 'center',
-    borderRadius: 8,
   },
 });
