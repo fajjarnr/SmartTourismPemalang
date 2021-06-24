@@ -1,10 +1,19 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {ScrollView, StatusBar, StyleSheet, Text, View} from 'react-native';
 import Swiper from 'react-native-swiper';
-import {Banner1, Banner2, Banner3, Banner4} from '../../assets';
+import {useDispatch, useSelector} from 'react-redux';
 import {Banner, Gap, HomeHeader, ItemCard} from '../../components';
+import {getBannerData, getDestinationByTypes} from '../../redux/actions';
 
 const Home = ({navigation}) => {
+  const dispatch = useDispatch();
+  const {banner, recommended} = useSelector(state => state.homeReducer);
+
+  useEffect(() => {
+    dispatch(getBannerData());
+    dispatch(getDestinationByTypes('recommended'));
+  }, []);
+
   return (
     <View style={styles.page}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
@@ -12,10 +21,9 @@ const Home = ({navigation}) => {
         <HomeHeader />
         <View style={styles.sliderContainer}>
           <Swiper autoplay height={200} activeDotColor="#FF6347">
-            <Banner image={Banner1} />
-            <Banner image={Banner2} />
-            <Banner image={Banner3} />
-            <Banner image={Banner4} />
+            {banner.map((item, index) => {
+              return <Banner key={index} image={{uri: item.picturePath}} />;
+            })}
           </Swiper>
         </View>
         <View>
@@ -26,25 +34,16 @@ const Home = ({navigation}) => {
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <View style={styles.wrapper}>
               <Gap width={24} />
-              <ItemCard
-                image={Banner1}
-                name="Nasi Grombyang"
-                rating={4.5}
-                hours="08:00 - 17:00"
-                onPress={() => navigation.navigate('DestinationDetail')}
-              />
-              <ItemCard
-                image={Banner2}
-                onPress={() => navigation.navigate('DestinationDetail')}
-              />
-              <ItemCard
-                image={Banner3}
-                onPress={() => navigation.navigate('DestinationDetail')}
-              />
-              <ItemCard
-                image={Banner4}
-                onPress={() => navigation.navigate('DestinationDetail')}
-              />
+              {recommended?.map((item, index) => (
+                <ItemCard
+                  key={index}
+                  image={{uri: item.image}}
+                  name={item.name}
+                  rating={item.rate}
+                  hours={item.hours}
+                  onPress={() => navigation.navigate('DestinationDetail')}
+                />
+              ))}
             </View>
           </ScrollView>
         </View>

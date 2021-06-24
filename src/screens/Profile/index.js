@@ -7,7 +7,6 @@ const Profile = () => {
   const [userProfile, setUserProfile] = useState({});
   useEffect(() => {
     getData('userProfile').then(res => {
-      console.log(res);
       setUserProfile(res);
     });
   }, []);

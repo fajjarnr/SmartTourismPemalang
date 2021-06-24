@@ -1,32 +1,31 @@
-import React from 'react';
-import {ScrollView, View, StatusBar, StyleSheet} from 'react-native';
-import {Banner1, Banner2, Banner3} from '../../assets';
-import {NewsCard, Screen} from '../../components';
+import React, {useEffect} from 'react';
+import {ScrollView, StatusBar, StyleSheet, View} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import {NewsCard} from '../../components';
+import {getNewsData} from '../../redux/actions';
 
 const News = ({navigation}) => {
+  const dispatch = useDispatch();
+  const {news} = useSelector(state => state.newsReducer);
+
+  useEffect(() => {
+    dispatch(getNewsData());
+  }, []);
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
       <View style={styles.container}>
-        <NewsCard
-          image={Banner1}
-          name="lorem ipsum is dolor amet dsnfsfn hsdfhie ehfwif lorem ipsum is dolor amet lorem ipsum is dolor amet dsnfsfn hsdfhie ehfwif lorem ipsum is dolor amet lorem ipsum is dolor amet dsnfsfn hsdfhie ehfwif"
-          author="Fajar Nur Rohman"
-          description="lorem ipsum is dolor amet lorem ipsum is dolor amet dsnfsfn hsdfhie ehfwif lorem ipsum is dolor amet lorem ipsum is dolor amet dsnfsfn hsdfhie ehfwif"
-          onPress={() => navigation.navigate('NewsDetail')}
-        />
-        <NewsCard
-          image={Banner2}
-          name="lorem ipsum is dolor amet"
-          author="Fajar Nur Rohman"
-          description="lorem ipsum is dolor amet lorem ipsum is dolor amet lorem ipsum is dolor amet dsnfsfn hsdfhie ehfwif lorem ipsum is dolor amet lorem ipsum is dolor amet dsnfsfn hsdfhie ehfwif"
-        />
-        <NewsCard
-          image={Banner3}
-          name="lorem ipsum is dolor amet"
-          author="Fajar Nur Rohman"
-          description="lorem ipsum is dolor amet"
-        />
+        {news?.map((item, index) => (
+          <NewsCard
+            key={index}
+            image={{uri: item.picturePath}}
+            name={item.title}
+            author={item.author}
+            description={item.content}
+            onPress={() => navigation.navigate('NewsDetail')}
+          />
+        ))}
       </View>
     </ScrollView>
   );

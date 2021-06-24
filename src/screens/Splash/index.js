@@ -1,11 +1,18 @@
 import React, {useEffect} from 'react';
-import {StyleSheet, View, StatusBar} from 'react-native';
+import {StatusBar, StyleSheet, View} from 'react-native';
 import {Logo} from '../../assets';
+import {getData} from '../../utils';
 
 const Splash = ({navigation}) => {
   useEffect(() => {
     setTimeout(() => {
-      navigation.replace('SignIn');
+      getData('token').then(response => {
+        if (response) {
+          navigation.reset({index: 0, routes: [{name: 'MainApp'}]});
+        } else {
+          navigation.replace('SignIn');
+        }
+      });
     }, 2000);
   }, [navigation]);
 
