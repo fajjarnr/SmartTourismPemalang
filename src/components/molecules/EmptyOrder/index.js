@@ -10,7 +10,7 @@ const EmptyOrder = () => {
   return (
     <View style={styles.page}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
-      <ILEmptyOrder />
+      {/* <ILEmptyOrder /> */}
       <Gap height={30} />
       <Text style={styles.title}>Ouch!</Text>
       <Gap height={6} />

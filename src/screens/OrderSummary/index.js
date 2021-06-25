@@ -1,44 +1,133 @@
-import React from 'react';
+import axios from 'axios';
+import React, {useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import {Banner1} from '../../assets';
+import {WebView} from 'react-native-webview';
 import {
   Button,
-  DetailOrder,
   Gap,
   Header,
-  HomeFoodList,
-  Loading,
   ItemList,
   ItemValue,
+  Loading,
 } from '../../components';
+import {getData} from '../../utils';
+import {API_HOST} from '../../config/API';
 
-const OrderSummary = ({navigation}) => {
+const OrderSummary = ({navigation, route}) => {
+  const {item, transaction, userProfile} = route.params;
+  const [isPaymentOpen, setIsPaymentOpen] = useState(false);
+  const [paymentURL, setPaymentURL] = useState('https://google.com');
+
+  const onCheckOut = () => {
+    const data = {
+      destination_id: item.id,
+      user_id: userProfile.id,
+      quantity: transaction.totalItem,
+      total: transaction.total,
+      status: 'PENDING',
+    };
+
+    getData('token').then(resToken => {
+      axios
+        .post(`${API_HOST.url}/checkout`, data, {
+          headers: {
+            Authorization: resToken.value,
+          },
+        })
+        .then(response => {
+          console.log('response: ', response.data);
+          setIsPaymentOpen(true);
+          setPaymentURL(response.data.data.payment_url);
+        })
+        .catch(err => {
+          console.log('error: ', err);
+        });
+    });
+  };
+
+  const onNavChange = state => {
+    console.log('nav', state);
+
+    const urlSuccess =
+      'https://smarttourismpemalang.codes/midtrans/success?order_id=2268&status_code=201&transaction_status=pending';
+    const titleWeb = 'Pemalang';
+
+    if (state.title === titleWeb) {
+      navigation.reset({index: 0, routes: [{name: 'SuccessOrder'}]});
+    }
+  };
+
+  if (isPaymentOpen) {
+    return (
+      <>
+        <Header
+          title="Payment"
+          subTitle="You deserve better meal"
+          back
+          onPress={() => setIsPaymentOpen(false)}
+        />
+        <WebView
+          source={{uri: paymentURL}}
+          startInLoadingState={true}
+          renderLoading={() => <Loading />}
+          onNavigationStateChange={onNavChange}
+        />
+      </>
+    );
+  }
+
   return (
     <View style={styles.page}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Header
-          title="Order Summary"
-          subTitle="You deserve better meal"
+          title="Rincian Pesanan"
+          subTitle="data pesananmu"
           back
           onPress={() => navigation.goBack()}
         />
 
         <View style={styles.content}>
+          <Gap height={16} />
           <Text style={styles.textTitle}>Item Order</Text>
           <ItemList
-            name="Pantai Widuri"
-            price={20000}
-            image={Banner1}
-            items={14}
-            type="product"
+            name={item.name}
+            image={{uri: item.image}}
+            price={item.price}
+            summary={transaction.totalItem}
+            activeOpacity={1}
+            type="order-summary"
           />
-          <Text style={styles.textTitle}>Detail Transaksi</Text>
-          <ItemValue label="Pantai Widuri" value="IDR 200.000" />
+          <View style={styles.wrapper}>
+            <Text style={styles.textTitle}>Detail Transaksi</Text>
+            <Gap height={8} />
+            <ItemValue
+              label={item.name}
+              value={transaction.totalPrice}
+              type="currency"
+            />
+            <ItemValue
+              label="Pajak 10%"
+              value={transaction.tax}
+              type="currency"
+            />
+            <ItemValue
+              label="Total Harga"
+              value={transaction.total}
+              price="#1ABC9C"
+              type="currency"
+            />
+          </View>
         </View>
 
         <View style={styles.content}>
-          <Text style={styles.textTitle}>Data Pengguna</Text>
-          <ItemValue label="Nama" value="Fajar Nur Rohman" />
+          <View style={styles.wrapper}>
+            <Text style={styles.textTitle}>Deliver to:</Text>
+            <Gap height={8} />
+            <ItemValue label="Nama" value={userProfile.name} />
+            <ItemValue label="No Telpon" value={userProfile.phone} />
+            <ItemValue label="Alamat" value={userProfile.address} />
+            <ItemValue label="Kota" value={userProfile.city} />
+          </View>
         </View>
 
         <View style={styles.button}>
@@ -46,9 +135,10 @@ const OrderSummary = ({navigation}) => {
             label="Checkout Now"
             colorButton="#FFC700"
             textColorButton="#020202"
-            onPress={() => navigation.replace('SuccessOrder')}
+            onPress={onCheckOut}
           />
         </View>
+        <Gap height={40} />
       </ScrollView>
     </View>
   );

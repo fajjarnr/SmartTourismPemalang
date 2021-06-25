@@ -10,18 +10,19 @@ import {
 import Swiper from 'react-native-swiper';
 import {useDispatch, useSelector} from 'react-redux';
 import {Banner, Gap, HomeHeader, ItemCard} from '../../components';
-import {getBannerData, getDestinationByCategory} from '../../redux/actions';
+import {getBannerData, getDestinationDataByTypes} from '../../redux/actions';
 
 const Home = ({navigation}) => {
   const dispatch = useDispatch();
-  const {banner, wisataAlam, wisataBuatan} = useSelector(
+  const {banner, recommended, popular} = useSelector(
     state => state.homeReducer,
   );
 
   useEffect(() => {
     dispatch(getBannerData());
-    dispatch(getDestinationByCategory('1'));
-    dispatch(getDestinationByCategory('2'));
+    dispatch(getDestinationDataByTypes('new'));
+    dispatch(getDestinationDataByTypes('popular'));
+    dispatch(getDestinationDataByTypes('recommended'));
   }, []);
 
   return (
@@ -36,9 +37,10 @@ const Home = ({navigation}) => {
             ))}
           </Swiper>
         </View>
+        <Gap height={24} />
         <View>
           <View style={styles.titleContainer}>
-            <Text style={styles.title}>Wisata Alam</Text>
+            <Text style={styles.title}>Rekomendasi</Text>
             <TouchableOpacity onPress={() => {}}>
               <Text style={styles.seeAll}>SEE ALL</Text>
             </TouchableOpacity>
@@ -46,7 +48,7 @@ const Home = ({navigation}) => {
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <View style={styles.wrapper}>
               <Gap width={24} />
-              {wisataAlam?.map(item => (
+              {recommended?.map(item => (
                 <ItemCard
                   key={item.id}
                   image={{uri: item.image}}
@@ -61,7 +63,7 @@ const Home = ({navigation}) => {
         </View>
         <View>
           <View style={styles.titleContainer}>
-            <Text style={styles.title}>Wisata Buatan</Text>
+            <Text style={styles.title}>Popular</Text>
             <TouchableOpacity onPress={() => {}}>
               <Text style={styles.seeAll}>SEE ALL</Text>
             </TouchableOpacity>
@@ -69,7 +71,7 @@ const Home = ({navigation}) => {
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <View style={styles.wrapper}>
               <Gap width={24} />
-              {wisataBuatan?.map(item => (
+              {popular?.map(item => (
                 <ItemCard
                   key={item.id}
                   image={{uri: item.image}}
@@ -113,9 +115,10 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     flexDirection: 'row',
-    marginTop: 24,
+    marginTop: 20,
     justifyContent: 'space-between',
     marginHorizontal: 24,
+    alignItems: 'center',
   },
   seeAll: {
     fontFamily: 'Inter-medium',

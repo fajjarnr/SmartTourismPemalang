@@ -1,9 +1,16 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect} from 'react';
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
+import {
+  Dimensions,
+  StyleSheet,
+  Text,
+  View,
+  useWindowDimensions,
+} from 'react-native';
 import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
+import {useDispatch, useSelector} from 'react-redux';
 import {ItemList} from '..';
-import {Banner1, Banner2} from '../../../assets';
+import {getInProgress, getPastOrders} from '../../../redux/actions';
 
 const renderTabBar = props => (
   <TabBar
@@ -20,18 +27,34 @@ const renderTabBar = props => (
 const InProgress = () => {
   const navigation = useNavigation();
 
+  const dispatch = useDispatch();
+
+  const {inProgress} = useSelector(state => state.orderReducer);
+
+  useEffect(() => {
+    dispatch(getInProgress());
+
+    const interval = setInterval(() => {
+      dispatch(getInProgress());
+    }, 10000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <View style={styles.wrapperContent}>
-      <ItemList
-        key={1}
-        image={Banner1}
-        name="Pantai Widuri"
-        price="20.000"
-        orderItems={1}
-        activeOpacity={0.8}
-        type="in-progress"
-        onPress={() => navigation.navigate('OrderDetail')}
-      />
+      {inProgress?.map(order => (
+        <ItemList
+          key={order.id}
+          image={{uri: order.destinations.image}}
+          name={order.destinations.name}
+          price={order.total}
+          orderItems={order.quantity}
+          activeOpacity={0.8}
+          type="in-progress"
+          onPress={() => navigation.navigate('OrderDetail', order)}
+        />
+      ))}
     </View>
   );
 };
@@ -39,18 +62,37 @@ const InProgress = () => {
 const PastOrders = () => {
   const navigation = useNavigation();
 
+  const dispatch = useDispatch();
+
+  const {pastOrders} = useSelector(state => state.orderReducer);
+
+  useEffect(() => {
+    dispatch(getPastOrders());
+
+    const interval = setInterval(() => {
+      dispatch(getPastOrders());
+    }, 10000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <View style={styles.wrapperContent}>
-      <ItemList
-        type="past-order"
-        key={1}
-        image={Banner2}
-        name="Alun Alun Pemalang"
-        price={20000}
-        orderItems={1}
-        activeOpacity={1}
-        onPress={() => navigation.navigate('OrderDetail')}
-      />
+      {pastOrders?.map(pastOrder => (
+        <ItemList
+          type="past-order"
+          key={pastOrder.id}
+          image={{uri: pastOrder.destinations.image}}
+          name={pastOrder.destinations.name}
+          price={pastOrder.total}
+          orderItems={pastOrder.quantity}
+          date={pastOrder.created_at}
+          statusOrder={pastOrder.status}
+          activeOpacity={1}
+          statusColor={pastOrder.status === 'CANCELLED' ? '#D9435E' : '#1ABC9C'}
+          onPress={() => navigation.navigate('OrderDetail', pastOrder)}
+        />
+      ))}
     </View>
   );
 };
@@ -58,23 +100,27 @@ const PastOrders = () => {
 const initialLayout = {width: Dimensions.get('window').width};
 
 const OrderTabSection = () => {
+  const layout = useWindowDimensions();
+
   const [index, setIndex] = React.useState(0);
+
   const [routes] = React.useState([
     {key: '1', title: 'In Progress'},
-    {key: '2', title: 'Past Orders'},
+    {key: '2', title: 'Riwayat Orders'},
   ]);
 
   const renderScene = SceneMap({
     1: InProgress,
     2: PastOrders,
   });
+
   return (
     <TabView
       renderTabBar={renderTabBar}
       navigationState={{index, routes}}
       renderScene={renderScene}
       onIndexChange={setIndex}
-      initialLayout={initialLayout}
+      initialLayout={{width: layout.width}}
     />
   );
 };
@@ -85,14 +131,10 @@ const styles = StyleSheet.create({
   indicator: {
     backgroundColor: 'black',
     height: 2,
-    width: '15%',
-    marginLeft: '3%',
+    width: '50%',
   },
   page: {
     backgroundColor: 'white',
-  },
-  Tab: {
-    width: 'auto',
   },
   text: focused => ({
     fontFamily: 'Inter-Medium',

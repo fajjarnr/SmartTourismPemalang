@@ -1,5 +1,12 @@
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Rating} from '..';
 import {Gap} from '../../atoms';
@@ -9,18 +16,29 @@ const ItemCard = ({image, name, rating, hours, onPress}) => {
     <TouchableOpacity style={styles.page} activeOpacity={0.8} onPress={onPress}>
       <Image source={image} style={styles.image} />
       <View style={styles.container}>
-        <Text style={styles.title}>{name}</Text>
-        <Gap height={12} />
-        <Rating number={rating} />
-        <Gap height={12} />
-        <View style={styles.time}>
-          <MaterialCommunityIcons
-            name="clock-time-four-outline"
-            size={22}
-            color="#0157E4"
-          />
-          <Text style={styles.hours}>{hours}</Text>
-        </View>
+        <Text style={styles.title} numberOfLines={2} lineBreakMode="tail">
+          {name} asnjasd sasas
+        </Text>
+
+        {rating !== null && (
+          <View>
+            <Gap height={3} />
+            <Rating number={rating} />
+          </View>
+        )}
+        {hours !== null && (
+          <View>
+            <Gap height={6} />
+            <View style={styles.time}>
+              <MaterialCommunityIcons
+                name="clock-time-four-outline"
+                size={22}
+                color="#0157E4"
+              />
+              <Text style={styles.hours}>{hours}</Text>
+            </View>
+          </View>
+        )}
       </View>
     </TouchableOpacity>
   );
@@ -32,8 +50,8 @@ const styles = StyleSheet.create({
   page: {
     backgroundColor: 'white',
     marginRight: 24,
-    width: 271,
-    height: 277,
+    width: 290,
+    height: 250,
     overflow: 'hidden',
     borderRadius: 16,
     shadowColor: '#000',
@@ -48,17 +66,16 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   container: {
-    padding: 12,
+    padding: 10,
   },
   image: {
-    width: 271,
-    height: 145,
+    width: 290,
+    height: 160,
   },
   title: {
     fontFamily: 'Inter-SemiBold',
-    fontSize: 20,
+    fontSize: 16,
     color: '#020202',
-    marginTop: 6,
   },
   time: {
     flexDirection: 'row',

@@ -41,7 +41,7 @@ const Router = () => {
       <Stack.Screen
         name="Splash"
         component={Splash}
-        options={{headerShown: false}}
+        options={{headerShown: false, animationEnabled: false}}
       />
       <Stack.Screen
         name="SignIn"
@@ -76,6 +76,7 @@ const Router = () => {
           headerTitle: false,
           headerTransparent: true,
           headerTintColor: '#fff',
+          animationEnabled: false,
         })}
       />
       <Stack.Screen

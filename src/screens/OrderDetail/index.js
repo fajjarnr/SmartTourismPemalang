@@ -1,9 +1,34 @@
+import axios from 'axios';
 import React from 'react';
-import {StyleSheet, Text, View, ScrollView} from 'react-native';
-import {Banner1} from '../../assets';
-import {Button, DetailOrder, Gap, Header, ItemList} from '../../components';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {Button, ItemValue, Gap, Header, ItemList} from '../../components';
+import {API_HOST} from '../../config/API';
+import {getData} from '../../utils';
 
 const OrderDetail = ({navigation, route}) => {
+  const order = route.params;
+
+  const onCancel = () => {
+    const data = {
+      status: 'CANCELLED',
+    };
+    getData('token').then(resToken => {
+      axios
+        .post(`${API_HOST.url}/transaction/${order.id}`, data, {
+          headers: {Authorization: resToken.value},
+        })
+        .then(res => {
+          navigation.reset({
+            index: 0,
+            routes: [{name: 'MainApp'}],
+          });
+        })
+        .catch(err => {
+          console.log('err: ', err);
+        });
+    });
+  };
+
   return (
     <View style={styles.page}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -18,66 +43,64 @@ const OrderDetail = ({navigation, route}) => {
             <Gap height={16} />
             <Text style={styles.textTitle}>Item Ordered</Text>
             <ItemList
-              name="Pantai Widuri"
-              image={Banner1}
-              price={20000}
-              summary={1}
+              name={order.destinations.name}
+              image={{uri: order.destinations.image}}
+              price={order.destinations.price}
+              summary={order.quantity}
               activeOpacity={1}
               type="order-summary"
             />
             <View style={styles.wrapper}>
               <Text style={styles.textTitle}>Detail Transaksi</Text>
               <Gap height={8} />
-              {/* <DetailOrder
-                label={order.food.name}
-                value={order.food.price * order.quantity}
+              <ItemValue
+                label={order.destinations.name}
+                value={order.destinations.price * order.quantity}
                 type="currency"
               />
-              <DetailOrder label="Driver" value={50000} type="currency" />
-              <DetailOrder
+              <ItemValue
                 label="Tax 10%"
                 value={(10 / 100) * order.total}
                 type="currency"
               />
-              <DetailOrder
+              <ItemValue
                 label="Total Price"
                 value={order.total}
                 price
                 type="currency"
-              /> */}
+              />
             </View>
           </View>
           <View style={styles.content}>
             <View style={styles.wrapper}>
               <Text style={styles.textTitle}>Data Pengguna:</Text>
               <Gap height={8} />
-              {/* <DetailOrder label="Name" value={order.user.name} />
-              <DetailOrder label="Phone No" value={order.user.phoneNumber} />
-              <DetailOrder label="Address" value={order.user.address} />
-              <DetailOrder label="House No." value={order.user.houseNumber} />
-              <DetailOrder label="City" value={order.user.city} /> */}
+              <ItemValue label="Nama" value={order.user.name} />
+              <ItemValue label="No Telpon" value={order.user.phone} />
+              <ItemValue label="Alamat" value={order.user.address} />
+              <ItemValue label="Kota" value={order.user.city} />
             </View>
           </View>
           <View style={styles.content}>
             <View style={styles.wrapper}>
               <Text style={styles.textTitle}>Order Status</Text>
               <Gap height={8} />
-              {/* <DetailOrder
+              <ItemValue
                 label={`#${order.id}`}
                 value={order.status}
                 price={order.status === 'CANCELLED' ? '#D9435E' : '#1ABC9C'}
-              /> */}
+              />
             </View>
           </View>
           <View style={styles.button}>
-            {/* {order.status === 'PENDING' && ( */}
-            <Button
-              label="Batalkan Pesanan"
-              // onPress={onCancel}
-              colorButton="#D9435E"
-              textColorButton="white"
-            />
-            {/* )} */}
+            {order.status === 'PENDING' && (
+              <Button
+                label="Batalkan Pesanan"
+                onPress={onCancel}
+                colorButton="#D9435E"
+                textColorButton="white"
+              />
+            )}
           </View>
         </View>
         <Gap height={24} />

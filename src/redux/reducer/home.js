@@ -3,10 +3,7 @@ const initHome = {
   destination: [],
   new: [],
   popular: [],
-  wisataAlam: [],
-  wisataBuatan: [],
-  wisataBudaya: [],
-  kulinerKhas: [],
+  recommended: [],
 };
 
 export const homeReducer = (state = initHome, action) => {
@@ -22,28 +19,22 @@ export const homeReducer = (state = initHome, action) => {
       banner: action.value,
     };
   }
-  if (action.type === 'SET_WISATA_ALAM') {
+  if (action.type === 'SET_NEW') {
     return {
       ...state,
-      wisataAlam: action.value,
+      newTaste: action.value,
     };
   }
-  if (action.type === 'SET_WISATA_BUATAN') {
+  if (action.type === 'SET_POPULAR') {
     return {
       ...state,
-      wisataBuatan: action.value,
+      popular: action.value,
     };
   }
-  if (action.type === 'SET_WISATA_BUDAYA') {
+  if (action.type === 'SET_RECOMMENDED') {
     return {
       ...state,
-      wisataBudaya: action.value,
-    };
-  }
-  if (action.type === 'SET_KULINER_KHAS') {
-    return {
-      ...state,
-      kulinerKhas: action.value,
+      recommended: action.value,
     };
   }
   return state;
