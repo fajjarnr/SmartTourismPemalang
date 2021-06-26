@@ -1,6 +1,11 @@
 import DestinationDetail from './DestinationDetail';
 import Home from './Home';
+import ListDesaWisata from './ListDesaWisata';
+import ListHotel from './ListHotel';
+import ListMakananKhas from './ListMakananKhas';
 import ListWisataAlam from './ListWisataAlam';
+import ListWisataBuatan from './ListWisataBuatan';
+import ListWisataReligi from './ListWistaReligi';
 import Maps from './Maps';
 import News from './News';
 import NewsDetail from './NewsDetail';
@@ -34,4 +39,9 @@ export {
   SuccessOrder,
   OrderDetail,
   ListWisataAlam,
+  ListWisataBuatan,
+  ListWisataReligi,
+  ListDesaWisata,
+  ListHotel,
+  ListMakananKhas,
 };

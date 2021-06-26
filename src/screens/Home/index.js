@@ -23,7 +23,7 @@ const Home = ({navigation}) => {
     dispatch(getDestinationDataByTypes('new_destination'));
     dispatch(getDestinationDataByTypes('popular'));
     dispatch(getDestinationDataByTypes('recommended'));
-  }, []);
+  }, [dispatch]);
 
   return (
     <View style={styles.page}>

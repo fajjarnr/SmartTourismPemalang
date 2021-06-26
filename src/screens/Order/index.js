@@ -11,7 +11,7 @@ const Order = () => {
 
   useEffect(() => {
     dispatch(getOrders());
-  }, []);
+  }, [dispatch]);
 
   return (
     <View View style={styles.page}>

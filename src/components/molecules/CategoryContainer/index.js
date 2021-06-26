@@ -20,7 +20,10 @@ const CategoryContainer = () => {
           </View>
           <Text style={styles.categoryBtnTxt}>Wisata Alam</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.categoryBtn} onPress={() => {}}>
+
+        <TouchableOpacity
+          style={styles.categoryBtn}
+          onPress={() => navigation.navigate('ListWisataBuatan')}>
           <View style={styles.categoryIcon}>
             <MaterialCommunityIcons
               name="food-fork-drink"
@@ -30,6 +33,7 @@ const CategoryContainer = () => {
           </View>
           <Text style={styles.categoryBtnTxt}>Wisata Buatan</Text>
         </TouchableOpacity>
+
         <TouchableOpacity style={styles.categoryBtn} onPress={() => {}}>
           <View style={styles.categoryIcon}>
             <MaterialCommunityIcons name="food" size={35} color="#FF6347" />
@@ -45,12 +49,14 @@ const CategoryContainer = () => {
           </View>
           <Text style={styles.categoryBtnTxt}>Hotels</Text>
         </TouchableOpacity>
+
         <TouchableOpacity style={styles.categoryBtn} onPress={() => {}}>
           <View style={styles.categoryIcon}>
             <Ionicons name="md-restaurant" size={35} color="#FF6347" />
           </View>
           <Text style={styles.categoryBtnTxt}>Dineouts</Text>
         </TouchableOpacity>
+
         <TouchableOpacity style={styles.categoryBtn} onPress={() => {}}>
           <View style={styles.categoryIcon}>
             <MaterialIcons name="expand-more" size={35} color="#FF6347" />

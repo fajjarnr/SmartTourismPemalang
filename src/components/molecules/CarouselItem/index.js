@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {Rating} from '..';
 
-const CarousellItem = ({image, name, rating, desc, onPress}) => {
+const CarouselItem = ({image, name, rating, desc, onPress}) => {
   const width = useWindowDimensions().width;
 
   return (
@@ -37,11 +37,11 @@ const CarousellItem = ({image, name, rating, desc, onPress}) => {
   );
 };
 
-export default CarousellItem;
+export default CarouselItem;
 
 const styles = StyleSheet.create({
   container: {
-    height: 120,
+    height: 150,
     padding: 5,
     shadowColor: '#000',
     shadowOffset: {
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     marginHorizontal: 10,
-    marginVertical: 10,
+    marginVertical: 20,
   },
   image: {
     height: '100%',
@@ -70,9 +70,9 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'Inter-SemiBold',
-    fontSize: 16,
+    fontSize: 18,
   },
   rating: {
-    marginVertical: 5,
+    marginVertical: 10,
   },
 });

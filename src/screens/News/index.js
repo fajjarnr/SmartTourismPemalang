@@ -10,7 +10,7 @@ const News = ({navigation}) => {
 
   useEffect(() => {
     dispatch(getNewsData());
-  }, []);
+  }, [dispatch]);
 
   return (
     <View tyle={styles.page}>

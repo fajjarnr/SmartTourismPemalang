@@ -17,7 +17,7 @@ const Maps = ({navigation}) => {
 
   useEffect(() => {
     dispatch(getDestinationData());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>

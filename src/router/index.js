@@ -5,7 +5,12 @@ import {TabBar} from '../components';
 import {
   DestinationDetail,
   Home,
+  ListDesaWisata,
+  ListHotel,
+  ListMakananKhas,
   ListWisataAlam,
+  ListWisataBuatan,
+  ListWisataReligi,
   Maps,
   News,
   NewsDetail,
@@ -108,6 +113,31 @@ const Router = () => {
       <Stack.Screen
         name="ListWisataAlam"
         component={ListWisataAlam}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ListWisataBuatan"
+        component={ListWisataBuatan}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ListWisataReligi"
+        component={ListWisataReligi}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ListDesaWisata"
+        component={ListDesaWisata}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ListHotel"
+        component={ListHotel}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ListMakananKhas"
+        component={ListMakananKhas}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

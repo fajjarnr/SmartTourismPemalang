@@ -1,5 +1,6 @@
 import Banner from './Banner';
-import CarousellItem from './CarousellItem';
+import CardList from './CardList';
+import CarouselItem from './CarouselItem';
 import CategoryContainer from './CategoryContainer';
 import Counter from './Counter';
 import EmptyOrder from './EmptyOrder';
@@ -8,7 +9,11 @@ import HomeHeader from './HomeHeader';
 import ItemCard from './ItemCard';
 import ItemList from './ItemList';
 import ItemValue from './ItemValue';
+import ListTabDesaWisata from './ListTabDesaWisata';
+import ListTabHotel from './ListTabHotel';
 import ListTabWisataAlam from './ListTabWisataAlam';
+import ListTabWisataBuatan from './ListTabWisataBuatan';
+import ListTabWisataReligi from './ListTabWisataReligi';
 import Loading from './Loading';
 import NewsCard from './NewsCard';
 import Number from './Number';
@@ -39,5 +44,10 @@ export {
   ListTabWisataAlam,
   Recommended,
   CategoryContainer,
-  CarousellItem,
+  CarouselItem,
+  CardList,
+  ListTabWisataBuatan,
+  ListTabWisataReligi,
+  ListTabHotel,
+  ListTabDesaWisata,
 };
