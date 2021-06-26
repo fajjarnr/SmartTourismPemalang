@@ -1,7 +1,7 @@
 const initHome = {
   banner: [],
   destination: [],
-  new: [],
+  newDestination: [],
   popular: [],
   recommended: [],
 };

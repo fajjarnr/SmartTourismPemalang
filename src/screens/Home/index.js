@@ -14,13 +14,13 @@ import {getBannerData, getDestinationDataByTypes} from '../../redux/actions';
 
 const Home = ({navigation}) => {
   const dispatch = useDispatch();
-  const {banner, recommended, popular} = useSelector(
+  const {banner, recommended, popular, newDestination} = useSelector(
     state => state.homeReducer,
   );
 
   useEffect(() => {
     dispatch(getBannerData());
-    dispatch(getDestinationDataByTypes('new'));
+    dispatch(getDestinationDataByTypes('new_destination'));
     dispatch(getDestinationDataByTypes('popular'));
     dispatch(getDestinationDataByTypes('recommended'));
   }, []);
@@ -42,11 +42,11 @@ const Home = ({navigation}) => {
 
         <View>
           <View style={styles.titleContainer}>
-            <Text style={styles.title}>New</Text>
+            <Text style={styles.title}>Destinasi Baru</Text>
           </View>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <Gap width={24} />
-            {recommended?.map(item => (
+            {newDestination?.map(item => (
               <ItemCard
                 key={item.id}
                 image={{uri: item.image}}

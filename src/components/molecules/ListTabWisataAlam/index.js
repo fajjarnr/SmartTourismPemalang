@@ -1,16 +1,18 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
   Dimensions,
   StyleSheet,
   Text,
   View,
   useWindowDimensions,
+  FlatList,
 } from 'react-native';
 import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
 import {useDispatch, useSelector} from 'react-redux';
-import {ItemList} from '..';
-import {getInProgress, getPastOrders} from '../../../redux/actions';
+import {ItemList, CarousellItem} from '..';
+import {getInProgress, getDestinationByCategory} from '../../../redux/actions';
+import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 
 const renderTabBar = props => (
   <TabBar
@@ -64,35 +66,94 @@ const Maps = () => {
 
   const dispatch = useDispatch();
 
-  const {pastOrders} = useSelector(state => state.orderReducer);
+  const {wisataAlam} = useSelector(state => state.categoryReducer);
+
+  const [selectedPlaceId, setSelectedPlaceId] = useState(null);
+
+  const flatList = useRef();
+  const map = useRef();
+
+  const viewConfig = useRef({itemVisiblePercentThreshold: 70});
+
+  const onViewChanged = useRef(({viewableItems}) => {
+    if (viewableItems.length > 0) {
+      const selectedPlace = viewableItems[0].item;
+      setSelectedPlaceId(selectedPlace.id);
+    }
+  });
+
+  const width = useWindowDimensions().width;
 
   useEffect(() => {
-    dispatch(getPastOrders());
+    dispatch(getDestinationByCategory('1'));
 
-    const interval = setInterval(() => {
-      dispatch(getPastOrders());
-    }, 10000);
+    if (!selectedPlaceId || !flatList) {
+      return;
+    }
 
-    return () => clearInterval(interval);
-  }, []);
+    const index = wisataAlam.findIndex(place => place.id === selectedPlaceId);
+
+    flatList.current.scrollToIndex({index});
+
+    const selectedPlace = wisataAlam[index];
+
+    const region = {
+      latitude: selectedPlace.latitude,
+      longitude: selectedPlace.longitude,
+      latitudeDelta: 0.1,
+      longitudeDelta: 0.1,
+    };
+
+    map.current.animateToRegion(region);
+  }, [dispatch, selectedPlaceId, wisataAlam]);
 
   return (
-    <View style={styles.wrapperContent}>
-      {pastOrders?.map(pastOrder => (
-        <ItemList
-          type="past-order"
-          key={pastOrder.id}
-          image={{uri: pastOrder.destinations.image}}
-          name={pastOrder.destinations.name}
-          price={pastOrder.total}
-          orderItems={pastOrder.quantity}
-          date={pastOrder.created_at}
-          statusOrder={pastOrder.status}
-          activeOpacity={1}
-          statusColor={pastOrder.status === 'CANCELLED' ? '#D9435E' : '#1ABC9C'}
-          onPress={() => navigation.navigate('OrderDetail', pastOrder)}
+    <View style={styles.map}>
+      <MapView
+        ref={map}
+        style={styles.map}
+        provider={PROVIDER_GOOGLE}
+        initialRegion={{
+          latitude: -7.055319871985475,
+          longitude: 109.37974068094923,
+          latitudeDelta: 0.2,
+          longitudeDelta: 0.2,
+        }}>
+        {wisataAlam.map(item => (
+          <Marker
+            key={item.id}
+            coordinate={{
+              latitude: item.latitude,
+              longitude: item.longitude,
+            }}
+            onPress={() => setSelectedPlaceId(item.id)}
+          />
+        ))}
+      </MapView>
+
+      <View style={{position: 'absolute', bottom: 10}}>
+        <FlatList
+          ref={flatList}
+          data={wisataAlam}
+          renderItem={({item}) => (
+            <CarousellItem
+              key={item.id}
+              name={item.name}
+              image={item.image}
+              desc={item.description}
+              rating={item.rate}
+              onPress={() => navigation.navigate('DestinationDetail', item)}
+            />
+          )}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          snapToInterval={width - 60}
+          snapToAlignment={'center'}
+          decelerationRate={'fast'}
+          viewabilityConfig={viewConfig.current}
+          onViewableItemsChanged={onViewChanged.current}
         />
-      ))}
+      </View>
     </View>
   );
 };
@@ -144,5 +205,9 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 24,
     backgroundColor: 'white',
+  },
+  map: {
+    width: '100%',
+    height: '100%',
   },
 });

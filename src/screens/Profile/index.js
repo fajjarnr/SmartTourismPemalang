@@ -13,11 +13,7 @@ const Profile = () => {
 
   return (
     <View style={styles.page}>
-      <StatusBar
-        backgroundColor="transparent"
-        translucent
-        barStyle="dark-content"
-      />
+      <StatusBar backgroundColor="white" barStyle="dark-content" />
       <View style={styles.wrapperContent}>
         <View style={styles.wrapperborder}>
           <View style={styles.border}>

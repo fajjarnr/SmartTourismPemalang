@@ -13,25 +13,23 @@ const News = ({navigation}) => {
   }, []);
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
-      <StatusBar
-        backgroundColor="transparent"
-        translucent
-        barStyle="dark-content"
-      />
-      <View style={styles.container}>
-        {news?.map((item, index) => (
-          <NewsCard
-            key={index}
-            image={{uri: item.picturePath}}
-            name={item.title}
-            author={item.author}
-            description={item.content}
-            onPress={() => navigation.navigate('NewsDetail')}
-          />
-        ))}
-      </View>
-    </ScrollView>
+    <View tyle={styles.page}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <StatusBar backgroundColor="white" barStyle="dark-content" />
+        <View style={styles.container}>
+          {news?.map((item, index) => (
+            <NewsCard
+              key={index}
+              image={{uri: item.picturePath}}
+              name={item.title}
+              author={item.author}
+              description={item.content}
+              onPress={() => navigation.navigate('NewsDetail')}
+            />
+          ))}
+        </View>
+      </ScrollView>
+    </View>
   );
 };
 
@@ -42,5 +40,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
     paddingTop: 10,
+  },
+  page: {
+    flex: 1,
+    backgroundColor: 'white',
   },
 });

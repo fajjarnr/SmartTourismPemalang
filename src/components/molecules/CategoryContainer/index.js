@@ -4,16 +4,21 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {useNavigation} from '@react-navigation/native';
 
 const CategoryContainer = () => {
+  const navigation = useNavigation();
+
   return (
     <>
       <View style={styles.categoryContainer}>
-        <TouchableOpacity style={styles.categoryBtn} onPress={() => {}}>
+        <TouchableOpacity
+          style={styles.categoryBtn}
+          onPress={() => navigation.navigate('ListWisataAlam')}>
           <View style={styles.categoryIcon}>
             <Ionicons name="ios-restaurant" size={35} color="#FF6347" />
           </View>
-          <Text style={styles.categoryBtnTxt}>Restaurant</Text>
+          <Text style={styles.categoryBtnTxt}>Wisata Alam</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.categoryBtn} onPress={() => {}}>
           <View style={styles.categoryIcon}>
@@ -23,15 +28,16 @@ const CategoryContainer = () => {
               color="#FF6347"
             />
           </View>
-          <Text style={styles.categoryBtnTxt}>Fastfood Center</Text>
+          <Text style={styles.categoryBtnTxt}>Wisata Buatan</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.categoryBtn} onPress={() => {}}>
           <View style={styles.categoryIcon}>
             <MaterialCommunityIcons name="food" size={35} color="#FF6347" />
           </View>
-          <Text style={styles.categoryBtnTxt}>Snacks Corner</Text>
+          <Text style={styles.categoryBtnTxt}>Wisata Religi</Text>
         </TouchableOpacity>
       </View>
+
       <View style={[styles.categoryContainer, {marginTop: 10}]}>
         <TouchableOpacity style={styles.categoryBtn} onPress={() => {}}>
           <View style={styles.categoryIcon}>

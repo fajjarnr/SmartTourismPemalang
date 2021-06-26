@@ -5,6 +5,7 @@ import {TabBar} from '../components';
 import {
   DestinationDetail,
   Home,
+  ListWisataAlam,
   Maps,
   News,
   NewsDetail,
@@ -102,6 +103,11 @@ const Router = () => {
       <Stack.Screen
         name="OrderDetail"
         component={OrderDetail}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ListWisataAlam"
+        component={ListWisataAlam}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

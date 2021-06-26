@@ -21,11 +21,7 @@ const Maps = ({navigation}) => {
 
   return (
     <>
-      <StatusBar
-        backgroundColor="transparent"
-        translucent
-        barStyle="dark-content"
-      />
+      <StatusBar backgroundColor="transparent" barStyle="dark-content" />
       <MapView initialRegion={region} style={styles.map}>
         {destination.map(item => (
           <Marker

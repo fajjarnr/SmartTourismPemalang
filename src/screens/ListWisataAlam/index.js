@@ -1,10 +1,11 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, StatusBar} from 'react-native';
 import {ListTabWisataAlam} from '../../components';
 
 const ListWisataAlam = () => {
   return (
     <View style={styles.page}>
+      <StatusBar backgroundColor="white" barStyle="dark-content" />
       <View style={styles.tabContainer}>
         <ListTabWisataAlam />
       </View>

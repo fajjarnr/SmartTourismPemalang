@@ -1,5 +1,6 @@
 import Banner from './Banner';
-import Container from './Container';
+import CarousellItem from './CarousellItem';
+import CategoryContainer from './CategoryContainer';
 import Counter from './Counter';
 import EmptyOrder from './EmptyOrder';
 import Header from './Header';
@@ -17,7 +18,6 @@ import ProfileTabSection from './ProfileTabSection';
 import Rating from './Rating';
 import Recommended from './Recommended';
 import TabBar from './TabBar';
-import CategoryContainer from './CategoryContainer';
 
 export {
   Header,
@@ -36,8 +36,8 @@ export {
   ProfileTabSection,
   ProfileListMenu,
   HomeHeader,
-  Container,
   ListTabWisataAlam,
   Recommended,
   CategoryContainer,
+  CarousellItem,
 };
