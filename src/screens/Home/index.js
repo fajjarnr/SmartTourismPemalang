@@ -1,15 +1,15 @@
 import React, {useEffect} from 'react';
-import {
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {ScrollView, StatusBar, StyleSheet, Text, View} from 'react-native';
 import Swiper from 'react-native-swiper';
 import {useDispatch, useSelector} from 'react-redux';
-import {Banner, Gap, HomeHeader, ItemCard} from '../../components';
+import {
+  Banner,
+  CategoryContainer,
+  Gap,
+  HomeHeader,
+  ItemCard,
+  Recommended,
+} from '../../components';
 import {getBannerData, getDestinationDataByTypes} from '../../redux/actions';
 
 const Home = ({navigation}) => {
@@ -37,52 +37,58 @@ const Home = ({navigation}) => {
             ))}
           </Swiper>
         </View>
-        <Gap height={24} />
+
+        <CategoryContainer />
+
         <View>
           <View style={styles.titleContainer}>
-            <Text style={styles.title}>Rekomendasi</Text>
-            <TouchableOpacity onPress={() => {}}>
-              <Text style={styles.seeAll}>SEE ALL</Text>
-            </TouchableOpacity>
+            <Text style={styles.title}>New</Text>
           </View>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <View style={styles.wrapper}>
-              <Gap width={24} />
-              {recommended?.map(item => (
-                <ItemCard
-                  key={item.id}
-                  image={{uri: item.image}}
-                  name={item.name}
-                  rating={item.rate}
-                  hours={item.hours}
-                  onPress={() => navigation.navigate('DestinationDetail', item)}
-                />
-              ))}
-            </View>
+            <Gap width={24} />
+            {recommended?.map(item => (
+              <ItemCard
+                key={item.id}
+                image={{uri: item.image}}
+                name={item.name}
+                rating={item.rate}
+                hours={item.hours}
+                onPress={() => navigation.navigate('DestinationDetail', item)}
+              />
+            ))}
           </ScrollView>
         </View>
+
         <View>
           <View style={styles.titleContainer}>
             <Text style={styles.title}>Popular</Text>
-            <TouchableOpacity onPress={() => {}}>
-              <Text style={styles.seeAll}>SEE ALL</Text>
-            </TouchableOpacity>
           </View>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <View style={styles.wrapper}>
-              <Gap width={24} />
-              {popular?.map(item => (
-                <ItemCard
-                  key={item.id}
-                  image={{uri: item.image}}
-                  name={item.name}
-                  rating={item.rate}
-                  hours={item.hours}
-                  onPress={() => navigation.navigate('DestinationDetail', item)}
-                />
-              ))}
-            </View>
+            <Gap width={24} />
+            {popular?.map(item => (
+              <ItemCard
+                key={item.id}
+                image={{uri: item.image}}
+                name={item.name}
+                rating={item.rate}
+                hours={item.hours}
+                onPress={() => navigation.navigate('DestinationDetail', item)}
+              />
+            ))}
           </ScrollView>
+        </View>
+
+        <View>
+          {recommended?.map(item => (
+            <Recommended
+              key={item.id}
+              image={{uri: item.image}}
+              name={item.name}
+              desc={item.description}
+              rating={item.rate}
+              onPress={() => navigation.navigate('DestinationDetail', item)}
+            />
+          ))}
         </View>
       </ScrollView>
     </View>
@@ -104,10 +110,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 8,
   },
-  wrapper: {
-    flexDirection: 'row',
-    marginTop: 20,
-  },
   title: {
     fontFamily: 'Inter-SemiBold',
     fontSize: 20,
@@ -119,10 +121,5 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginHorizontal: 24,
     alignItems: 'center',
-  },
-  seeAll: {
-    fontFamily: 'Inter-medium',
-    fontSize: 16,
-    color: '#FFB100',
   },
 });

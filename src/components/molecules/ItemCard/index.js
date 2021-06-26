@@ -1,46 +1,44 @@
 import React from 'react';
-import {
-  Image,
-  Pressable,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Rating} from '..';
 import {Gap} from '../../atoms';
 
 const ItemCard = ({image, name, rating, hours, onPress}) => {
   return (
-    <TouchableOpacity style={styles.page} activeOpacity={0.8} onPress={onPress}>
-      <Image source={image} style={styles.image} />
-      <View style={styles.container}>
-        <Text style={styles.title} numberOfLines={2} lineBreakMode="tail">
-          {name} asnjasd sasas
-        </Text>
+    <View style={styles.wrapper}>
+      <TouchableOpacity
+        style={styles.page}
+        activeOpacity={0.8}
+        onPress={onPress}>
+        <Image source={image} style={styles.image} />
+        <View style={styles.container}>
+          <Text style={styles.name} numberOfLines={2} lineBreakMode="tail">
+            {name}
+          </Text>
 
-        {rating !== null && (
-          <View>
-            <Gap height={3} />
-            <Rating number={rating} />
-          </View>
-        )}
-        {hours !== null && (
-          <View>
-            <Gap height={6} />
-            <View style={styles.time}>
-              <MaterialCommunityIcons
-                name="clock-time-four-outline"
-                size={22}
-                color="#0157E4"
-              />
-              <Text style={styles.hours}>{hours}</Text>
+          {rating !== null && (
+            <View>
+              <Gap height={3} />
+              <Rating number={rating} />
             </View>
-          </View>
-        )}
-      </View>
-    </TouchableOpacity>
+          )}
+          {hours !== null && (
+            <View>
+              <Gap height={6} />
+              <View style={styles.time}>
+                <MaterialCommunityIcons
+                  name="clock-time-four-outline"
+                  size={22}
+                  color="#0157E4"
+                />
+                <Text style={styles.hours}>{hours}</Text>
+              </View>
+            </View>
+          )}
+        </View>
+      </TouchableOpacity>
+    </View>
   );
 };
 
@@ -68,14 +66,18 @@ const styles = StyleSheet.create({
   container: {
     padding: 10,
   },
+  name: {
+    fontFamily: 'Inter-SemiBold',
+    fontSize: 20,
+    color: '#020202',
+  },
   image: {
     width: 290,
     height: 160,
   },
-  title: {
-    fontFamily: 'Inter-SemiBold',
-    fontSize: 16,
-    color: '#020202',
+  wrapper: {
+    flexDirection: 'row',
+    marginTop: 20,
   },
   time: {
     flexDirection: 'row',

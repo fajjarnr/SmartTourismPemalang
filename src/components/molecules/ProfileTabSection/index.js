@@ -78,14 +78,9 @@ const styles = StyleSheet.create({
   indicator: {
     backgroundColor: 'black',
     height: 2,
-    width: '15%',
-    marginLeft: '3%',
   },
   page: {
     backgroundColor: 'white',
-  },
-  Tab: {
-    width: 'auto',
   },
   text: focused => ({
     fontFamily: 'Inter-Medium',

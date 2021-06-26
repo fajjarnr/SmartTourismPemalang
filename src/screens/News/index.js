@@ -14,7 +14,11 @@ const News = ({navigation}) => {
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      <StatusBar backgroundColor="white" barStyle="dark-content" />
+      <StatusBar
+        backgroundColor="transparent"
+        translucent
+        barStyle="dark-content"
+      />
       <View style={styles.container}>
         {news?.map((item, index) => (
           <NewsCard

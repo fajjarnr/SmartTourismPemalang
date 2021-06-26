@@ -13,7 +13,11 @@ const Profile = () => {
 
   return (
     <View style={styles.page}>
-      <StatusBar backgroundColor="white" barStyle="dark-content" />
+      <StatusBar
+        backgroundColor="transparent"
+        translucent
+        barStyle="dark-content"
+      />
       <View style={styles.wrapperContent}>
         <View style={styles.wrapperborder}>
           <View style={styles.border}>
@@ -92,6 +96,5 @@ const styles = StyleSheet.create({
   },
   wrapperTab: {
     flex: 1,
-    marginTop: 24,
   },
 });

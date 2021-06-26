@@ -40,6 +40,5 @@ const styles = StyleSheet.create({
   },
   tabContainer: {
     flex: 1,
-    marginTop: 24,
   },
 });
