@@ -20,7 +20,7 @@ import Splash from './Splash';
 import SuccessOrder from './SuccessOrder';
 import SuccessSignUp from './SuccessSignUp';
 import Welcome from './Welcome';
-import PaymentLink from './PaymentLink';
+import PaymentLink from './Payment';
 
 export {
   Splash,
