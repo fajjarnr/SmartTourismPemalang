@@ -23,6 +23,7 @@ const Home = ({navigation}) => {
     dispatch(getDestinationDataByTypes('new'));
     dispatch(getDestinationDataByTypes('popular'));
     dispatch(getDestinationDataByTypes('recommended'));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -155,5 +156,8 @@ const styles = StyleSheet.create({
   notFound: {
     fontSize: 14,
     color: 'black',
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

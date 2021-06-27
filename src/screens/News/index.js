@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {FlatList, StyleSheet, View} from 'react-native';
+import {FlatList, StyleSheet, View, Text} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {NewsCard} from '../../components';
 import {getNewsData} from '../../redux/actions';
@@ -14,22 +14,26 @@ const News = ({navigation}) => {
 
   return (
     <View style={styles.page}>
-      <FlatList
-        style={styles.flatList}
-        showsVerticalScrollIndicator={false}
-        data={news}
-        renderItem={({item}) => (
-          <NewsCard
-            key={item.id}
-            image={{uri: item.picturePath}}
-            name={item.title}
-            author={item.user}
-            description={item.content}
-            date={item.created_at}
-            onPress={() => navigation.navigate('NewsDetail')}
-          />
-        )}
-      />
+      {news?.length > 0 ? (
+        <FlatList
+          style={styles.flatList}
+          showsVerticalScrollIndicator={false}
+          data={news}
+          renderItem={({item}) => (
+            <NewsCard
+              key={item.id}
+              image={{uri: item.picturePath}}
+              name={item.title}
+              author={item.user}
+              description={item.content}
+              date={item.created_at}
+              onPress={() => navigation.navigate('NewsDetail')}
+            />
+          )}
+        />
+      ) : (
+        <Text style={styles.notFound}>Data Berita tidak ada</Text>
+      )}
     </View>
   );
 };
@@ -43,5 +47,12 @@ const styles = StyleSheet.create({
   },
   flatList: {
     paddingTop: 10,
+  },
+  notFound: {
+    fontSize: 14,
+    color: 'black',
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

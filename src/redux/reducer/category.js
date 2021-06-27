@@ -30,19 +30,19 @@ export const categoryReducer = (state = initCategory, action) => {
   if (action.type === 'SET_WISATA_RELIGI') {
     return {
       ...state,
-      wisataBudaya: action.value,
+      wisataReligi: action.value,
     };
   }
   if (action.type === 'SET_DESA_WISATA') {
     return {
       ...state,
-      wisataBudaya: action.value,
+      desaWisata: action.value,
     };
   }
   if (action.type === 'SET_HOTEL') {
     return {
       ...state,
-      wisataBudaya: action.value,
+      hotel: action.value,
     };
   }
   if (action.type === 'SET_KULINER_KHAS') {

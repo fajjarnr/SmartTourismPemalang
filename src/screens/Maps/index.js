@@ -29,9 +29,16 @@ const Maps = ({navigation}) => {
             coordinate={{latitude: item.latitude, longitude: item.longitude}}
             title={item.name}>
             <Callout
+              tooltip
               onPress={() => navigation.navigate('DestinationDetail', item)}>
-              <View style={styles.item}>
-                <Image source={{uri: item.image}} style={styles.image} />
+              <View style={styles.tooltip}>
+                <Text>
+                  <Image
+                    source={{uri: item.image}}
+                    resizeMode="cover"
+                    style={styles.image}
+                  />
+                </Text>
                 <Text>{item.name}</Text>
               </View>
             </Callout>
@@ -49,14 +56,17 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
   },
   image: {
-    borderRadius: 20,
     width: 120,
-    height: 100,
+    height: 120,
   },
-  item: {
-    padding: 10,
-    maxWidth: 120,
+  tooltip: {
+    padding: 15,
     alignItems: 'center',
     flexDirection: 'column',
+    backgroundColor: 'white',
+    borderRadius: 6,
+    borderColor: '#ccc',
+    borderWidth: 0.5,
+    width: 150,
   },
 });

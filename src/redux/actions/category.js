@@ -4,8 +4,6 @@ import {API_HOST} from '../../config/API';
 export const getDestinationByCategory = id => dispatch => {
   Axios.get(`${API_HOST.url}/destination/${id}`)
     .then(response => {
-      console.log(`res Category`, response.data.data);
-
       if (id === '1') {
         dispatch({type: 'SET_WISATA_ALAM', value: response.data.data});
       }
