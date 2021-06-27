@@ -38,21 +38,25 @@ const List = () => {
 
   return (
     <View style={styles.wrapperContent}>
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        data={hotel}
-        renderItem={({item}) => (
-          <CardList
-            key={item.id}
-            name={item.name}
-            desc={item.description}
-            image={item.image}
-            rating={item.rate}
-            price={item.price}
-            onPress={() => navigation.navigate('DestinationDetail', item)}
-          />
-        )}
-      />
+      {hotel?.length > 0 ? (
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={hotel}
+          renderItem={({item}) => (
+            <CardList
+              key={item.id}
+              name={item.name}
+              desc={item.description}
+              image={item.image}
+              rating={item.rate}
+              price={item.price}
+              onPress={() => navigation.navigate('DestinationDetail', item)}
+            />
+          )}
+        />
+      ) : (
+        <Text>data tidak ada</Text>
+      )}
     </View>
   );
 };
@@ -114,8 +118,8 @@ const Maps = () => {
         initialRegion={{
           latitude: -7.055319871985475,
           longitude: 109.37974068094923,
-          latitudeDelta: 0.2,
-          longitudeDelta: 0.2,
+          latitudeDelta: 0.8,
+          longitudeDelta: 0.8,
         }}>
         {hotel.map(item => (
           <Marker
@@ -201,7 +205,6 @@ const styles = StyleSheet.create({
   wrapperContent: {
     flex: 1,
     paddingHorizontal: 24,
-    backgroundColor: 'white',
   },
   map: {
     width: '100%',

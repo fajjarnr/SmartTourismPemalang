@@ -11,7 +11,7 @@ const Order = () => {
 
   useEffect(() => {
     dispatch(getOrders());
-  }, [dispatch]);
+  }, []);
 
   console.log('list order: ', order);
 

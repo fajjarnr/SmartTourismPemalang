@@ -11,7 +11,7 @@ const ListMakananKhas = ({navigation, rating}) => {
 
   useEffect(() => {
     dispatch(getDestinationByCategory('6'));
-  }, [dispatch]);
+  }, []);
 
   return (
     <View style={styles.page}>
@@ -50,7 +50,6 @@ export default ListMakananKhas;
 const styles = StyleSheet.create({
   page: {
     flex: 1,
-    backgroundColor: 'white',
     paddingHorizontal: 20,
   },
   container: {

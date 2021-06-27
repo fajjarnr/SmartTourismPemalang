@@ -1,13 +1,12 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
-import {IconForward} from '../../../assets';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const ProfileListMenu = ({label, onPress}) => {
   return (
     <TouchableOpacity style={styles.page} activeOpacity={0.7} onPress={onPress}>
       <Text style={styles.label}>{label}</Text>
-      <AntDesign name="right" size={18} />
+      <AntDesign name="right" size={18} color="#ffffff" />
     </TouchableOpacity>
   );
 };
@@ -22,8 +21,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   label: {
-    fontSize: 15,
+    fontSize: 16,
     fontFamily: 'Inter-Regular',
-    color: '#202020',
+    color: '#FFFFFF',
   },
 });

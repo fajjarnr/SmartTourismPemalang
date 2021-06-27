@@ -1,9 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import {Image, StatusBar, StyleSheet, Text, View} from 'react-native';
-import {ProfileTabSection} from '../../components';
+import {ProfileTabSection, ProfileListMenu, Button} from '../../components';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {getData} from '../../utils';
 
-const Profile = () => {
+const Profile = ({navigation}) => {
+  const signOut = () => {
+    AsyncStorage.multiRemove(['userProfile', 'token']).then(() => {
+      navigation.reset({index: 0, routes: [{name: 'SignIn'}]});
+    });
+  };
+
   const [userProfile, setUserProfile] = useState({});
   useEffect(() => {
     getData('userProfile').then(res => {
@@ -14,7 +21,7 @@ const Profile = () => {
   return (
     <View style={styles.page}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
-      <View style={styles.wrapperContent}>
+      <View style={styles.header}>
         <View style={styles.wrapperborder}>
           <View style={styles.border}>
             <View style={styles.borderPhoto}>
@@ -30,8 +37,18 @@ const Profile = () => {
           </View>
         </View>
       </View>
-      <View style={styles.wrapperTab}>
-        <ProfileTabSection />
+      <View style={styles.footer}>
+        {/* <ProfileTabSection /> */}
+        <View style={styles.wrapperContent}>
+          <ProfileListMenu label="Payments" />
+          <ProfileListMenu label="Rate App" />
+          <ProfileListMenu label="Help Center" />
+          <ProfileListMenu label="Privacy & Policy" />
+          <ProfileListMenu label="Terms & Conditions" />
+        </View>
+        <View style={styles.button}>
+          <Button label="Sign Out" colorButton="#FFFFFF" onPress={signOut} />
+        </View>
       </View>
     </View>
   );
@@ -44,8 +61,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FAFAFC',
   },
-  wrapperContent: {
+  header: {
+    flex: 1,
     backgroundColor: 'white',
+    minHeight: 50,
   },
   addPhoto: {
     fontSize: 14,
@@ -82,15 +101,28 @@ const styles = StyleSheet.create({
   },
   name: {
     fontFamily: 'Inter-Regular',
-    color: '#020202',
+    color: '#202020',
     fontSize: 18,
   },
   email: {
     fontFamily: 'Inter-Regular',
-    color: '#8D92A3',
+    color: '#202020',
     fontSize: 14,
   },
-  wrapperTab: {
-    flex: 1,
+  wrapperContent: {
+    marginTop: 20,
+    paddingHorizontal: 24,
+    paddingBottom: 20,
+  },
+  footer: {
+    flex: 2,
+    backgroundColor: '#ff7c57',
+    borderTopRightRadius: 50,
+    borderTopLeftRadius: 50,
+    marginTop: -20,
+  },
+  button: {
+    marginTop: 20,
+    paddingHorizontal: 24,
   },
 });

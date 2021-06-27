@@ -39,7 +39,7 @@ const InProgress = () => {
     // }, 10000);
 
     // return () => clearInterval(interval);
-  }, [dispatch]);
+  }, []);
 
   return (
     <View style={styles.wrapperContent}>
@@ -74,7 +74,7 @@ const PastOrders = () => {
     // }, 10000);
 
     // return () => clearInterval(interval);
-  }, [dispatch]);
+  }, []);
 
   return (
     <View style={styles.wrapperContent}>

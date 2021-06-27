@@ -23,7 +23,7 @@ const Home = ({navigation}) => {
     dispatch(getDestinationDataByTypes('new'));
     dispatch(getDestinationDataByTypes('popular'));
     dispatch(getDestinationDataByTypes('recommended'));
-  }, [dispatch]);
+  }, []);
 
   return (
     <View style={styles.page}>
@@ -153,7 +153,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   notFound: {
-    fontFamily: 'Inter-SemiBold',
     fontSize: 14,
     color: 'black',
   },
