@@ -20,7 +20,7 @@ const Home = ({navigation}) => {
 
   useEffect(() => {
     dispatch(getBannerData());
-    dispatch(getDestinationDataByTypes('new_destination'));
+    dispatch(getDestinationDataByTypes('new'));
     dispatch(getDestinationDataByTypes('popular'));
     dispatch(getDestinationDataByTypes('recommended'));
   }, [dispatch]);
@@ -46,16 +46,20 @@ const Home = ({navigation}) => {
           </View>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <Gap width={24} />
-            {newDestination?.map(item => (
-              <ItemCard
-                key={item.id}
-                image={{uri: item.image}}
-                name={item.name}
-                rating={item.rate}
-                hours={item.hours}
-                onPress={() => navigation.navigate('DestinationDetail', item)}
-              />
-            ))}
+            {newDestination?.length > 0 ? (
+              newDestination.map(item => (
+                <ItemCard
+                  key={item.id}
+                  image={{uri: item.image}}
+                  name={item.name}
+                  rating={item.rate}
+                  hours={item.hours}
+                  onPress={() => navigation.navigate('DestinationDetail', item)}
+                />
+              ))
+            ) : (
+              <Text style={styles.notFound}>Data Destinasi Baru tidak ada</Text>
+            )}
           </ScrollView>
         </View>
 
@@ -65,30 +69,45 @@ const Home = ({navigation}) => {
           </View>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <Gap width={24} />
-            {popular?.map(item => (
-              <ItemCard
-                key={item.id}
-                image={{uri: item.image}}
-                name={item.name}
-                rating={item.rate}
-                hours={item.hours}
-                onPress={() => navigation.navigate('DestinationDetail', item)}
-              />
-            ))}
+            {popular?.length > 0 ? (
+              popular.map(item => (
+                <ItemCard
+                  key={item.id}
+                  image={{uri: item.image}}
+                  name={item.name}
+                  rating={item.rate}
+                  hours={item.hours}
+                  onPress={() => navigation.navigate('DestinationDetail', item)}
+                />
+              ))
+            ) : (
+              <Text style={styles.notFound}>
+                Data Destinasi Popular tidak ada
+              </Text>
+            )}
           </ScrollView>
         </View>
 
         <View>
-          {recommended?.map(item => (
-            <Recommended
-              key={item.id}
-              image={{uri: item.image}}
-              name={item.name}
-              desc={item.description}
-              rating={item.rate}
-              onPress={() => navigation.navigate('DestinationDetail', item)}
-            />
-          ))}
+          <View style={styles.cardsWrapper}>
+            <Text style={styles.titleCenter}>Rekomendasi</Text>
+            {recommended?.length > 0 ? (
+              recommended.map(item => (
+                <Recommended
+                  key={item.id}
+                  image={{uri: item.image}}
+                  name={item.name}
+                  desc={item.description}
+                  rating={item.rate}
+                  onPress={() => navigation.navigate('DestinationDetail', item)}
+                />
+              ))
+            ) : (
+              <Text style={styles.notFound}>
+                Data Rekomendasi Destinasi tidak ada
+              </Text>
+            )}
+          </View>
         </View>
       </ScrollView>
     </View>
@@ -113,7 +132,13 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: 'Inter-SemiBold',
     fontSize: 20,
-    color: '#020202',
+    color: '#FF7C57',
+  },
+  titleCenter: {
+    fontFamily: 'Inter-SemiBold',
+    fontSize: 20,
+    color: '#FF7C57',
+    alignSelf: 'center',
   },
   titleContainer: {
     flexDirection: 'row',
@@ -121,5 +146,15 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginHorizontal: 24,
     alignItems: 'center',
+  },
+  cardsWrapper: {
+    marginTop: 20,
+    width: '90%',
+    alignSelf: 'center',
+  },
+  notFound: {
+    fontFamily: 'Inter-SemiBold',
+    fontSize: 14,
+    color: 'black',
   },
 });

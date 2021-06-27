@@ -2,7 +2,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import FlashMessage from 'react-native-flash-message';
 import {Provider, useSelector} from 'react-redux';
-import {Loading} from './components';
+import {EmptyOrder, Loading} from './components';
 import store from './redux/store';
 import Router from './router';
 

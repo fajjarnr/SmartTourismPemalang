@@ -85,22 +85,30 @@ const SignUp = ({navigation}) => {
             </TouchableOpacity>
           </View>
           <TextInput
+            icon="user"
             label="Nama"
             inputLabel="Ketikan Nama"
+            autoCorrect={false}
             value={form.name}
             onChangeText={value => setForm('name', value)}
           />
           <Gap height={16} />
           <TextInput
+            icon="mail"
             label="Email"
             inputLabel="Ketikan alamat email"
+            autoCapitalize="none"
+            autoCorrect={false}
             value={form.email}
             onChangeText={value => setForm('email', value)}
           />
           <Gap height={16} />
           <TextInput
+            icon="lock"
             label="Password"
             inputLabel="Ketikan password"
+            autoCapitalize="none"
+            autoCorrect={false}
             secureTextEntry
             value={form.password}
             onChangeText={value => setForm('password', value)}
@@ -110,8 +118,8 @@ const SignUp = ({navigation}) => {
             <Button
               label="Continue"
               onPress={onSubmit}
-              colorButton="#FFC700"
-              textColorButton="#020202"
+              colorButton="#ff7c57"
+              textColorButton="#FFFFFF"
             />
           </View>
         </View>

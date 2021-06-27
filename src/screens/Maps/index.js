@@ -5,10 +5,10 @@ import {getDestinationData} from '../../redux/actions';
 import MapView, {Marker, Callout} from 'react-native-maps';
 
 const region = {
-  latitude: -6.89032304565653,
-  longitude: 109.38062960466476,
-  latitudeDelta: 0.0922,
-  longitudeDelta: 0.0421,
+  latitude: -7.055319871985475,
+  longitude: 109.37974068094923,
+  latitudeDelta: 0.5,
+  longitudeDelta: 0.5,
 };
 
 const Maps = ({navigation}) => {

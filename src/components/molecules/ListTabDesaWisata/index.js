@@ -30,17 +30,17 @@ const List = () => {
 
   const dispatch = useDispatch();
 
-  const {wisataBuatan} = useSelector(state => state.categoryReducer);
+  const {desaWisata} = useSelector(state => state.categoryReducer);
 
   useEffect(() => {
-    dispatch(getDestinationByCategory('2'));
-  }, [dispatch]);
+    dispatch(getDestinationByCategory('4'));
+  }, []);
 
   return (
     <View style={styles.wrapperContent}>
       <FlatList
         showsVerticalScrollIndicator={false}
-        data={wisataBuatan}
+        data={desaWisata}
         renderItem={({item}) => (
           <CardList
             key={item.id}
@@ -62,7 +62,7 @@ const Maps = () => {
 
   const dispatch = useDispatch();
 
-  const {wisataBuatan} = useSelector(state => state.categoryReducer);
+  const {desaWisata} = useSelector(state => state.categoryReducer);
 
   const [selectedPlaceId, setSelectedPlaceId] = useState(null);
 
@@ -81,17 +81,19 @@ const Maps = () => {
   const width = useWindowDimensions().width;
 
   useEffect(() => {
-    dispatch(getDestinationByCategory('2'));
+    dispatch(getDestinationByCategory('4'));
+  }, []);
 
+  useEffect(() => {
     if (!selectedPlaceId || !flatList) {
       return;
     }
 
-    const index = wisataBuatan.findIndex(place => place.id === selectedPlaceId);
+    const index = desaWisata.findIndex(place => place.id === selectedPlaceId);
 
     flatList.current.scrollToIndex({index});
 
-    const selectedPlace = wisataBuatan[index];
+    const selectedPlace = desaWisata[index];
 
     const region = {
       latitude: selectedPlace.latitude,
@@ -101,7 +103,7 @@ const Maps = () => {
     };
 
     map.current.animateToRegion(region);
-  }, [dispatch, selectedPlaceId, wisataBuatan]);
+  }, [desaWisata, selectedPlaceId]);
 
   return (
     <View style={styles.map}>
@@ -115,14 +117,14 @@ const Maps = () => {
           latitudeDelta: 0.2,
           longitudeDelta: 0.2,
         }}>
-        {wisataBuatan.map(item => (
+        {desaWisata.map(item => (
           <Marker
             key={item.id}
             coordinate={{
               latitude: item.latitude,
               longitude: item.longitude,
             }}
-            pinColor={selectedPlaceId ? '#0157E4' : 'red'}
+            pinColor={selectedPlaceId ? '#0157E4' : '#CD113B'}
             onPress={() => setSelectedPlaceId(item.id)}
           />
         ))}
@@ -131,7 +133,7 @@ const Maps = () => {
       <View style={{position: 'absolute', bottom: 10}}>
         <FlatList
           ref={flatList}
-          data={wisataBuatan}
+          data={desaWisata}
           renderItem={({item}) => (
             <CarouselItem
               key={item.id}
@@ -185,7 +187,7 @@ export default ListTabDesaWisata;
 
 const styles = StyleSheet.create({
   indicator: {
-    backgroundColor: 'black',
+    backgroundColor: '#ff7c57',
     height: 2,
     width: '50%',
   },
@@ -194,7 +196,7 @@ const styles = StyleSheet.create({
   },
   text: focused => ({
     fontFamily: 'Inter-Medium',
-    color: focused ? '#020202' : '#8D92A3',
+    color: focused ? '#ff7c57' : '#8D92A3',
   }),
   wrapperContent: {
     flex: 1,

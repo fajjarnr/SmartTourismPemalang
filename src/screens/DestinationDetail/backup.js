@@ -197,8 +197,8 @@ const DestinationDetail = ({navigation, route}) => {
               <Button
                 label="Beli Tiket"
                 onPress={onOrder}
-                colorButton="#FFC700"
-                textColorButton="#020202"
+                colorButton="#ff7c57"
+                textColorButton="#FFFFFF"
               />
             </View>
           </View>

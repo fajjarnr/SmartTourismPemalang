@@ -22,8 +22,8 @@ const SuccessOrder = ({navigation}) => {
         <Button
           label="Kembali ke Beranda"
           onPress={() => navigation.replace('MainApp')}
-          colorButton="#FFC700"
-          textColorButton="#020202"
+          colorButton="#ff7c57"
+          textColorButton="#FFFFFF"
         />
       </View>
       <Gap height={12} />
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontFamily: 'Inter-Regular',
-    color: '#020202',
+    color: '#FFFFFF',
   },
   subTitle: {
     fontSize: 14,

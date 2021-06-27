@@ -17,11 +17,11 @@ const Welcome = ({navigation}) => {
       </View>
       <View style={styles.footer}>
         <Gap height={16} />
-        <Button label="SIGN IN" colorButton="#FFC700" textColorButton="white" />
+        <Button label="SIGN IN" colorButton="#ff7c57" textColorButton="white" />
         <Gap height={16} />
         <Button
           colorButton="white"
-          textColorButton="#FFC700"
+          textColorButton="#ff7c57"
           label="Create New Account"
           onPress={() => navigation.navigate('SignUp')}
         />
@@ -35,7 +35,7 @@ export default Welcome;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0157E4',
+    backgroundColor: '#ff7c57',
   },
   header: {
     flex: 3,

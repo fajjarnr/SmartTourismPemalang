@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {ScrollView, StatusBar, StyleSheet, View} from 'react-native';
+import {ScrollView, FlatList, StatusBar, StyleSheet, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {NewsCard} from '../../components';
 import {getNewsData} from '../../redux/actions';
@@ -13,22 +13,23 @@ const News = ({navigation}) => {
   }, [dispatch]);
 
   return (
-    <View tyle={styles.page}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <StatusBar backgroundColor="white" barStyle="dark-content" />
-        <View style={styles.container}>
-          {news?.map((item, index) => (
-            <NewsCard
-              key={index}
-              image={{uri: item.picturePath}}
-              name={item.title}
-              author={item.author}
-              description={item.content}
-              onPress={() => navigation.navigate('NewsDetail')}
-            />
-          ))}
-        </View>
-      </ScrollView>
+    <View style={styles.page}>
+      <FlatList
+        style={styles.flatList}
+        showsVerticalScrollIndicator={false}
+        data={news}
+        renderItem={({item}) => (
+          <NewsCard
+            key={item.id}
+            image={{uri: item.picturePath}}
+            name={item.title}
+            author={item.user}
+            description={item.content}
+            date={item.created_at}
+            onPress={() => navigation.navigate('NewsDetail')}
+          />
+        )}
+      />
     </View>
   );
 };
@@ -36,13 +37,12 @@ const News = ({navigation}) => {
 export default News;
 
 const styles = StyleSheet.create({
-  container: {
+  page: {
     alignItems: 'center',
     backgroundColor: 'white',
-    paddingTop: 10,
+    paddingHorizontal: 25,
   },
-  page: {
-    flex: 1,
-    backgroundColor: 'white',
+  flatList: {
+    paddingTop: 10,
   },
 });

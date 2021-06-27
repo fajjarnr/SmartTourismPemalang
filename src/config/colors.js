@@ -5,7 +5,7 @@ export default {
   medium: '#B5BBC9',
   midnightBlue: '#0D1F3C',
   light: '#CFD2D8',
-  primary: '#0157E4',
+  primary: '#ff7c57',
   success: '#75BF72',
   warning: '#FDB32A',
   white: '#ffffff',

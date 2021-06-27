@@ -21,7 +21,6 @@ const Rating = ({number}) => {
       {renderStar()}
       <Gap width={4} />
       <Number number={number} type="decimal" style={styles.text} />
-      {/* <Text style={styles.text}>{number}</Text> */}
     </View>
   );
 };
@@ -29,6 +28,13 @@ const Rating = ({number}) => {
 export default Rating;
 
 const styles = StyleSheet.create({
-  wrapperStar: {flexDirection: 'row', alignItems: 'center'},
-  text: {fontSize: 12, fontFamily: 'Poppins-Regular', color: '#8D92A3'},
+  wrapperStar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  text: {
+    fontSize: 12,
+    fontFamily: 'INter-Regular',
+    color: '#8D92A3',
+  },
 });

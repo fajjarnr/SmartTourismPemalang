@@ -1,26 +1,32 @@
 import React from 'react';
-import {Image, Pressable, StyleSheet, Text} from 'react-native';
+import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import {Number, Rating} from '..';
 
 const CardList = ({onPress, image, name, desc, rating, price}) => {
   return (
-    <Pressable onPress={onPress} style={styles.container}>
-      <Image style={styles.image} source={{uri: image}} />
-      <Text style={styles.rating}>
-        {rating !== null && <Rating number={rating} />}
-      </Text>
-      {price !== null && (
-        <Text style={styles.prices}>
-          <Number number={price} style={styles.price} />
-        </Text>
-      )}
-      <Text style={styles.title} numberOfLines={2}>
-        {name}
-      </Text>
-      <Text style={styles.description} numberOfLines={2}>
-        {desc}
-      </Text>
-    </Pressable>
+    <View style={styles.wrapper}>
+      <Pressable onPress={onPress} style={styles.container}>
+        <Image style={styles.image} source={{uri: image}} />
+        <View style={styles.content}>
+          {rating !== null && (
+            <View style={styles.rating}>
+              <Rating number={rating} />
+            </View>
+          )}
+          {price !== null && (
+            <View style={styles.prices}>
+              <Number number={price} style={styles.price} />
+            </View>
+          )}
+          <Text style={styles.title} numberOfLines={2}>
+            {name}
+          </Text>
+          <Text style={styles.description} numberOfLines={1}>
+            {desc}
+          </Text>
+        </View>
+      </Pressable>
+    </View>
   );
 };
 
@@ -28,17 +34,29 @@ export default CardList;
 
 const styles = StyleSheet.create({
   container: {
-    margin: 20,
+    backgroundColor: 'white',
+    width: '100%',
+    height: 270,
+    overflow: 'hidden',
+    borderRadius: 16,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 10,
+    elevation: 2,
+    resizeMode: 'cover',
   },
   image: {
     width: '100%',
-    aspectRatio: 3 / 2,
+    height: 155,
     resizeMode: 'cover',
     borderRadius: 10,
   },
   title: {
     fontSize: 18,
-    lineHeight: 26,
     fontFamily: 'Inter-Bold',
   },
   description: {
@@ -52,5 +70,14 @@ const styles = StyleSheet.create({
   },
   rating: {
     marginVertical: 10,
+  },
+  wrapper: {
+    marginTop: 15,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  content: {
+    marginHorizontal: 10,
   },
 });

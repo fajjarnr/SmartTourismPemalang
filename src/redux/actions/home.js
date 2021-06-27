@@ -24,8 +24,10 @@ export const getBannerData = () => dispatch => {
 export const getDestinationDataByTypes = types => dispatch => {
   Axios.get(`${API_HOST.url}/destination/query?types=${types}`)
     .then(res => {
-      if (types === 'new_destination') {
-        dispatch({type: 'SET_NEW', value: res.data.data});
+      console.log(`res Category`, res.data.data);
+
+      if (types === 'new') {
+        dispatch({type: 'SET_NEW', value: res.data.data.data});
       }
       if (types === 'popular') {
         dispatch({type: 'SET_POPULAR', value: res.data.data});

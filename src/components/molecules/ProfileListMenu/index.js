@@ -24,6 +24,6 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 15,
     fontFamily: 'Inter-Regular',
-    color: '#020202',
+    color: '#202020',
   },
 });

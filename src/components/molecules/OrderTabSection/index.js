@@ -34,12 +34,12 @@ const InProgress = () => {
   useEffect(() => {
     dispatch(getInProgress());
 
-    const interval = setInterval(() => {
-      dispatch(getInProgress());
-    }, 10000);
+    // const interval = setInterval(() => {
+    //   dispatch(getInProgress());
+    // }, 10000);
 
-    return () => clearInterval(interval);
-  }, []);
+    // return () => clearInterval(interval);
+  }, [dispatch]);
 
   return (
     <View style={styles.wrapperContent}>
@@ -69,12 +69,12 @@ const PastOrders = () => {
   useEffect(() => {
     dispatch(getPastOrders());
 
-    const interval = setInterval(() => {
-      dispatch(getPastOrders());
-    }, 10000);
+    // const interval = setInterval(() => {
+    //   dispatch(getPastOrders());
+    // }, 10000);
 
-    return () => clearInterval(interval);
-  }, []);
+    // return () => clearInterval(interval);
+  }, [dispatch]);
 
   return (
     <View style={styles.wrapperContent}>
@@ -105,7 +105,7 @@ const OrderTabSection = () => {
   const [index, setIndex] = React.useState(0);
 
   const [routes] = React.useState([
-    {key: '1', title: 'In Progress'},
+    {key: '1', title: 'Semua Orders'},
     {key: '2', title: 'Riwayat Orders'},
   ]);
 
@@ -129,7 +129,7 @@ export default OrderTabSection;
 
 const styles = StyleSheet.create({
   indicator: {
-    backgroundColor: 'black',
+    backgroundColor: '#FF7C57',
     height: 2,
     width: '50%',
   },
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
   },
   text: focused => ({
     fontFamily: 'Inter-Medium',
-    color: focused ? '#020202' : '#8D92A3',
+    color: focused ? '#FF7C57' : '#8D92A3',
   }),
   wrapperContent: {
     flex: 1,

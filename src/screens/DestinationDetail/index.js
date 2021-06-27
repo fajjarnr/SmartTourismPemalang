@@ -66,7 +66,7 @@ const DestinationDetail = ({navigation, route}) => {
   };
 
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.page}>
         <StatusBar
           backgroundColor="transparent"
@@ -154,8 +154,8 @@ const DestinationDetail = ({navigation, route}) => {
               <Button
                 label="Beli Tiket"
                 onPress={onOrder}
-                colorButton="#FFC700"
-                textColorButton="#020202"
+                colorButton="#ff7c57"
+                textColorButton="#FFFFFF"
               />
             </View>
           </View>
@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: 'Inter-Bold',
     fontSize: 16,
-    color: '#020202',
+    color: '#202020',
   },
   subTitle: {
     fontFamily: 'Inter-Regular',

@@ -1,7 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {StyleSheet, Text, View, StatusBar} from 'react-native';
-import {ILEmptyOrder} from '../../../assets';
+import {StatusBar, StyleSheet, Text, View} from 'react-native';
+import Feather from 'react-native-vector-icons/Feather';
 import {Button, Gap} from '../../atoms';
 
 const EmptyOrder = () => {
@@ -10,18 +10,18 @@ const EmptyOrder = () => {
   return (
     <View style={styles.page}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
-      {/* <ILEmptyOrder /> */}
+      <Feather name="shopping-cart" size={150} color="#ff7c57" />
       <Gap height={30} />
       <Text style={styles.title}>Ouch!</Text>
       <Gap height={6} />
       <Text style={styles.subTitle}>Sepertinya kamu belum</Text>
-      <Text style={styles.subTitle}>memesan tiket apa pun</Text>
+      <Text style={styles.subTitle}>memesan tiket</Text>
       <Gap height={30} />
       <View style={styles.button}>
         <Button
           label="Pesan Tiket"
-          colorButton="#FFC700"
-          textColorButton="#020202"
+          colorButton="#ff7c57"
+          textColorButton="#FFFFFF"
           onPress={() => navigation.navigate('MainApp', {screen: 'Home'})}
         />
       </View>
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontFamily: 'Inter-Regular',
-    color: '#020202',
+    color: '#202020',
   },
   subTitle: {
     fontSize: 14,

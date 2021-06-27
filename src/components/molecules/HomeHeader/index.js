@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: 'Inter-Medium',
     fontSize: 22,
-    color: '#020202',
+    color: '#202020',
   },
   subTitle: {
     fontFamily: 'Inter-Light',

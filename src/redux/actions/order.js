@@ -9,8 +9,8 @@ export const getOrders = () => dispatch => {
         headers: {Authorization: resToken.value},
       })
       .then(response => {
-        console.log('response ORDER: ', response.data.data.data);
-        dispatch({type: 'SET_ORDER', value: response.data.data.data});
+        console.log('response ORDER: ', response);
+        dispatch({type: 'SET_ORDER', value: response.data.data});
       })
       .catch(err => {
         console.log('error: ', err);
@@ -31,8 +31,8 @@ export const getInProgress = () => dispatch => {
       ])
       .then(
         axios.spread((response1, response2) => {
-          const pending = response1.data.data.data;
-          const success = response2.data.data.data;
+          const pending = response1.data.data;
+          const success = response2.data.data;
           dispatch({
             type: 'SET_IN_PROGRESS',
             value: [...pending, ...success],
@@ -55,7 +55,7 @@ export const getPastOrders = () => dispatch => {
       ])
       .then(
         axios.spread(res1 => {
-          const cancelled = res1.data.data.data;
+          const cancelled = res1.data.data;
           dispatch({
             type: 'SET_PAST_ORDERS',
             value: [...cancelled],

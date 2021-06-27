@@ -34,7 +34,7 @@ const List = () => {
 
   useEffect(() => {
     dispatch(getDestinationByCategory('2'));
-  }, [dispatch]);
+  }, []);
 
   return (
     <View style={styles.wrapperContent}>
@@ -82,7 +82,9 @@ const Maps = () => {
 
   useEffect(() => {
     dispatch(getDestinationByCategory('2'));
+  }, []);
 
+  useEffect(() => {
     if (!selectedPlaceId || !flatList) {
       return;
     }
@@ -101,7 +103,7 @@ const Maps = () => {
     };
 
     map.current.animateToRegion(region);
-  }, [dispatch, selectedPlaceId, wisataBuatan]);
+  }, [selectedPlaceId, wisataBuatan]);
 
   return (
     <View style={styles.map}>
@@ -122,7 +124,7 @@ const Maps = () => {
               latitude: item.latitude,
               longitude: item.longitude,
             }}
-            pinColor={selectedPlaceId ? '#0157E4' : 'red'}
+            pinColor={selectedPlaceId ? '#ff7c57' : 'red'}
             onPress={() => setSelectedPlaceId(item.id)}
           />
         ))}
@@ -185,7 +187,7 @@ export default ListTabWisataBuatan;
 
 const styles = StyleSheet.create({
   indicator: {
-    backgroundColor: 'black',
+    backgroundColor: '#ff7c57',
     height: 2,
     width: '50%',
   },
@@ -194,7 +196,7 @@ const styles = StyleSheet.create({
   },
   text: focused => ({
     fontFamily: 'Inter-Medium',
-    color: focused ? '#020202' : '#8D92A3',
+    color: focused ? '#ff7c57' : '#8D92A3',
   }),
   wrapperContent: {
     flex: 1,

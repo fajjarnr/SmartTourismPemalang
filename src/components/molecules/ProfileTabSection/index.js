@@ -3,8 +3,7 @@ import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {Dimensions, StyleSheet, Text, View} from 'react-native';
 import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
-import {HomeFoodList, ProfileListMenu} from '..';
-import {FoodDummy1, FoodDummy2, FoodDummy3, FoodDummy4} from '../../../assets';
+import {ProfileListMenu} from '..';
 
 const renderTabBar = props => (
   <TabBar
@@ -76,7 +75,7 @@ export default ProfileTabSection;
 
 const styles = StyleSheet.create({
   indicator: {
-    backgroundColor: 'black',
+    backgroundColor: '#ff7c57',
     height: 2,
   },
   page: {
@@ -84,7 +83,7 @@ const styles = StyleSheet.create({
   },
   text: focused => ({
     fontFamily: 'Inter-Medium',
-    color: focused ? '#020202' : '#8D92A3',
+    color: focused ? '#ff7c57' : '#8D92A3',
   }),
   wrapperContent: {
     paddingHorizontal: 24,

@@ -39,13 +39,17 @@ const SignUpAddress = ({navigation}) => {
         />
         <View style={styles.wrapper}>
           <TextInput
+            icon="phone"
             label="No Telpon"
+            autoCorrect={false}
+            keyboardType="phone-pad"
             inputLabel="Ketikan No Telpon"
             value={form.phone}
             onChangeText={value => setForm('phone', value)}
           />
           <Gap height={24} />
           <TextInput
+            icon="enviromento"
             label="Alamat"
             inputLabel="Ketikan Alamat"
             value={form.address}
@@ -53,7 +57,9 @@ const SignUpAddress = ({navigation}) => {
           />
           <Gap height={24} />
           <TextInput
+            icon="enviromento"
             label="Kota"
+            autoCorrect={false}
             inputLabel="Ketikan Kota"
             value={form.city}
             onChangeText={value => setForm('city', value)}
@@ -63,8 +69,8 @@ const SignUpAddress = ({navigation}) => {
             <Button
               label="Sign Up Now"
               onPress={onSubmit}
-              colorButton="#FFC700"
-              textColorButton="#020202"
+              colorButton="#ff7c57"
+              textColorButton="#FFFFFF"
             />
           </View>
         </View>

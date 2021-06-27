@@ -2,8 +2,10 @@ const initCategory = {
   category: [],
   wisataAlam: [],
   wisataBuatan: [],
-  wisataBudaya: [],
+  wisataReligi: [],
   kulinerKhas: [],
+  hotel: [],
+  desaWisata: [],
 };
 
 export const categoryReducer = (state = initCategory, action) => {
@@ -25,7 +27,19 @@ export const categoryReducer = (state = initCategory, action) => {
       wisataBuatan: action.value,
     };
   }
-  if (action.type === 'SET_WISATA_BUDAYA') {
+  if (action.type === 'SET_WISATA_RELIGI') {
+    return {
+      ...state,
+      wisataBudaya: action.value,
+    };
+  }
+  if (action.type === 'SET_DESA_WISATA') {
+    return {
+      ...state,
+      wisataBudaya: action.value,
+    };
+  }
+  if (action.type === 'SET_HOTEL') {
     return {
       ...state,
       wisataBudaya: action.value,

@@ -27,16 +27,22 @@ const SignIn = ({navigation}) => {
       <Header title="Sign In" subTitle="Welcome Back" />
       <View style={styles.wrapper}>
         <TextInput
+          icon="mail"
           label="Email Address"
           inputLabel="Masukkan alamat email"
           keyboardType="email-address"
+          autoCapitalize="none"
+          autoCorrect={false}
           value={form.email}
           onChangeText={value => setForm('email', value)}
         />
         <Gap height={16} />
         <TextInput
+          icon="lock"
           label="Password"
           inputLabel="Masukkan password"
+          autoCapitalize="none"
+          autoCorrect={false}
           value={form.password}
           onChangeText={value => setForm('password', value)}
           secureTextEntry
@@ -44,8 +50,8 @@ const SignIn = ({navigation}) => {
         <Gap height={24} />
         <Button
           label="Sign In"
-          colorButton="#FFC700"
-          textColorButton="#020202"
+          colorButton="#ff7c57"
+          textColorButton="#FFF"
           onPress={onSubmit}
         />
         <Gap height={12} />

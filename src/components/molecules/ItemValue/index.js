@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Number} from '..';
 
-const ItemValue = ({label, value, price = '#020202', type}) => {
+const ItemValue = ({label, value, price = '#202020', type}) => {
   return (
     <View style={styles.wrapper}>
       <Text style={styles.label}>{label}</Text>

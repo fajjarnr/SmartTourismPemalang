@@ -12,6 +12,7 @@ import {
 } from '../../components';
 import {getData} from '../../utils';
 import {API_HOST} from '../../config/API';
+import {showMessage} from '../../utils';
 
 const OrderSummary = ({navigation, route}) => {
   const {item, transaction, userProfile} = route.params;
@@ -41,6 +42,7 @@ const OrderSummary = ({navigation, route}) => {
         })
         .catch(err => {
           console.log('error: ', err);
+          showMessage(err?.response?.data?.message);
         });
     });
   };
@@ -48,9 +50,7 @@ const OrderSummary = ({navigation, route}) => {
   const onNavChange = state => {
     console.log('nav', state);
 
-    const urlSuccess =
-      'https://smarttourismpemalang.codes/midtrans/success?order_id=2268&status_code=201&transaction_status=pending';
-    const titleWeb = 'Pemalang';
+    const titleWeb = 'Midtrans Mock Payment Provider';
 
     if (state.title === titleWeb) {
       navigation.reset({index: 0, routes: [{name: 'SuccessOrder'}]});
@@ -61,8 +61,8 @@ const OrderSummary = ({navigation, route}) => {
     return (
       <>
         <Header
-          title="Payment"
-          subTitle="You deserve better meal"
+          title="Pembayaran"
+          subTitle="lakukan pembayaran sesuai keinginanmu"
           back
           onPress={() => setIsPaymentOpen(false)}
         />
@@ -133,8 +133,8 @@ const OrderSummary = ({navigation, route}) => {
         <View style={styles.button}>
           <Button
             label="Checkout Now"
-            colorButton="#FFC700"
-            textColorButton="#020202"
+            colorButton="#ff7c57"
+            textColorButton="#FFFFFF"
             onPress={onCheckOut}
           />
         </View>
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
   textTitle: {
     fontSize: 14,
     fontFamily: 'Inter-Regular',
-    color: '#020202',
+    color: '#202020',
   },
   content: {
     marginTop: 24,

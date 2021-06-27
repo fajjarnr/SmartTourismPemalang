@@ -2,18 +2,19 @@ import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Gap} from '../../atoms';
 
-const NewsCard = ({image, name, author, description, onPress}) => {
+const NewsCard = ({image, name, author, description, date, onPress}) => {
+  const formatedDate = new Date(date).toDateString('id');
   return (
     <TouchableOpacity style={styles.page} activeOpacity={0.8} onPress={onPress}>
       <Image source={image} resizeMode="cover" style={styles.image} />
       <View style={styles.container}>
-        <Text style={styles.title} numberOfLines={2} lineBreakMode="tail">
+        <Text style={styles.title} numberOfLines={3} lineBreakMode="tail">
           {name}
         </Text>
         <Gap height={5} />
-        <Text style={styles.author}>{author}</Text>
+        <Text style={styles.author}>{formatedDate}</Text>
         <Gap height={7} />
-        <Text style={styles.description} numberOfLines={2} lineBreakMode="tail">
+        <Text style={styles.description} numberOfLines={1} lineBreakMode="tail">
           {description}
         </Text>
       </View>
@@ -26,7 +27,7 @@ export default NewsCard;
 const styles = StyleSheet.create({
   page: {
     backgroundColor: 'white',
-    width: 336,
+    width: '100%',
     height: 300,
     overflow: 'hidden',
     borderRadius: 16,
@@ -41,13 +42,13 @@ const styles = StyleSheet.create({
     padding: 12,
   },
   image: {
-    width: 336,
+    width: '100%',
     height: 138,
   },
   title: {
     fontFamily: 'Inter-SemiBold',
-    fontSize: 24,
-    color: '#020202',
+    fontSize: 22,
+    color: '#202020',
     textAlign: 'auto',
   },
   author: {
@@ -57,7 +58,7 @@ const styles = StyleSheet.create({
   },
   description: {
     fontFamily: 'Inter-Regular',
-    color: '#020202',
+    color: '#202020',
     textAlign: 'justify',
   },
 });

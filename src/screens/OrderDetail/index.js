@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
   textTitle: {
     fontSize: 14,
     fontFamily: 'Inter-Regular',
-    color: '#020202',
+    color: '#202020',
   },
   content: {
     marginTop: 24,

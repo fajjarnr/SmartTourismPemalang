@@ -1,26 +1,27 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, StatusBar} from 'react-native';
 import {Button, Gap} from '../../components';
 import {Success} from '../../assets';
 
 const SuccessSignUp = ({navigation}) => {
   return (
     <View style={styles.page}>
+      <StatusBar backgroundColor="white" barStyle="dark-content" />
       <Success />
       <Gap height={30} />
       <Text style={styles.title}>Yeay! Completed</Text>
       <Gap height={6} />
-      <Text style={styles.subTitle}>You have successfully</Text>
-      <Text style={styles.subTitle}>Created a Account!!</Text>
+      <Text style={styles.subTitle}>Kamu berhasil</Text>
+      <Text style={styles.subTitle}>Membuat Akun!!</Text>
       <Gap height={30} />
       <View style={styles.button}>
         <Button
-          label="Find Destinations"
+          label="Temukan Destinasi"
           onPress={() =>
             navigation.reset({index: 0, routes: [{name: 'MainApp'}]})
           }
-          colorButton="#FFC700"
-          textColorButton="#020202"
+          colorButton="#ff7c57"
+          textColorButton="#FFFFFF"
         />
       </View>
     </View>
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontFamily: 'Inter-Regular',
-    color: '#020202',
+    color: '#FFFFFF',
   },
   subTitle: {
     fontSize: 14,

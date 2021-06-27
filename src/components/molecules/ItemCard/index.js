@@ -16,7 +16,6 @@ const ItemCard = ({image, name, rating, hours, onPress}) => {
           <Text style={styles.name} numberOfLines={2} lineBreakMode="tail">
             {name}
           </Text>
-
           {rating !== null && (
             <View>
               <Gap height={3} />
@@ -30,7 +29,7 @@ const ItemCard = ({image, name, rating, hours, onPress}) => {
                 <MaterialCommunityIcons
                   name="clock-time-four-outline"
                   size={22}
-                  color="#0157E4"
+                  color="#ff7c57"
                 />
                 <Text style={styles.hours}>{hours}</Text>
               </View>
@@ -49,7 +48,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     marginRight: 24,
     width: 290,
-    height: 250,
+    height: 255,
     overflow: 'hidden',
     borderRadius: 16,
     shadowColor: '#000',
@@ -69,7 +68,7 @@ const styles = StyleSheet.create({
   name: {
     fontFamily: 'Inter-SemiBold',
     fontSize: 20,
-    color: '#020202',
+    color: '#202020',
   },
   image: {
     width: 290,
