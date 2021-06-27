@@ -17,6 +17,7 @@ import {
   Order,
   OrderDetail,
   OrderSummary,
+  PaymentLink,
   Profile,
   SignIn,
   SignUp,
@@ -138,6 +139,11 @@ const Router = () => {
       <Stack.Screen
         name="ListMakananKhas"
         component={ListMakananKhas}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="PaymentLink"
+        component={PaymentLink}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

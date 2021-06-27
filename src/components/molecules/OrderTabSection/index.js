@@ -7,10 +7,11 @@ import {
   View,
   useWindowDimensions,
 } from 'react-native';
+import {FlatList} from 'react-native-gesture-handler';
 import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
 import {useDispatch, useSelector} from 'react-redux';
 import {ItemList} from '..';
-import {getInProgress, getPastOrders} from '../../../redux/actions';
+import {getInProgress, getPastOrders, getSuccess} from '../../../redux/actions';
 
 const renderTabBar = props => (
   <TabBar
@@ -24,7 +25,7 @@ const renderTabBar = props => (
   />
 );
 
-const InProgress = () => {
+const BelumBayar = () => {
   const navigation = useNavigation();
 
   const dispatch = useDispatch();
@@ -43,23 +44,61 @@ const InProgress = () => {
 
   return (
     <View style={styles.wrapperContent}>
-      {inProgress?.map(order => (
-        <ItemList
-          key={order.id}
-          image={{uri: order.destinations.image}}
-          name={order.destinations.name}
-          price={order.total}
-          orderItems={order.quantity}
-          activeOpacity={0.8}
-          type="in-progress"
-          onPress={() => navigation.navigate('OrderDetail', order)}
-        />
-      ))}
+      <FlatList
+        data={inProgress}
+        renderItem={({item}) => (
+          <ItemList
+            key={item.id}
+            image={{uri: item.destinations.image}}
+            name={item.destinations.name}
+            price={item.total}
+            orderItems={item.quantity}
+            activeOpacity={0.8}
+            type="in-progress"
+            onPress={() => navigation.navigate('OrderDetail', item)}
+          />
+        )}
+      />
     </View>
   );
 };
 
-const PastOrders = () => {
+const Selesai = () => {
+  const navigation = useNavigation();
+
+  const dispatch = useDispatch();
+
+  const {success} = useSelector(state => state.orderReducer);
+
+  useEffect(() => {
+    dispatch(getSuccess());
+  }, []);
+
+  return (
+    <View style={styles.wrapperContent}>
+      <FlatList
+        data={success}
+        renderItem={({item}) => (
+          <ItemList
+            type="past-order"
+            key={item.id}
+            image={{uri: item.destinations.image}}
+            name={item.destinations.name}
+            price={item.total}
+            orderItems={item.quantity}
+            date={item.created_at}
+            statusOrder={item.status}
+            activeOpacity={1}
+            statusColor="#1ABC9C"
+            onPress={() => navigation.navigate('OrderDetail', item)}
+          />
+        )}
+      />
+    </View>
+  );
+};
+
+const DiBatalkan = () => {
   const navigation = useNavigation();
 
   const dispatch = useDispatch();
@@ -68,31 +107,28 @@ const PastOrders = () => {
 
   useEffect(() => {
     dispatch(getPastOrders());
-
-    // const interval = setInterval(() => {
-    //   dispatch(getPastOrders());
-    // }, 10000);
-
-    // return () => clearInterval(interval);
   }, []);
 
   return (
     <View style={styles.wrapperContent}>
-      {pastOrders?.map(pastOrder => (
-        <ItemList
-          type="past-order"
-          key={pastOrder.id}
-          image={{uri: pastOrder.destinations.image}}
-          name={pastOrder.destinations.name}
-          price={pastOrder.total}
-          orderItems={pastOrder.quantity}
-          date={pastOrder.created_at}
-          statusOrder={pastOrder.status}
-          activeOpacity={1}
-          statusColor={pastOrder.status === 'CANCELLED' ? '#D9435E' : '#1ABC9C'}
-          onPress={() => navigation.navigate('OrderDetail', pastOrder)}
-        />
-      ))}
+      <FlatList
+        data={pastOrders}
+        renderItem={({item}) => (
+          <ItemList
+            type="past-order"
+            key={item.id}
+            image={{uri: item.destinations.image}}
+            name={item.destinations.name}
+            price={item.total}
+            orderItems={item.quantity}
+            date={item.created_at}
+            statusOrder={item.status}
+            activeOpacity={1}
+            statusColor="#D9435E"
+            onPress={() => navigation.navigate('OrderDetail', item)}
+          />
+        )}
+      />
     </View>
   );
 };
@@ -105,13 +141,15 @@ const OrderTabSection = () => {
   const [index, setIndex] = React.useState(0);
 
   const [routes] = React.useState([
-    {key: '1', title: 'Semua Orders'},
-    {key: '2', title: 'Riwayat Orders'},
+    {key: '1', title: 'Belum Bayar'},
+    {key: '2', title: 'Selesai'},
+    {key: '3', title: 'Dibatalkan'},
   ]);
 
   const renderScene = SceneMap({
-    1: InProgress,
-    2: PastOrders,
+    1: BelumBayar,
+    2: Selesai,
+    3: DiBatalkan,
   });
 
   return (
@@ -131,7 +169,6 @@ const styles = StyleSheet.create({
   indicator: {
     backgroundColor: '#FF7C57',
     height: 2,
-    width: '50%',
   },
   page: {
     backgroundColor: 'white',

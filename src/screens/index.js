@@ -20,6 +20,7 @@ import Splash from './Splash';
 import SuccessOrder from './SuccessOrder';
 import SuccessSignUp from './SuccessSignUp';
 import Welcome from './Welcome';
+import PaymentLink from './PaymentLink';
 
 export {
   Splash,
@@ -44,4 +45,5 @@ export {
   ListDesaWisata,
   ListHotel,
   ListMakananKhas,
+  PaymentLink,
 };

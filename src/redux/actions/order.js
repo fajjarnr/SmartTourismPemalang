@@ -21,24 +21,27 @@ export const getOrders = () => dispatch => {
 export const getInProgress = () => dispatch => {
   getData('token').then(resToken => {
     axios
-      .all([
-        axios.get(`${API_HOST.url}/transaction?status=PENDING`, {
-          headers: {Authorization: resToken.value},
-        }),
-        axios.get(`${API_HOST.url}/transaction?status=SUCCESS`, {
-          headers: {Authorization: resToken.value},
-        }),
-      ])
-      .then(
-        axios.spread((response1, response2) => {
-          const pending = response1.data.data;
-          const success = response2.data.data;
-          dispatch({
-            type: 'SET_IN_PROGRESS',
-            value: [...pending, ...success],
-          });
-        }),
-      )
+      .get(`${API_HOST.url}/transaction?status=PENDING`, {
+        headers: {Authorization: resToken.value},
+      })
+      .then(response => {
+        dispatch({type: 'SET_IN_PROGRESS', value: response.data.data});
+      })
+      .catch(err => {
+        console.log('error in progress: ', err.response);
+      });
+  });
+};
+
+export const getSuccess = () => dispatch => {
+  getData('token').then(resToken => {
+    axios
+      .get(`${API_HOST.url}/transaction?status=SUCCESS`, {
+        headers: {Authorization: resToken.value},
+      })
+      .then(response => {
+        dispatch({type: 'SET_SUCCESS', value: response.data.data});
+      })
       .catch(err => {
         console.log('error in progress: ', err.response);
       });
@@ -48,22 +51,64 @@ export const getInProgress = () => dispatch => {
 export const getPastOrders = () => dispatch => {
   getData('token').then(resToken => {
     axios
-      .all([
-        axios.get(`${API_HOST.url}/transaction?status=CANCELLED`, {
-          headers: {Authorization: resToken.value},
-        }),
-      ])
-      .then(
-        axios.spread(res1 => {
-          const cancelled = res1.data.data;
-          dispatch({
-            type: 'SET_PAST_ORDERS',
-            value: [...cancelled],
-          });
-        }),
-      )
+      .get(`${API_HOST.url}/transaction?status=CANCELLED`, {
+        headers: {Authorization: resToken.value},
+      })
+      .then(response => {
+        dispatch({type: 'SET_PAST_ORDERS', value: response.data.data});
+      })
       .catch(err => {
         console.log('error in progress: ', err.response);
       });
   });
 };
+
+// export const getInProgress = () => dispatch => {
+//   getData('token').then(resToken => {
+//     axios
+//       .all([
+//         axios.get(`${API_HOST.url}/transaction?status=PENDING`, {
+//           headers: {Authorization: resToken.value},
+//         }),
+//         axios.get(`${API_HOST.url}/transaction?status=SUCCESS`, {
+//           headers: {Authorization: resToken.value},
+//         }),
+//       ])
+//       .then(
+//         axios.spread((response1, response2) => {
+//           const pending = response1.data.data;
+//           const success = response2.data.data;
+//           dispatch({
+//             type: 'SET_IN_PROGRESS',
+//             value: [...pending, ...success],
+//           });
+//         }),
+//       )
+//       .catch(err => {
+//         console.log('error in progress: ', err.response);
+//       });
+//   });
+// };
+
+// export const getPastOrders = () => dispatch => {
+//   getData('token').then(resToken => {
+//     axios
+//       .all([
+//         axios.get(`${API_HOST.url}/transaction?status=CANCELLED`, {
+//           headers: {Authorization: resToken.value},
+//         }),
+//       ])
+//       .then(
+//         axios.spread(res1 => {
+//           const cancelled = res1.data.data;
+//           dispatch({
+//             type: 'SET_PAST_ORDERS',
+//             value: [...cancelled],
+//           });
+//         }),
+//       )
+//       .catch(err => {
+//         console.log('error in progress: ', err.response);
+//       });
+//   });
+// };

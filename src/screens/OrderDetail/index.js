@@ -1,6 +1,7 @@
 import axios from 'axios';
-import React from 'react';
+import React, {useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import WebView from 'react-native-webview';
 import {Button, ItemValue, Gap, Header, ItemList} from '../../components';
 import {API_HOST} from '../../config/API';
 import {getData} from '../../utils';
@@ -27,6 +28,10 @@ const OrderDetail = ({navigation, route}) => {
           console.log('err: ', err);
         });
     });
+  };
+
+  const onLinkPayment = () => {
+    navigation.navigate('PaymentLink', order);
   };
 
   return (
@@ -91,6 +96,16 @@ const OrderDetail = ({navigation, route}) => {
                 price={order.status === 'CANCELLED' ? '#D9435E' : '#1ABC9C'}
               />
             </View>
+          </View>
+          <View style={styles.button}>
+            {order.status === 'PENDING' && (
+              <Button
+                label="Link Pembayaran"
+                onPress={onLinkPayment}
+                colorButton="#1ABC9C"
+                textColorButton="white"
+              />
+            )}
           </View>
           <View style={styles.button}>
             {order.status === 'PENDING' && (
