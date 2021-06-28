@@ -106,6 +106,6 @@ const styles = StyleSheet.create({
   categoryBtnTxt: {
     alignSelf: 'center',
     marginTop: 5,
-    color: '#de4f35',
+    color: '#202020',
   },
 });

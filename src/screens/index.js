@@ -20,7 +20,12 @@ import Splash from './Splash';
 import SuccessOrder from './SuccessOrder';
 import SuccessSignUp from './SuccessSignUp';
 import Welcome from './Welcome';
-import PaymentLink from './Payment';
+import PaymentLink from './PaymentLink';
+import HomePage from './HomePage';
+import PrivacyPolicy from './PrivacyPolicy';
+import TermAndConditions from './TermAndCoditions';
+import ProfileEdit from './ProfileEdit';
+import Message from './Message';
 
 export {
   Splash,
@@ -46,4 +51,9 @@ export {
   ListHotel,
   ListMakananKhas,
   PaymentLink,
+  HomePage,
+  PrivacyPolicy,
+  TermAndConditions,
+  ProfileEdit,
+  Message,
 };

@@ -1,4 +1,4 @@
-import ImageMarker from './ImageMarker.png';
+import LogoPemalang from './LogoPemalang.png';
 import PhotoProfile from './PhotoProfile.png';
 
-export {ImageMarker, PhotoProfile};
+export {LogoPemalang, PhotoProfile};

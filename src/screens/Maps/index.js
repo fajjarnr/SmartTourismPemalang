@@ -23,7 +23,7 @@ const Maps = ({navigation}) => {
     <>
       <StatusBar backgroundColor="transparent" barStyle="dark-content" />
       <MapView initialRegion={region} style={styles.map}>
-        {destination.map(item => (
+        {destination?.map(item => (
           <Marker
             key={item.id}
             coordinate={{latitude: item.latitude, longitude: item.longitude}}

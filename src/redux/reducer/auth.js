@@ -43,3 +43,29 @@ export const photoReducer = (state = initPhoto, action) => {
   }
   return state;
 };
+
+const initUpdateProfile = {
+  name: '',
+  email: '',
+  password: '',
+  password_confirmation: '',
+  phone: '',
+  address: '',
+  city: '',
+};
+
+export const updateProfileReducer = (state = initUpdateProfile, action) => {
+  if (action.type === 'SET_UPDATE_PROFILE') {
+    return {
+      ...state,
+      name: action.value.name,
+      email: action.value.email,
+      password: action.value.password,
+      password_confirmation: action.value.password,
+      phone: action.value.phone,
+      address: action.value.address,
+      city: action.value.city,
+    };
+  }
+  return state;
+};

@@ -1,7 +1,7 @@
-import React, {useState, useEffect} from 'react';
-import {Image, StatusBar, StyleSheet, Text, View} from 'react-native';
-import {ProfileTabSection, ProfileListMenu, Button} from '../../components';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, {useEffect, useState} from 'react';
+import {Image, StatusBar, StyleSheet, Text, View} from 'react-native';
+import {Button, ProfileListMenu} from '../../components';
 import {getData} from '../../utils';
 
 const Profile = ({navigation}) => {
@@ -12,6 +12,7 @@ const Profile = ({navigation}) => {
   };
 
   const [userProfile, setUserProfile] = useState({});
+
   useEffect(() => {
     getData('userProfile').then(res => {
       setUserProfile(res);
@@ -40,11 +41,27 @@ const Profile = ({navigation}) => {
       <View style={styles.footer}>
         {/* <ProfileTabSection /> */}
         <View style={styles.wrapperContent}>
-          <ProfileListMenu label="Payments" />
-          <ProfileListMenu label="Rate App" />
-          <ProfileListMenu label="Help Center" />
-          <ProfileListMenu label="Privacy & Policy" />
-          <ProfileListMenu label="Terms & Conditions" />
+          {/* <ProfileListMenu
+            label="Edit Akun"
+            onPress={() => navigation.navigate('ProfileEdit')}
+          /> */}
+          <ProfileListMenu
+            label="Rate App"
+            onPress={() => navigation.navigate('HomePage')}
+          />
+          <ProfileListMenu label="Info Bantuan" />
+          <ProfileListMenu
+            label="Saran & Masukan"
+            onPress={() => navigation.navigate('Message')}
+          />
+          <ProfileListMenu
+            label="Kebijakan Pengguna"
+            onPress={() => navigation.navigate('PrivacyPolicy')}
+          />
+          <ProfileListMenu
+            label="Syarat & Ketentuan"
+            onPress={() => navigation.navigate('TermAndConditions')}
+          />
         </View>
         <View style={styles.button}>
           <Button label="Sign Out" colorButton="#FFFFFF" onPress={signOut} />
@@ -110,9 +127,9 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   wrapperContent: {
-    marginTop: 20,
     paddingHorizontal: 24,
     paddingBottom: 20,
+    marginTop: 15,
   },
   footer: {
     flex: 2,
@@ -122,7 +139,7 @@ const styles = StyleSheet.create({
     marginTop: -20,
   },
   button: {
-    marginTop: 20,
     paddingHorizontal: 24,
+    marginTop: 20,
   },
 });

@@ -5,6 +5,7 @@ import {TabBar} from '../components';
 import {
   DestinationDetail,
   Home,
+  HomePage,
   ListDesaWisata,
   ListHotel,
   ListMakananKhas,
@@ -12,19 +13,23 @@ import {
   ListWisataBuatan,
   ListWisataReligi,
   Maps,
+  Message,
   News,
   NewsDetail,
   Order,
   OrderDetail,
   OrderSummary,
   PaymentLink,
+  PrivacyPolicy,
   Profile,
+  ProfileEdit,
   SignIn,
   SignUp,
   SignUpAddress,
   Splash,
   SuccessOrder,
   SuccessSignUp,
+  TermAndConditions,
 } from '../screens';
 
 const Stack = createStackNavigator();
@@ -144,6 +149,31 @@ const Router = () => {
       <Stack.Screen
         name="PaymentLink"
         component={PaymentLink}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="HomePage"
+        component={HomePage}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="PrivacyPolicy"
+        component={PrivacyPolicy}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="TermAndConditions"
+        component={TermAndConditions}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ProfileEdit"
+        component={ProfileEdit}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Message"
+        component={Message}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

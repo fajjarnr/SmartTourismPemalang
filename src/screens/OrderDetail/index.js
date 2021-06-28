@@ -13,6 +13,7 @@ const OrderDetail = ({navigation, route}) => {
     const data = {
       status: 'CANCELLED',
     };
+
     getData('token').then(resToken => {
       axios
         .post(`${API_HOST.url}/transaction/${order.id}`, data, {
