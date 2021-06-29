@@ -4,7 +4,7 @@ import {PhotoProfile} from '../../../assets';
 import {getData} from '../../../utils';
 
 const HomeHeader = () => {
-  const [photo, setPhoto] = useState(PhotoProfile);
+  const [photo, setPhoto] = useState();
   const [name, setName] = useState('Smart Tourism Pemalang');
 
   useEffect(() => {

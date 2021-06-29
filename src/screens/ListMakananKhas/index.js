@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {FlatList, Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {Rating} from '../../components';
@@ -6,18 +6,28 @@ import {getDestinationByCategory} from '../../redux/actions';
 
 const ListMakananKhas = ({navigation, rating}) => {
   const dispatch = useDispatch();
+  const [refreshing, setRefresh] = useState(false);
 
   const {kulinerKhas} = useSelector(state => state.categoryReducer);
 
   useEffect(() => {
     dispatch(getDestinationByCategory('6'));
+    handleRefresh();
   }, []);
+
+  const handleRefresh = () => {
+    setRefresh(true);
+    dispatch(getDestinationByCategory('6'));
+    setRefresh(false);
+  };
 
   return (
     <View style={styles.page}>
       <FlatList
         showsVerticalScrollIndicator={false}
         data={kulinerKhas}
+        refreshing={refreshing}
+        onRefresh={handleRefresh}
         renderItem={({item}) => (
           <View style={styles.wrapper}>
             <Pressable

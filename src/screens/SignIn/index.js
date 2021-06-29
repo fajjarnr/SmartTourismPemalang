@@ -26,6 +26,7 @@ const SignIn = ({navigation}) => {
       />
       <Header title="Sign In" subTitle="Welcome Back" />
       <View style={styles.wrapper}>
+        <Gap height={35} />
         <TextInput
           icon="mail"
           label="Email Address"
@@ -47,14 +48,14 @@ const SignIn = ({navigation}) => {
           onChangeText={value => setForm('password', value)}
           secureTextEntry
         />
-        <Gap height={24} />
+        <Gap height={50} />
         <Button
           label="Sign In"
           colorButton="#ff7c57"
           textColorButton="#FFF"
           onPress={onSubmit}
         />
-        <Gap height={12} />
+        <Gap height={35} />
         <Button
           colorButton="#8D92A3"
           textColorButton="white"
@@ -69,12 +70,16 @@ const SignIn = ({navigation}) => {
 export default SignIn;
 
 const styles = StyleSheet.create({
-  page: {flex: 1},
+  page: {
+    flex: 1
+    },
   wrapper: {
     paddingHorizontal: 24,
     paddingVertical: 26,
     backgroundColor: 'white',
     marginTop: 24,
     flex: 1,
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25
   },
 });

@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Dimensions,
   StyleSheet,
@@ -28,24 +28,29 @@ const renderTabBar = props => (
 const BelumBayar = () => {
   const navigation = useNavigation();
 
+  const [refreshing, setRefresh] = useState(false);
+
   const dispatch = useDispatch();
 
   const {inProgress} = useSelector(state => state.orderReducer);
 
   useEffect(() => {
     dispatch(getInProgress());
-
-    // const interval = setInterval(() => {
-    //   dispatch(getInProgress());
-    // }, 10000);
-
-    // return () => clearInterval(interval);
+    handleRefresh();
   }, []);
+
+  const handleRefresh = () => {
+    setRefresh(true);
+    dispatch(getSuccess());
+    setRefresh(false);
+  };
 
   return (
     <View style={styles.wrapperContent}>
       <FlatList
         data={inProgress}
+        refreshing={refreshing}
+        onRefresh={handleRefresh}
         renderItem={({item}) => (
           <ItemList
             key={item.id}
@@ -66,18 +71,29 @@ const BelumBayar = () => {
 const Selesai = () => {
   const navigation = useNavigation();
 
+  const [refreshing, setRefresh] = useState(false);
+
   const dispatch = useDispatch();
 
   const {success} = useSelector(state => state.orderReducer);
 
   useEffect(() => {
     dispatch(getSuccess());
+    handleRefresh();
   }, []);
+
+  const handleRefresh = () => {
+    setRefresh(true);
+    dispatch(getSuccess());
+    setRefresh(false);
+  };
 
   return (
     <View style={styles.wrapperContent}>
       <FlatList
         data={success}
+        refreshing={refreshing}
+        onRefresh={handleRefresh}
         renderItem={({item}) => (
           <ItemList
             type="past-order"
@@ -101,18 +117,29 @@ const Selesai = () => {
 const DiBatalkan = () => {
   const navigation = useNavigation();
 
+  const [refreshing, setRefresh] = useState(false);
+
   const dispatch = useDispatch();
 
   const {pastOrders} = useSelector(state => state.orderReducer);
 
   useEffect(() => {
     dispatch(getPastOrders());
+    handleRefresh();
   }, []);
+
+  const handleRefresh = () => {
+    setRefresh(true);
+    dispatch(getPastOrders());
+    setRefresh(false);
+  };
 
   return (
     <View style={styles.wrapperContent}>
       <FlatList
         data={pastOrders}
+        refreshing={refreshing}
+        onRefresh={handleRefresh}
         renderItem={({item}) => (
           <ItemList
             type="past-order"

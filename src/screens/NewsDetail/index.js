@@ -18,7 +18,10 @@ import {Banner1} from '../../assets';
 const MIN_HEIGHT = Platform.OS === 'ios' ? 90 : 55;
 const MAX_HEIGHT = 220;
 
-const NewsDetail = () => {
+const NewsDetail = ({route}) => {
+  const {picturePath, title, content, created_at} = route.params;
+  const formatedDate = new Date(created_at).toDateString('id');
+
   const navTitleView = useRef(null);
 
   return (
@@ -31,7 +34,9 @@ const NewsDetail = () => {
       <ImageHeaderScrollView
         maxHeight={MAX_HEIGHT}
         minHeight={MIN_HEIGHT}
-        renderHeader={() => <Image source={Banner1} style={styles.image} />}
+        renderHeader={() => (
+          <Image source={{uri: picturePath}} style={styles.image} />
+        )}
         renderForeground={() => (
           <View
             style={{
@@ -40,9 +45,7 @@ const NewsDetail = () => {
               alignItems: 'center',
             }}>
             <View style={styles.titleContainer}>
-              <Text style={styles.imageTitle}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              </Text>
+              <Text style={styles.imageTitle}>{title}</Text>
             </View>
           </View>
         )}
@@ -52,7 +55,7 @@ const NewsDetail = () => {
               style={styles.navTitle}
               numberOfLines={1}
               lineBreakMode="tail">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit
+              {title}
             </Text>
           </Animatable.View>
         )}>
@@ -61,37 +64,12 @@ const NewsDetail = () => {
           onHide={() => navTitleView.current.fadeInUp(200)}
           onDisplay={() => navTitleView.current.fadeOut(100)}>
           <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text style={styles.title}>Penulis :</Text>
-            <Text style={styles.title}>Fajar Nur ROhman</Text>
+            <Text style={styles.title}>Publikasi :</Text>
+            <Text style={styles.title}>{formatedDate}</Text>
           </View>
         </TriggeringView>
         <View style={styles.sectionLarge}>
-          <Text style={styles.sectionContent}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut
-            excepturi voluptas dolore in odit aliquam repellendus, reprehenderit
-            labore animi! Odio, deserunt totam molestias obcaecati laboriosam
-            quae alias consectetur nobis accusantium, necessitatibus sequi
-            velit. Corrupti sunt ullam doloremque nemo, vitae incidunt, impedit
-            iste saepe veritatis, atque rerum dignissimos? Architecto, nam ipsam
-            natus vero sit assumenda deleniti deserunt consectetur quidem, nulla
-            voluptatibus! Nihil minus incidunt magnam cupiditate repudiandae
-            deserunt amet velit similique odit in atque aut ducimus quas minima
-            dicta nesciunt ipsum possimus animi, dignissimos nemo temporibus
-            harum reprehenderit autem tempore. Voluptatem cum unde quibusdam
-            amet. Dignissimos pariatur quisquam reprehenderit impedit provident.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut
-            excepturi voluptas dolore in odit aliquam repellendus, reprehenderit
-            labore animi! Odio, deserunt totam molestias obcaecati laboriosam
-            quae alias consectetur nobis accusantium, necessitatibus sequi
-            velit. Corrupti sunt ullam doloremque nemo, vitae incidunt, impedit
-            iste saepe veritatis, atque rerum dignissimos? Architecto, nam ipsam
-            natus vero sit assumenda deleniti deserunt consectetur quidem, nulla
-            voluptatibus! Nihil minus incidunt magnam cupiditate repudiandae
-            deserunt amet velit similique odit in atque aut ducimus quas minima
-            dicta nesciunt ipsum possimus animi, dignissimos nemo temporibus
-            harum reprehenderit autem tempore. Voluptatem cum unde quibusdam
-            amet. Dignissimos pariatur quisquam reprehenderit impedit provident.
-          </Text>
+          <Text style={styles.sectionContent}>{content}</Text>
         </View>
       </ImageHeaderScrollView>
     </>

@@ -4,6 +4,7 @@ import {Gap} from '../../atoms';
 
 const NewsCard = ({image, name, author, description, date, onPress}) => {
   const formatedDate = new Date(date).toDateString('id');
+
   return (
     <TouchableOpacity style={styles.page} activeOpacity={0.8} onPress={onPress}>
       <Image source={image} resizeMode="cover" style={styles.image} />

@@ -13,8 +13,6 @@ const Order = () => {
     dispatch(getOrders());
   }, []);
 
-  console.log('list order: ', order);
-
   return (
     <View View style={styles.page}>
       {order?.length < 1 ? (
