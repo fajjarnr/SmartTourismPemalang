@@ -4,7 +4,7 @@ import {API_HOST} from '../../config/API';
 export const getDestinationData = () => dispatch => {
   Axios.get(`${API_HOST.url}/destination`)
     .then(response => {
-      dispatch({type: 'SET_DESTINATION', value: response.data.data.data});
+      dispatch({type: 'SET_DESTINATION', value: response.data.data});
     })
     .catch(err => {
       console.log('err: ', err);

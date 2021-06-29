@@ -2,10 +2,22 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Number} from '..';
 
-const ItemValue = ({label, value, price = '#202020', type}) => {
+const ItemValue = ({
+  label,
+  value,
+  price = '#202020',
+  type,
+  numberOfLines,
+  lineBreakMode,
+}) => {
   return (
     <View style={styles.wrapper}>
-      <Text style={styles.label}>{label}</Text>
+      <Text
+        style={styles.label}
+        numberOfLines={numberOfLines}
+        lineBreakMode={lineBreakMode}>
+        {label}
+      </Text>
       {type === 'currency' ? (
         <Number number={value} style={styles.value(price)} />
       ) : (

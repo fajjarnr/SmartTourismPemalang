@@ -39,7 +39,7 @@ const ItemList = ({
                 <Text style={styles.title}>{name}</Text>
                 <Text style={styles.subTitle}>IDR {price}</Text>
               </View>
-              <Text style={styles.textSummary}>{summary} Items</Text>
+              <Text style={styles.textSummary}>{summary} Tiket</Text>
             </View>
           </>
         );
@@ -50,7 +50,7 @@ const ItemList = ({
               <View style={styles.wrapper}>
                 <Text style={styles.title}>{name}</Text>
                 <View style={styles.row}>
-                  <Text style={styles.subTitle}>{orderItems} Items • </Text>
+                  <Text style={styles.subTitle}>{orderItems} Tiket • </Text>
                   <Number number={price} style={styles.subTitle} />
                 </View>
               </View>
@@ -65,7 +65,7 @@ const ItemList = ({
               <View style={styles.wrapper}>
                 <Text style={styles.title}>{name}</Text>
                 <View style={styles.row}>
-                  <Text style={styles.subTitle}>{orderItems} Items • </Text>
+                  <Text style={styles.subTitle}>{orderItems} Tiket • </Text>
                   <Number number={price} style={styles.subTitle} />
                 </View>
               </View>

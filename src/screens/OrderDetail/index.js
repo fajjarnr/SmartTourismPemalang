@@ -65,12 +65,12 @@ const OrderDetail = ({navigation, route}) => {
                 type="currency"
               />
               <ItemValue
-                label="Tax 10%"
+                label="Pajak 10%"
                 value={(10 / 100) * order.total}
                 type="currency"
               />
               <ItemValue
-                label="Total Price"
+                label="Total Harga"
                 value={order.total}
                 price
                 type="currency"
@@ -92,7 +92,7 @@ const OrderDetail = ({navigation, route}) => {
               <Text style={styles.textTitle}>Order Status</Text>
               <Gap height={8} />
               <ItemValue
-                label={`#${order.id}`}
+                label={order.id}
                 value={order.status}
                 price={order.status === 'CANCELLED' ? '#D9435E' : '#1ABC9C'}
               />

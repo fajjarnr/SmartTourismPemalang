@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {StyleSheet, Text, View, StatusBar, Image} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {getDestinationData} from '../../redux/actions';
@@ -13,11 +13,24 @@ const region = {
 
 const Maps = ({navigation}) => {
   const dispatch = useDispatch();
+
   const {destination} = useSelector(state => state.homeReducer);
+
+  const [selectedPlaceId] = useState(null);
+
+  const map = useRef();
 
   useEffect(() => {
     dispatch(getDestinationData());
   }, []);
+
+  useEffect(() => {
+    if (!selectedPlaceId) {
+      return;
+    }
+
+    destination.findIndex(place => place.id === selectedPlaceId);
+  }, [destination, selectedPlaceId]);
 
   return (
     <>
@@ -25,6 +38,7 @@ const Maps = ({navigation}) => {
       <MapView initialRegion={region} style={styles.map}>
         {destination?.map(item => (
           <Marker
+            ref={map}
             key={item.id}
             coordinate={{latitude: item.latitude, longitude: item.longitude}}
             title={item.name}>

@@ -50,7 +50,8 @@ const OrderSummary = ({navigation, route}) => {
   const onNavChange = state => {
     console.log('nav', state);
 
-    const titleWeb = 'Midtrans Mock Payment Provider';
+    // const title = 'Midtrans Mock Payment Provider';
+    const titleWeb = 'Laravel';
 
     if (state.title === titleWeb) {
       navigation.reset({index: 0, routes: [{name: 'SuccessOrder'}]});

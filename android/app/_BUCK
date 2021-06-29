@@ -35,12 +35,12 @@ android_library(
 
 android_build_config(
     name = "build_config",
-    package = "com.smarttourismpemalang",
+    package = "com.fajar.smarttourismpemalang",
 )
 
 android_resource(
     name = "res",
-    package = "com.smarttourismpemalang",
+    package = "com.fajar.smarttourismpemalang",
     res = "src/main/res",
 )
 

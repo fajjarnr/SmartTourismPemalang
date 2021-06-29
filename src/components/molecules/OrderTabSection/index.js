@@ -1,11 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {useNavigation} from '@react-navigation/native';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {
   Dimensions,
   StyleSheet,
   Text,
-  View,
   useWindowDimensions,
+  View,
 } from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
@@ -28,29 +29,19 @@ const renderTabBar = props => (
 const BelumBayar = () => {
   const navigation = useNavigation();
 
-  const [refreshing, setRefresh] = useState(false);
-
   const dispatch = useDispatch();
 
   const {inProgress} = useSelector(state => state.orderReducer);
 
   useEffect(() => {
     dispatch(getInProgress());
-    handleRefresh();
   }, []);
-
-  const handleRefresh = () => {
-    setRefresh(true);
-    dispatch(getSuccess());
-    setRefresh(false);
-  };
 
   return (
     <View style={styles.wrapperContent}>
       <FlatList
+        showsVerticalScrollIndicator={false}
         data={inProgress}
-        refreshing={refreshing}
-        onRefresh={handleRefresh}
         renderItem={({item}) => (
           <ItemList
             key={item.id}
@@ -71,29 +62,19 @@ const BelumBayar = () => {
 const Selesai = () => {
   const navigation = useNavigation();
 
-  const [refreshing, setRefresh] = useState(false);
-
   const dispatch = useDispatch();
 
   const {success} = useSelector(state => state.orderReducer);
 
   useEffect(() => {
     dispatch(getSuccess());
-    handleRefresh();
   }, []);
-
-  const handleRefresh = () => {
-    setRefresh(true);
-    dispatch(getSuccess());
-    setRefresh(false);
-  };
 
   return (
     <View style={styles.wrapperContent}>
       <FlatList
+        showsVerticalScrollIndicator={false}
         data={success}
-        refreshing={refreshing}
-        onRefresh={handleRefresh}
         renderItem={({item}) => (
           <ItemList
             type="past-order"
@@ -117,29 +98,19 @@ const Selesai = () => {
 const DiBatalkan = () => {
   const navigation = useNavigation();
 
-  const [refreshing, setRefresh] = useState(false);
-
   const dispatch = useDispatch();
 
   const {pastOrders} = useSelector(state => state.orderReducer);
 
   useEffect(() => {
     dispatch(getPastOrders());
-    handleRefresh();
   }, []);
-
-  const handleRefresh = () => {
-    setRefresh(true);
-    dispatch(getPastOrders());
-    setRefresh(false);
-  };
 
   return (
     <View style={styles.wrapperContent}>
       <FlatList
+        showsVerticalScrollIndicator={false}
         data={pastOrders}
-        refreshing={refreshing}
-        onRefresh={handleRefresh}
         renderItem={({item}) => (
           <ItemList
             type="past-order"

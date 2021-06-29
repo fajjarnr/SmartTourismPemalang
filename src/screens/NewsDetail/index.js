@@ -19,7 +19,8 @@ const MIN_HEIGHT = Platform.OS === 'ios' ? 90 : 55;
 const MAX_HEIGHT = 220;
 
 const NewsDetail = ({route}) => {
-  const {picturePath, title, content, created_at} = route.params;
+  const {picturePath, title, content, created_at, user} = route.params;
+
   const formatedDate = new Date(created_at).toDateString('id');
 
   const navTitleView = useRef(null);
@@ -64,7 +65,7 @@ const NewsDetail = ({route}) => {
           onHide={() => navTitleView.current.fadeInUp(200)}
           onDisplay={() => navTitleView.current.fadeOut(100)}>
           <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text style={styles.title}>Publikasi :</Text>
+            <Text style={styles.title}>{user.name}</Text>
             <Text style={styles.title}>{formatedDate}</Text>
           </View>
         </TriggeringView>

@@ -1,4 +1,4 @@
-package com.smarttourismpemalang;
+package com.fajar.smarttourismpemalang;
 
 import com.facebook.react.ReactActivity;
 
