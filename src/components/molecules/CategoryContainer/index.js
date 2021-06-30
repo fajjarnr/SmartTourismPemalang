@@ -6,6 +6,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const CategoryContainer = () => {
   const navigation = useNavigation();
@@ -39,6 +41,15 @@ const CategoryContainer = () => {
           </View>
           <Text style={styles.categoryBtnTxt}>Wisata Religi</Text>
         </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.categoryBtn}
+          onPress={() => navigation.navigate('ListWisataKuliner')}>
+          <View style={styles.categoryIcon}>
+            <Ionicons name="md-restaurant" size={35} color="#FF6347" />
+          </View>
+          <Text style={styles.categoryBtnTxt}>Wisata Kuliner</Text>
+        </TouchableOpacity>
       </View>
 
       <View style={[styles.categoryContainer, {marginTop: 10}]}>
@@ -66,11 +77,18 @@ const CategoryContainer = () => {
 
         <TouchableOpacity
           style={styles.categoryBtn}
-          onPress={() => navigation.navigate('ListMakananKhas')}>
+          onPress={() => navigation.navigate('ListWisataKuliner')}>
           <View style={styles.categoryIcon}>
-            <Ionicons name="md-restaurant" size={35} color="#FF6347" />
+            <MaterialIcons name="handyman" size={35} color="#FF6347" />
           </View>
-          <Text style={styles.categoryBtnTxt}>Makanan Khas</Text>
+          <Text style={styles.categoryBtnTxt}>Ekonomi Kreatif</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.categoryBtn}>
+          <View style={styles.categoryIcon}>
+            <AntDesign name="caretdown" size={35} color="#FF6347" />
+          </View>
+          <Text style={styles.categoryBtnTxt}>Lainnya</Text>
         </TouchableOpacity>
       </View>
     </>
@@ -107,5 +125,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 5,
     color: '#202020',
+    textAlign: 'center',
   },
 });

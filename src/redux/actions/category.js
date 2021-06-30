@@ -20,7 +20,10 @@ export const getDestinationByCategory = id => dispatch => {
         dispatch({type: 'SET_HOTEL', value: response.data.data});
       }
       if (id === '6') {
-        dispatch({type: 'SET_KULINER_KHAS', value: response.data.data});
+        dispatch({type: 'SET_WISATA_KULINER', value: response.data.data});
+      }
+      if (id === '7') {
+        dispatch({type: 'SET_EKONOMI_KREATIF', value: response.data.data});
       }
     })
     .catch(err => {

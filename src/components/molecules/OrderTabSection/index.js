@@ -40,7 +40,6 @@ const BelumBayar = () => {
   return (
     <View style={styles.wrapperContent}>
       <FlatList
-        showsVerticalScrollIndicator={false}
         data={inProgress}
         renderItem={({item}) => (
           <ItemList
@@ -73,7 +72,6 @@ const Selesai = () => {
   return (
     <View style={styles.wrapperContent}>
       <FlatList
-        showsVerticalScrollIndicator={false}
         data={success}
         renderItem={({item}) => (
           <ItemList
@@ -109,7 +107,6 @@ const DiBatalkan = () => {
   return (
     <View style={styles.wrapperContent}>
       <FlatList
-        showsVerticalScrollIndicator={false}
         data={pastOrders}
         renderItem={({item}) => (
           <ItemList

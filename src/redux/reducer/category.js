@@ -3,9 +3,10 @@ const initCategory = {
   wisataAlam: [],
   wisataBuatan: [],
   wisataReligi: [],
-  kulinerKhas: [],
-  hotel: [],
+  wisataKuliner: [],
   desaWisata: [],
+  hotel: [],
+  ekraf: [],
 };
 
 export const categoryReducer = (state = initCategory, action) => {
@@ -45,10 +46,16 @@ export const categoryReducer = (state = initCategory, action) => {
       hotel: action.value,
     };
   }
-  if (action.type === 'SET_KULINER_KHAS') {
+  if (action.type === 'SET_WISATA_KULINER') {
     return {
       ...state,
-      kulinerKhas: action.value,
+      wisataKuliner: action.value,
+    };
+  }
+  if (action.type === 'SET_EKONOMI_KREATIF') {
+    return {
+      ...state,
+      ekraf: action.value,
     };
   }
   return state;

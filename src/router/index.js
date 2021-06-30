@@ -7,10 +7,11 @@ import {
   Home,
   HomePage,
   ListDesaWisata,
+  ListEkraf,
   ListHotel,
-  ListMakananKhas,
   ListWisataAlam,
   ListWisataBuatan,
+  ListWisataKuliner,
   ListWisataReligi,
   Maps,
   Message,
@@ -142,8 +143,13 @@ const Router = () => {
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="ListMakananKhas"
-        component={ListMakananKhas}
+        name="ListWisataKuliner"
+        component={ListWisataKuliner}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="ListEkraf"
+        component={ListEkraf}
         options={{headerShown: false}}
       />
       <Stack.Screen

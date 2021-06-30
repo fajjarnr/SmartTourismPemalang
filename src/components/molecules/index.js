@@ -23,6 +23,8 @@ import ProfileTabSection from './ProfileTabSection';
 import Rating from './Rating';
 import Recommended from './Recommended';
 import TabBar from './TabBar';
+import ListTabEkraf from './ListTabEkraf';
+import ListTabWisataKuliner from './ListTabWisataKuliner';
 
 export {
   Header,
@@ -50,4 +52,6 @@ export {
   ListTabWisataReligi,
   ListTabHotel,
   ListTabDesaWisata,
+  ListTabEkraf,
+  ListTabWisataKuliner,
 };

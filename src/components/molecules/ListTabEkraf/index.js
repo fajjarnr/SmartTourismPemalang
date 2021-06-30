@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useRef, useState} from 'react';
 import {
@@ -31,29 +30,33 @@ const List = () => {
 
   const dispatch = useDispatch();
 
-  const {wisataAlam} = useSelector(state => state.categoryReducer);
+  const {ekraf} = useSelector(state => state.categoryReducer);
 
   useEffect(() => {
-    dispatch(getDestinationByCategory('1'));
+    dispatch(getDestinationByCategory('7'));
   }, []);
 
   return (
     <View style={styles.wrapperContent}>
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        data={wisataAlam}
-        renderItem={({item}) => (
-          <CardList
-            key={item.id}
-            name={item.name}
-            desc={item.description}
-            image={item.image}
-            rating={item.rate}
-            price={item.price}
-            onPress={() => navigation.navigate('DestinationDetail', item)}
-          />
-        )}
-      />
+      {ekraf?.length > 0 ? (
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={ekraf}
+          renderItem={({item}) => (
+            <CardList
+              key={item.id}
+              name={item.name}
+              desc={item.description}
+              image={item.image}
+              rating={item.rate}
+              price={item.price}
+              onPress={() => navigation.navigate('DestinationDetail', item)}
+            />
+          )}
+        />
+      ) : (
+        <Text>data tidak ada</Text>
+      )}
     </View>
   );
 };
@@ -63,7 +66,7 @@ const Maps = () => {
 
   const dispatch = useDispatch();
 
-  const {wisataAlam} = useSelector(state => state.categoryReducer);
+  const {ekraf} = useSelector(state => state.categoryReducer);
 
   const [selectedPlaceId, setSelectedPlaceId] = useState(null);
 
@@ -82,7 +85,7 @@ const Maps = () => {
   const width = useWindowDimensions().width;
 
   useEffect(() => {
-    dispatch(getDestinationByCategory('1'));
+    dispatch(getDestinationByCategory('7'));
   }, []);
 
   useEffect(() => {
@@ -90,11 +93,11 @@ const Maps = () => {
       return;
     }
 
-    const index = wisataAlam.findIndex(place => place.id === selectedPlaceId);
+    const index = ekraf.findIndex(place => place.id === selectedPlaceId);
 
     flatList.current.scrollToIndex({index});
 
-    const selectedPlace = wisataAlam[index];
+    const selectedPlace = ekraf[index];
 
     const region = {
       latitude: selectedPlace.latitude,
@@ -104,7 +107,7 @@ const Maps = () => {
     };
 
     map.current.animateToRegion(region);
-  }, [selectedPlaceId, wisataAlam]);
+  }, [ekraf, selectedPlaceId]);
 
   return (
     <View style={styles.map}>
@@ -118,7 +121,7 @@ const Maps = () => {
           latitudeDelta: 0.8,
           longitudeDelta: 0.8,
         }}>
-        {wisataAlam.map(item => (
+        {ekraf.map(item => (
           <Marker
             key={item.id}
             coordinate={{
@@ -134,7 +137,7 @@ const Maps = () => {
       <View style={{position: 'absolute', bottom: 10}}>
         <FlatList
           ref={flatList}
-          data={wisataAlam}
+          data={ekraf}
           renderItem={({item}) => (
             <CarouselItem
               key={item.id}
@@ -158,7 +161,7 @@ const Maps = () => {
   );
 };
 
-const ListTabWisataAlam = () => {
+const ListTabEkraf = () => {
   const layout = useWindowDimensions();
 
   const [index, setIndex] = React.useState(0);
@@ -184,7 +187,7 @@ const ListTabWisataAlam = () => {
   );
 };
 
-export default ListTabWisataAlam;
+export default ListTabEkraf;
 
 const styles = StyleSheet.create({
   indicator: {

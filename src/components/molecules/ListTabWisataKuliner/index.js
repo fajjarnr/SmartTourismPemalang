@@ -31,17 +31,17 @@ const List = () => {
 
   const dispatch = useDispatch();
 
-  const {wisataAlam} = useSelector(state => state.categoryReducer);
+  const {wisataKuliner} = useSelector(state => state.categoryReducer);
 
   useEffect(() => {
-    dispatch(getDestinationByCategory('1'));
+    dispatch(getDestinationByCategory('6'));
   }, []);
 
   return (
     <View style={styles.wrapperContent}>
       <FlatList
         showsVerticalScrollIndicator={false}
-        data={wisataAlam}
+        data={wisataKuliner}
         renderItem={({item}) => (
           <CardList
             key={item.id}
@@ -63,7 +63,7 @@ const Maps = () => {
 
   const dispatch = useDispatch();
 
-  const {wisataAlam} = useSelector(state => state.categoryReducer);
+  const {wisataKuliner} = useSelector(state => state.categoryReducer);
 
   const [selectedPlaceId, setSelectedPlaceId] = useState(null);
 
@@ -82,7 +82,7 @@ const Maps = () => {
   const width = useWindowDimensions().width;
 
   useEffect(() => {
-    dispatch(getDestinationByCategory('1'));
+    dispatch(getDestinationByCategory('6'));
   }, []);
 
   useEffect(() => {
@@ -90,11 +90,13 @@ const Maps = () => {
       return;
     }
 
-    const index = wisataAlam.findIndex(place => place.id === selectedPlaceId);
+    const index = wisataKuliner.findIndex(
+      place => place.id === selectedPlaceId,
+    );
 
     flatList.current.scrollToIndex({index});
 
-    const selectedPlace = wisataAlam[index];
+    const selectedPlace = wisataKuliner[index];
 
     const region = {
       latitude: selectedPlace.latitude,
@@ -104,7 +106,7 @@ const Maps = () => {
     };
 
     map.current.animateToRegion(region);
-  }, [selectedPlaceId, wisataAlam]);
+  }, [selectedPlaceId, wisataKuliner]);
 
   return (
     <View style={styles.map}>
@@ -118,7 +120,7 @@ const Maps = () => {
           latitudeDelta: 0.8,
           longitudeDelta: 0.8,
         }}>
-        {wisataAlam.map(item => (
+        {wisataKuliner.map(item => (
           <Marker
             key={item.id}
             coordinate={{
@@ -134,7 +136,7 @@ const Maps = () => {
       <View style={{position: 'absolute', bottom: 10}}>
         <FlatList
           ref={flatList}
-          data={wisataAlam}
+          data={wisataKuliner}
           renderItem={({item}) => (
             <CarouselItem
               key={item.id}
@@ -158,7 +160,7 @@ const Maps = () => {
   );
 };
 
-const ListTabWisataAlam = () => {
+const ListTabWisataKuliner = () => {
   const layout = useWindowDimensions();
 
   const [index, setIndex] = React.useState(0);
@@ -184,7 +186,7 @@ const ListTabWisataAlam = () => {
   );
 };
 
-export default ListTabWisataAlam;
+export default ListTabWisataKuliner;
 
 const styles = StyleSheet.create({
   indicator: {
