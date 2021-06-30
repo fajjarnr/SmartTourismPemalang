@@ -77,7 +77,7 @@ const CategoryContainer = () => {
 
         <TouchableOpacity
           style={styles.categoryBtn}
-          onPress={() => navigation.navigate('ListWisataKuliner')}>
+          onPress={() => navigation.navigate('ListEkraf')}>
           <View style={styles.categoryIcon}>
             <MaterialIcons name="handyman" size={35} color="#FF6347" />
           </View>

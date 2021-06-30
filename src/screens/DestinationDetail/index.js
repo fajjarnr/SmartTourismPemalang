@@ -10,6 +10,7 @@ import {
 import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
 import {Button, Counter, Gap, Number, Rating} from '../../components';
 import {getData} from '../../utils';
+import SendIntentAndroid from 'react-native-send-intent';
 
 const DestinationDetail = ({navigation, route}) => {
   const {
@@ -65,6 +66,10 @@ const DestinationDetail = ({navigation, route}) => {
     navigation.navigate('OrderSummary', data);
   };
 
+  const handleClick = () => {
+    SendIntentAndroid.openMaps(`${latitude}, ${longitude}`);
+  };
+
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.page}>
@@ -108,7 +113,7 @@ const DestinationDetail = ({navigation, route}) => {
             <View>
               <Gap height={16} />
               <Text style={styles.subTitle}>Jam Operasional:</Text>
-              <Text style={styles.desc}>0{hours}:00 WIB</Text>
+              <Text style={styles.desc}>{hours} WIB</Text>
             </View>
           )}
           {facilities !== null && (
@@ -144,6 +149,17 @@ const DestinationDetail = ({navigation, route}) => {
           </View>
         )}
 
+        {latitude !== null && (
+          <View style={styles.openMaps}>
+            <Button
+              label="Kunjungi Lokasi"
+              onPress={handleClick}
+              colorButton="#ff7c57"
+              textColorButton="#FFFFFF"
+            />
+          </View>
+        )}
+
         {price !== null && (
           <View style={styles.footer}>
             <View style={styles.footerContainer}>
@@ -168,9 +184,17 @@ const DestinationDetail = ({navigation, route}) => {
 export default DestinationDetail;
 
 const styles = StyleSheet.create({
-  page: {flex: 1},
-  background: {height: 330},
-  iconBack: {paddingLeft: 16, paddingTop: 24},
+  page: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  background: {
+    height: 330,
+  },
+  iconBack: {
+    paddingLeft: 16,
+    paddingTop: 24,
+  },
   content: {
     borderTopRightRadius: 40,
     borderTopLeftRadius: 40,
@@ -229,5 +253,9 @@ const styles = StyleSheet.create({
   button: {
     width: 163,
     height: 45,
+  },
+  openMaps: {
+    padding: 20,
+    backgroundColor: 'white',
   },
 });
