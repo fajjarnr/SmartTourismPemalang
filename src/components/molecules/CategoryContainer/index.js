@@ -1,13 +1,12 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import Entypo from 'react-native-vector-icons/Entypo';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import Entypo from 'react-native-vector-icons/Entypo';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const CategoryContainer = () => {
   const navigation = useNavigation();
@@ -19,7 +18,7 @@ const CategoryContainer = () => {
           style={styles.categoryBtn}
           onPress={() => navigation.navigate('ListWisataAlam')}>
           <View style={styles.categoryIcon}>
-            <Entypo name="leaf" size={35} color="#FF6347" />
+            <Entypo name="leaf" size={30} color="#FF6347" />
           </View>
           <Text style={styles.categoryBtnTxt}>Wisata Alam</Text>
         </TouchableOpacity>
@@ -28,7 +27,7 @@ const CategoryContainer = () => {
           style={styles.categoryBtn}
           onPress={() => navigation.navigate('ListWisataBuatan')}>
           <View style={styles.categoryIcon}>
-            <FontAwesome5 name="torii-gate" size={35} color="#FF6347" />
+            <FontAwesome5 name="torii-gate" size={30} color="#FF6347" />
           </View>
           <Text style={styles.categoryBtnTxt}>Wisata Buatan</Text>
         </TouchableOpacity>
@@ -37,58 +36,51 @@ const CategoryContainer = () => {
           style={styles.categoryBtn}
           onPress={() => navigation.navigate('ListWisataReligi')}>
           <View style={styles.categoryIcon}>
-            <FontAwesome5 name="praying-hands" size={35} color="#FF6347" />
+            <FontAwesome5 name="praying-hands" size={30} color="#FF6347" />
           </View>
           <Text style={styles.categoryBtnTxt}>Wisata Religi</Text>
         </TouchableOpacity>
+      </View>
 
+      <View style={styles.categoryContainer}>
         <TouchableOpacity
           style={styles.categoryBtn}
           onPress={() => navigation.navigate('ListWisataKuliner')}>
           <View style={styles.categoryIcon}>
-            <Ionicons name="md-restaurant" size={35} color="#FF6347" />
+            <Ionicons name="md-restaurant" size={30} color="#FF6347" />
           </View>
           <Text style={styles.categoryBtnTxt}>Wisata Kuliner</Text>
         </TouchableOpacity>
-      </View>
-
-      <View style={[styles.categoryContainer, {marginTop: 10}]}>
         <TouchableOpacity
           style={styles.categoryBtn}
           onPress={() => navigation.navigate('ListHotel')}>
           <View style={styles.categoryIcon}>
-            <Fontisto name="hotel" size={35} color="#FF6347" />
+            <Fontisto name="hotel" size={30} color="#FF6347" />
           </View>
           <Text style={styles.categoryBtnTxt}>Hotels</Text>
         </TouchableOpacity>
-
         <TouchableOpacity
           style={styles.categoryBtn}
           onPress={() => navigation.navigate('ListDesaWisata')}>
           <View style={styles.categoryIcon}>
             <MaterialCommunityIcons
               name="home-city"
-              size={35}
+              size={30}
               color="#FF6347"
             />
           </View>
           <Text style={styles.categoryBtnTxt}>Desa Wisata</Text>
         </TouchableOpacity>
+      </View>
 
+      <View style={[styles.categoryContainer3, {marginTop: 10}]}>
         <TouchableOpacity
           style={styles.categoryBtn}
           onPress={() => navigation.navigate('ListEkraf')}>
           <View style={styles.categoryIcon}>
-            <MaterialIcons name="handyman" size={35} color="#FF6347" />
+            <MaterialIcons name="handyman" size={30} color="#FF6347" />
           </View>
           <Text style={styles.categoryBtnTxt}>Ekonomi Kreatif</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.categoryBtn}>
-          <View style={styles.categoryIcon}>
-            <AntDesign name="caretdown" size={35} color="#FF6347" />
-          </View>
-          <Text style={styles.categoryBtnTxt}>Lainnya</Text>
         </TouchableOpacity>
       </View>
     </>
@@ -104,11 +96,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 25,
     marginBottom: 10,
+    justifyContent: 'center',
   },
   categoryBtn: {
     flex: 1,
     width: '30%',
-    marginHorizontal: 0,
     alignSelf: 'center',
   },
   categoryIcon: {
