@@ -49,7 +49,7 @@ const Profile = ({navigation}) => {
             label="Rate App"
             onPress={() => navigation.navigate('HomePage')}
           />
-          <ProfileListMenu label="Info Bantuan" />
+          {/* <ProfileListMenu label="Info Bantuan" /> */}
           <ProfileListMenu
             label="Saran & Masukan"
             onPress={() => navigation.navigate('Message')}
