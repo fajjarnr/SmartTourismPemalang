@@ -4,6 +4,7 @@ import React from 'react';
 import {TabBar} from '../components';
 import {
   DestinationDetail,
+  HelpCenter,
   Home,
   HomePage,
   ListDesaWisata,

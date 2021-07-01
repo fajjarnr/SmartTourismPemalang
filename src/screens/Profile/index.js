@@ -49,9 +49,12 @@ const Profile = ({navigation}) => {
             label="Rate App"
             onPress={() => navigation.navigate('HomePage')}
           />
-          {/* <ProfileListMenu label="Info Bantuan" /> */}
+          {/* <ProfileListMenu
+            label="Info Bantuan"
+            onPress={() => navigation.navigate('HelpCenter')}
+          /> */}
           <ProfileListMenu
-            label="Saran & Masukan"
+            label="Bantuan & Keluhan"
             onPress={() => navigation.navigate('Message')}
           />
           <ProfileListMenu
@@ -126,11 +129,6 @@ const styles = StyleSheet.create({
     color: '#202020',
     fontSize: 14,
   },
-  wrapperContent: {
-    paddingHorizontal: 24,
-    paddingBottom: 20,
-    marginTop: 15,
-  },
   footer: {
     flex: 2,
     backgroundColor: '#ff7c57',
@@ -138,8 +136,13 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 50,
     marginTop: -20,
   },
+  wrapperContent: {
+    paddingHorizontal: 24,
+    paddingBottom: 20,
+    marginTop: 20,
+  },
   button: {
     paddingHorizontal: 24,
-    marginTop: 20,
+    marginTop: 30,
   },
 });

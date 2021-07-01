@@ -73,7 +73,7 @@ const CategoryContainer = () => {
         </TouchableOpacity>
       </View>
 
-      <View style={[styles.categoryContainer3, {marginTop: 10}]}>
+      <View style={[styles.categoryContainer, {marginTop: 10}]}>
         <TouchableOpacity
           style={styles.categoryBtn}
           onPress={() => navigation.navigate('ListEkraf')}>

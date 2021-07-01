@@ -34,7 +34,7 @@ const Message = ({navigation}) => {
   return (
     <View style={styles.page}>
       <Header
-        title="Saran & Masukan"
+        title="Bantuan & Keluhan"
         subTitle="Sampaikan pesanmu kepada kami"
         back
         onPress={() => navigation.goBack()}
@@ -63,7 +63,7 @@ const Message = ({navigation}) => {
           icon="message1"
           label="Pesan"
           autoCorrect={false}
-          inputLabel="Ketikan saran dan masukan"
+          inputLabel="Ketikan pesan"
           multiline={true}
           value={form.message}
           onChangeText={value => setForm('message', value)}
