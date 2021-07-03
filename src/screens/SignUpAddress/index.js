@@ -67,7 +67,7 @@ const SignUpAddress = ({navigation}) => {
           <Gap height={24} />
           <View style={styles.button}>
             <Button
-              label="Sign Up Now"
+              label="Daftar"
               onPress={onSubmit}
               colorButton="#ff7c57"
               textColorButton="#FFFFFF"

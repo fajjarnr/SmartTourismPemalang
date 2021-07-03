@@ -12,7 +12,19 @@ const Order = () => {
 
   useEffect(() => {
     dispatch(getOrders());
+
+    const interval = setInterval(() => {
+      getOrder();
+    }, 60000);
+
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
+
+  const getOrder = () => {
+    dispatch(getOrders());
+  };
 
   return (
     <View View style={styles.page}>

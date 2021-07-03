@@ -24,7 +24,7 @@ const SignIn = ({navigation}) => {
         translucent
         barStyle="dark-content"
       />
-      <Header title="Sign In" subTitle="Welcome Back" />
+      <Header title="Sign In" subTitle="Selamat Datang Kembali" />
       <View style={styles.wrapper}>
         <Gap height={35} />
         <TextInput
@@ -50,7 +50,7 @@ const SignIn = ({navigation}) => {
         />
         <Gap height={50} />
         <Button
-          label="Sign In"
+          label="Masuk"
           colorButton="#ff7c57"
           textColorButton="#FFF"
           onPress={onSubmit}
@@ -59,7 +59,7 @@ const SignIn = ({navigation}) => {
         <Button
           colorButton="#8D92A3"
           textColorButton="white"
-          label="Create New Account"
+          label="Buat Akun Baru"
           onPress={() => navigation.navigate('SignUp')}
         />
       </View>
@@ -71,8 +71,8 @@ export default SignIn;
 
 const styles = StyleSheet.create({
   page: {
-    flex: 1
-    },
+    flex: 1,
+  },
   wrapper: {
     paddingHorizontal: 24,
     paddingVertical: 26,
@@ -80,6 +80,6 @@ const styles = StyleSheet.create({
     marginTop: 24,
     flex: 1,
     borderTopLeftRadius: 25,
-    borderTopRightRadius: 25
+    borderTopRightRadius: 25,
   },
 });

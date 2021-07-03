@@ -122,7 +122,7 @@ const OrderSummary = ({navigation, route}) => {
 
         <View style={styles.content}>
           <View style={styles.wrapper}>
-            <Text style={styles.textTitle}>Deliver to:</Text>
+            <Text style={styles.textTitle}>Data Pengguna:</Text>
             <Gap height={8} />
             <ItemValue label="Nama" value={userProfile.name} />
             <ItemValue label="No Telpon" value={userProfile.phone} />
@@ -133,7 +133,7 @@ const OrderSummary = ({navigation, route}) => {
 
         <View style={styles.button}>
           <Button
-            label="Checkout Now"
+            label="Bayar"
             colorButton="#ff7c57"
             textColorButton="#FFFFFF"
             onPress={onCheckOut}
