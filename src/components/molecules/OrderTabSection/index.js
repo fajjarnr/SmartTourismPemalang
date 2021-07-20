@@ -152,7 +152,7 @@ const DiBatalkan = () => {
             name={item.destinations.name}
             price={item.total}
             orderItems={item.quantity}
-            date={item.created_at}
+            date={item.updated_at}
             statusOrder={item.status}
             activeOpacity={1}
             statusColor="#D9435E"

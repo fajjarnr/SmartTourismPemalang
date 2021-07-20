@@ -15,12 +15,10 @@ import {
 } from 'react-native-image-header-scroll-view';
 
 const MIN_HEIGHT = Platform.OS === 'ios' ? 90 : 55;
-const MAX_HEIGHT = 220;
+const MAX_HEIGHT = 350;
 
 const NewsDetail = ({route}) => {
   const {picturePath, title, content, created_at, user} = route.params;
-
-  const formatedDate = new Date(created_at).toDateString('id');
 
   const navTitleView = useRef(null);
 
@@ -36,36 +34,15 @@ const NewsDetail = ({route}) => {
         minHeight={MIN_HEIGHT}
         renderHeader={() => (
           <Image source={{uri: picturePath}} style={styles.image} />
-        )}
-        renderForeground={() => (
-          <View
-            style={{
-              height: 150,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <View style={styles.titleContainer}>
-              <Text style={styles.imageTitle}>{title}</Text>
-            </View>
-          </View>
-        )}
-        renderFixedForeground={() => (
-          <Animatable.View style={styles.navTitleView} ref={navTitleView}>
-            <Text
-              style={styles.navTitle}
-              numberOfLines={1}
-              lineBreakMode="tail">
-              {title}
-            </Text>
-          </Animatable.View>
         )}>
         <TriggeringView
           style={styles.section}
           onHide={() => navTitleView.current.fadeInUp(200)}
           onDisplay={() => navTitleView.current.fadeOut(100)}>
+          <Text style={styles.title}>{title}</Text>
           <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
             <Text style={styles.title}>{user.name}</Text>
-            <Text style={styles.title}>{formatedDate}</Text>
+            <Text style={styles.title}>{created_at}</Text>
           </View>
         </TriggeringView>
         <View style={styles.sectionLarge}>
@@ -106,6 +83,7 @@ const styles = StyleSheet.create({
   sectionContent: {
     fontSize: 16,
     textAlign: 'justify',
+    color: 'black',
   },
   titleContainer: {
     flex: 1,
@@ -136,5 +114,10 @@ const styles = StyleSheet.create({
   sectionLarge: {
     minHeight: 300,
     padding: 20,
+  },
+  title: {
+    color: 'black',
+    fontSize: 18,
+    marginBottom: 20,
   },
 });

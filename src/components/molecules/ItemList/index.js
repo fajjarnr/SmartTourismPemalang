@@ -70,7 +70,7 @@ const ItemList = ({
                 </View>
               </View>
               <View style={styles.status}>
-                <Text style={styles.date}>{formatedDate}</Text>
+                <Text style={styles.date}>{date}</Text>
                 <Text style={styles.statusOrder(statusColor)}>
                   {statusOrder}
                 </Text>

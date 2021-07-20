@@ -2,9 +2,7 @@ import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Gap} from '../../atoms';
 
-const NewsCard = ({image, name, author, description, date, onPress}) => {
-  const formatedDate = new Date(date).toDateString('id');
-
+const NewsCard = ({image, name, description, date, onPress}) => {
   return (
     <TouchableOpacity style={styles.page} activeOpacity={0.8} onPress={onPress}>
       <Image source={image} resizeMode="cover" style={styles.image} />
@@ -13,7 +11,7 @@ const NewsCard = ({image, name, author, description, date, onPress}) => {
           {name}
         </Text>
         <Gap height={5} />
-        <Text style={styles.author}>{formatedDate}</Text>
+        <Text style={styles.author}>{date}</Text>
         <Gap height={7} />
         <Text style={styles.description} numberOfLines={1} lineBreakMode="tail">
           {description}
